@@ -10,6 +10,10 @@
     <meta name="theme-color" content="#007A61">
     <title>Dra. Bruna Lucas - Pediatra | TEA, TDAH e Neurodesenvolvimento</title>
 
+    <!-- Favicon -->
+    <link rel="icon" href="img/logo-drabruna.jpeg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="img/logo-drabruna.jpeg">
+
     <!-- fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -668,15 +672,19 @@
         /* Impact Banner */
         .impact-banner {
             background: linear-gradient(135deg, var(--brand-dark), var(--brand));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 2rem;
             position: relative;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
+        }
+
+        .impact-banner-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             align-items: center;
-            gap: 2.5rem;
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+            text-align: left;
         }
 
         .impact-banner:before {
@@ -691,10 +699,25 @@
             animation: rotate 20s linear infinite;
         }
 
+        .impact-image-wrapper {
+            width: 100%;
+            max-width: 450px;
+            grid-area: image; /* Nomeia a área para o grid */
+            justify-self: center;
+        }
+
+        .impact-image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
         .impact-content {
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
+            display: flex;
+            grid-area: content; /* Nomeia a área para o grid */
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .impact-text {
@@ -702,7 +725,7 @@
             font-weight: 600;
             margin-bottom: 0.75rem;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             gap: 1rem;
         }
@@ -723,8 +746,6 @@
         .impact-locations {
             display: flex;
             gap: 2rem;
-            position: relative;
-            z-index: 1;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -734,7 +755,7 @@
             border: 1px solid rgba(203, 168, 90, 0.15);
             padding: 1.5rem;
             border-radius: 16px;
-            width: 280px;
+            flex: 1;
             backdrop-filter: blur(5px);
         }
 
@@ -753,8 +774,6 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 1.1rem;
-            position: relative;
-            z-index: 1;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
@@ -763,7 +782,28 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             background: #d8b35a;
+            align-self: flex-start;
         }
+
+        @media (max-width: 900px) {
+            .impact-banner-grid {
+                grid-template-columns: 1fr;
+                grid-template-areas: "content"
+                                     "image"; /* Define a ordem para mobile */
+                text-align: center;
+            }
+
+            .impact-cta {
+                align-self: center;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .impact-banner-grid {
+                grid-template-areas: "image content"; /* Define a ordem para desktop */
+            }
+        }
+
 
         /* Contact Section */
         .contact-grid {
@@ -790,6 +830,7 @@
             align-items: flex-start;
             gap: 1rem;
             padding: 1.25rem;
+            color: var(--brand);
             background: var(--white);
             border: 1px solid rgba(11, 63, 58, 0.08);
             border-radius: 16px;
@@ -1165,7 +1206,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>Sou a Dra. Bruna Maria Pereira Lucas Silva, pediatra em Goiânia (GO), <strong>CRM-GO
-                            29487</strong>. Dedico-me ao cuidado infantil com foco no desenvolvimento e bem-estar.</p>
+                            29487, RQE 19256</strong>. Dedico-me ao cuidado infantil com foco no desenvolvimento e bem-estar.</p>
                     <br>
                     <p>Ofereço suporte empático e técnico para crianças com TEA, TDAH e Atrasos no Desenvolvimento.
                         Sou neurodivergente e também mãe atípica. Acredito que informação e acolhimento andam juntos, e que cada experiência única pode inspirar empatia e compreensão.</p>
@@ -1272,27 +1313,32 @@
         </section>
 
         <!-- Impact Banner -->
-        <section class="impact-banner">
-            <div class="impact-content">
-                <h2 class="impact-text">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M3.22 12H9.5l.7-1.44.7 1.44H15"></path></svg>
-                    Cuidado que une empatia e técnica
-                </h2>
-                <p class="impact-subtitle">Minha missão é oferecer um atendimento que acolhe a família e foca no desenvolvimento pleno de cada criança, com respeito e dedicação.</p>
-            </div>
-            <div class="impact-locations">
-                <div class="location-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <h3>Atendimento Presencial</h3>
-                    <p>Goiânia, GO</p>
+        <section class="section impact-banner">
+            <div class="impact-banner-grid">
+                <div class="impact-content">
+                    <h2 class="impact-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M3.22 12H9.5l.7-1.44.7 1.44H15"></path></svg>
+                        Cuidado que une empatia e técnica
+                    </h2>
+                    <p class="impact-subtitle">Minha missão é oferecer um atendimento que acolhe a família e foca no desenvolvimento pleno de cada criança, com respeito e dedicação.</p>
+                    <div class="impact-locations">
+                        <div class="location-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <h3>Atendimento Presencial</h3>
+                            <p>Goiânia, GO</p>
+                        </div>
+                        <div class="location-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
+                            <h3>Telemedicina</h3>
+                            <p>Para todo o Brasil</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta" target="_blank" rel="noopener noreferrer" class="impact-cta">Agende uma Consulta</a>
                 </div>
-                <div class="location-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
-                    <h3>Telemedicina</h3>
-                    <p>Para todo o Brasil</p>
+                <div class="impact-image-wrapper">
+                    <img src="img/empatia.jpg" alt="Dra. Bruna Lucas em atendimento humanizado com criança" loading="lazy">
                 </div>
             </div>
-            <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta" target="_blank" rel="noopener noreferrer" class="impact-cta">Agende uma Consulta</a>
         </section>
 
         <!-- Specialties Section -->
