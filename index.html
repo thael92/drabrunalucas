@@ -918,6 +918,94 @@
             }
         }
 
+        /* Reviews Section */
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .reviews-summary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .reviews-summary .google-logo svg {
+            width: 80px;
+            height: auto;
+        }
+
+        .reviews-rating {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--brand-dark);
+        }
+
+        .reviews-stars {
+            color: #fbbc05; /* Google yellow */
+            display: flex;
+        }
+
+        .reviews-stars svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .reviews-count {
+            color: #5f6368; /* Google grey */
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(11, 63, 58, 0.08);
+            box-shadow: 0 8px 25px rgba(3, 28, 26, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-weight: 600;
+            color: var(--white);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--brand-dark);
+        }
+
+        .review-text {
+            color: #344a45;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            flex-grow: 1;
+            border-left: 3px solid var(--gold);
+            padding-left: 1rem;
+        }
+
         /* Fixed Logo */
         .fixed-logo-container {
             position: fixed;
@@ -974,6 +1062,10 @@
             }
 
             .specialties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -1239,7 +1331,74 @@
                     <p class="specialty-description">Consultas regulares para monitorar o crescimento, a vacinação e a saúde integral do seu filho, da infância à adolescência.</p>
                 </div>
             </div>
-        </section>        
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="section" id="avaliacoes">
+            <h2 class="section-title">O que dizem meus pacientes</h2>
+            <div class="reviews-header">
+                <div class="reviews-summary">
+                    <div class="google-logo" aria-hidden="true">
+                    </div>
+                    <div>
+                        <div class="reviews-rating">5.0</div>
+                        <div class="reviews-stars" aria-label="5 de 5 estrelas">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </div>
+                        <div class="reviews-count">Baseado em 49 avaliações</div>
+                    </div>
+                </div>
+                <a href="https://www.google.com/search?sca_esv=1d5ae73f0554544d&cs=0&output=search&kgmid=/g/11xf4fyq7r&q=Dra+Bruna+Lucas+Pediatra&shndl=30&shem=lcuae,uaasie,shrtsdl&source=sh/x/loc/uni/m1/1&kgs=edd96baad4f42bca&utm_source=lcuae,uaasie,shrtsdl,sh/x/loc/uni/m1/1#lrd=0xa70fee36673262db:0xe0402a14a29f34f0,1,,,," target="_blank" rel="noopener noreferrer" class="btn-ghost">Ver todas as avaliações</a>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-author">
+                        <div class="author-avatar" style="background-color: #e57373;">A</div>
+                        <div class="author-name">Ana Paula Alves Simonine Sousa</div>
+                    </div>
+                    <p class="review-text">"Simplesmente maravilhosa, eu como mãe indico de olhos fechados, muito atenciosa, me passou muita segurança e minhas filhas ficaram encantadas com a doutora Bruna..."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-author">
+                        <div class="author-avatar" style="background-color: #81c784;">M</div>
+                        <div class="author-name">Maria Eduarda Arantes Pereira</div>
+                    </div>
+                    <p class="review-text">"Excelente profissional! A Dra. Bruna me acompanha desde a infância e sempre demonstrou muita dedicação e cuidado em cada atendimento. É atenciosa, competente e transmite confiança."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-author">
+                        <div class="author-avatar" style="background-color: #64b5f6;">K</div>
+                        <div class="author-name">Katriny Isabel</div>
+                    </div>
+                    <p class="review-text">"Encontrar uma pediatra como a Dra. Bruna é um verdadeiro presente. Ela não trata apenas de sintomas ela cuida de pessoas, com um coração enorme e uma dedicação que transborda em cada consulta."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-author">
+                        <div class="author-avatar" style="background-color: #ffb74d;">C</div>
+                        <div class="author-name">Carolina Divetta França</div>
+                    </div>
+                    <p class="review-text">"Pensem numa pediatra que ajuda até os pequenos a fazer xixi para o exame de urina... Pois é, ela é assim. Empática, com escuta ativa, carinhosa, atualizada, preocupada com a saúde dos pequenos."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-author">
+                        <div class="author-avatar" style="background-color: #9575cd;">A</div>
+                        <div class="author-name">Ana viviane Caraca</div>
+                    </div>
+                    <p class="review-text">"Dra Bruna, é uma Pediatra das melhores que eu já tive oportunidade de conhecer, tem uma atenção ímpar, faz todo um check-up geral, e seu atendimento é fenomenal! Não troco por ninguém."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-author">
+                        <div class="author-avatar" style="background-color: #4db6ac;">D</div>
+                        <div class="author-name">Daniela Barcellos</div>
+                    </div>
+                    <p class="review-text">"Médica maravilhosa e extremamente atenciosa!!!! Recomendo!!!!"</p>
+                </div>
+            </div>
+        </section>
 
         <!-- Contact Section -->
         <section class="section" id="contato">
