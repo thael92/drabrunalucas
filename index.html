@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dra. Bruna Lucas – Pediatra especializada em TEA, TDAH e Atrasos no Desenvolvimento Infantil. Atendimento humanizado em Goiânia e por Telemedicina. Agende sua consulta.">
+    <meta name="description"
+        content="Dra. Bruna Lucas – Pediatra especializada em TEA, TDAH e Atrasos no Desenvolvimento Infantil. Atendimento humanizado em Goiânia e por Telemedicina. Agende sua consulta.">
     <meta name="keywords" content="pediatra goiânia, TEA, TDAH, autismo, neurodesenvolvimento, pediatria">
     <meta name="theme-color" content="#007A61">
     <title>Dra. Bruna Lucas - Pediatra | TEA, TDAH e Neurodesenvolvimento</title>
@@ -11,7 +13,8 @@
     <!-- fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -22,9 +25,12 @@
 
         :root {
             /* paleta inspirada na logo */
-            --brand-dark: #0b3f3a;      /* fundo profundo da logo */
-            --brand: #006F5A;           /* verde principal */
-            --gold: #CBA85A;            /* dourado quente */
+            --brand-dark: #0b3f3a;
+            /* fundo profundo da logo */
+            --brand: #006F5A;
+            /* verde principal */
+            --gold: #CBA85A;
+            /* dourado quente */
             --white: #FFFFFF;
             --muted-bg: #F6F5F3;
             --text-dark: #203230;
@@ -41,7 +47,7 @@
         .linktree-section {
             min-height: 100vh;
             /* degrade semi-transparente para permitir ver o vídeo por baixo (fallback poster permanece em img/Dra. Bruna.jpg) */
-            background: linear-gradient(135deg, rgba(11,63,58,0.48) 0%, rgba(0,111,90,0.38) 60%);
+            background: linear-gradient(135deg, rgba(11, 63, 58, 0.48) 0%, rgba(0, 111, 90, 0.38) 60%);
             /* background-size / position deixados como fallback caso o vídeo não carregue */
             background-size: cover;
             background-position: center;
@@ -52,20 +58,24 @@
             padding: 2rem;
             position: relative;
             color: var(--white);
-            overflow: hidden; /* importante para esconder overflow do vídeo */
+            overflow: hidden;
+            /* importante para esconder overflow do vídeo */
         }
 
         /* vídeo de fundo */
         .linktree-section .bg-video {
             position: absolute;
-            inset: 0; /* top:0; right:0; bottom:0; left:0; */
+            inset: 0;
+            /* top:0; right:0; bottom:0; left:0; */
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
             z-index: 0;
-            pointer-events: none; /* evita interferir em cliques */
-            filter: brightness(.56) saturate(.95); /* ajuste visual para melhor contraste sobre conteúdo */
+            pointer-events: none;
+            /* evita interferir em cliques */
+            filter: brightness(.56) saturate(.95);
+            /* ajuste visual para melhor contraste sobre conteúdo */
         }
 
         /* garantir que o conteúdo fique sobre o vídeo */
@@ -77,30 +87,30 @@
             backdrop-filter: blur(6px);
             padding: 2rem;
             border-radius: 16px;
-            background: linear-gradient(180deg, rgba(11,63,58,0.12), rgba(0,0,0,0.08));
-            border: 1px solid rgba(203,168,90,0.12);
+            background: linear-gradient(180deg, rgba(11, 63, 58, 0.12), rgba(0, 0, 0, 0.08));
+            border: 1px solid rgba(203, 168, 90, 0.12);
         }
 
         .profile-photo {
-    width: clamp(110px, 18vw, 180px);
-    height: clamp(110px, 18vw, 180px);
-    border-radius: 50%;
-    border: 4px solid rgba(198,166,100,0.95);
-    object-fit: cover;
-    object-position: center;
-    margin: 0 auto 1.25rem;
-    box-shadow: 0 12px 34px rgba(0,0,0,0.45);
-    background: rgba(255,255,255,0.06);
-    display: block;
-    transition: transform .35s ease, box-shadow .25s ease;
-}
+            width: clamp(110px, 18vw, 180px);
+            height: clamp(110px, 18vw, 180px);
+            border-radius: 50%;
+            border: 4px solid rgba(198, 166, 100, 0.95);
+            object-fit: cover;
+            object-position: center;
+            margin: 0 auto 1.25rem;
+            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+            background: rgba(255, 255, 255, 0.06);
+            display: block;
+            transition: transform .35s ease, box-shadow .25s ease;
+        }
 
-.profile-photo:focus,
-.profile-photo:hover {
-    transform: translateY(-4px) scale(1.04);
-    outline: 3px solid rgba(198,166,100,0.18);
-    box-shadow: 0 18px 44px rgba(0,0,0,0.5);
-}
+        .profile-photo:focus,
+        .profile-photo:hover {
+            transform: translateY(-4px) scale(1.04);
+            outline: 3px solid rgba(198, 166, 100, 0.18);
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+        }
 
         /* Nome, título e ênfases com cores da logo */
         .profile-name {
@@ -108,7 +118,7 @@
             font-weight: 700;
             color: var(--white);
             margin-bottom: 0.5rem;
-            text-shadow: 0 4px 18px rgba(0,0,0,0.45);
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
         }
 
         .profile-title {
@@ -116,7 +126,7 @@
             font-weight: 500;
             color: var(--gold);
             margin-bottom: 2.5rem;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.28);
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
         }
 
         .links-container {
@@ -129,7 +139,7 @@
 
         /* botões claros com destaque em dourado ao hover */
         .link-button {
-            background: rgba(255,255,255,0.96);
+            background: rgba(255, 255, 255, 0.96);
             color: var(--brand);
             padding: 0.9rem 1.25rem;
             border-radius: 12px;
@@ -140,10 +150,10 @@
             gap: 0.75rem;
             font-weight: 600;
             transition: all 0.25s ease;
-            box-shadow: 0 8px 30px rgba(3,28,26,0.12);
+            box-shadow: 0 8px 30px rgba(3, 28, 26, 0.12);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(6,45,42,0.04);
+            border: 1px solid rgba(6, 45, 42, 0.04);
         }
 
         .link-button svg {
@@ -153,7 +163,7 @@
         }
 
         .link-button:focus {
-            box-shadow: 0 0 0 4px rgba(0,122,97,0.18);
+            box-shadow: 0 0 0 4px rgba(0, 122, 97, 0.18);
         }
 
         .link-button:before {
@@ -173,8 +183,8 @@
 
         .link-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 14px 40px rgba(6,45,42,0.18);
-            background: linear-gradient(90deg, rgba(203,168,90,0.98), rgba(200,160,70,0.95));
+            box-shadow: 0 14px 40px rgba(6, 45, 42, 0.18);
+            background: linear-gradient(90deg, rgba(203, 168, 90, 0.98), rgba(200, 160, 70, 0.95));
             color: var(--white);
         }
 
@@ -194,9 +204,9 @@
             width: 56px;
             height: 56px;
             border-radius: 999px;
-            background: rgba(11,63,58,0.06);
+            background: rgba(11, 63, 58, 0.06);
             backdrop-filter: blur(6px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
             cursor: pointer;
             transition: transform .28s ease, box-shadow .28s ease;
             outline: none;
@@ -206,7 +216,7 @@
         .scroll-indicator:focus,
         .scroll-indicator:hover {
             transform: translateX(-50%) translateY(-6px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
         }
 
         .scroll-arrow {
@@ -252,7 +262,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, var(--gold), rgba(203,168,90,0.85));
+            background: linear-gradient(90deg, var(--gold), rgba(203, 168, 90, 0.85));
             border-radius: 2px;
         }
 
@@ -295,12 +305,14 @@
             border-radius: 14px;
             object-fit: cover;
             object-position: center;
-            box-shadow: 0 14px 40px rgba(3,28,26,0.12);
-            border: 1px solid rgba(11,63,58,0.06);
+            box-shadow: 0 14px 40px rgba(3, 28, 26, 0.12);
+            border: 1px solid rgba(11, 63, 58, 0.06);
         }
 
         /* espaçamento entre parágrafos caso HTML contenha <br> */
-        .about-text br { display: none; }
+        .about-text br {
+            display: none;
+        }
 
         /* responsivo: empilha e amplia imagem */
         @media (max-width: 900px) {
@@ -320,17 +332,152 @@
             }
         }
 
+        /* PN Inclusiva Slider (continuidade suave) */
+        .pn-slider {
+            max-width: 1200px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .pn-slider .slider-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--brand-dark);
+            font-size: 1.6rem;
+        }
+
+        .pn-slider .viewport {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            box-shadow: 0 18px 50px rgba(3, 28, 26, 0.12);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(11, 63, 58, 0.02));
+        }
+
+        .pn-slider .track {
+            display: flex;
+            transition: transform 600ms cubic-bezier(.22, .9, .3, 1);
+            will-change: transform;
+        }
+
+        .pn-slider .slide {
+            min-width: 100%;
+            flex-shrink: 0;
+            position: relative;
+            display: block;
+            aspect-ratio: 16/8.5;
+            /* wide banner */
+            overflow: hidden;
+        }
+
+        .pn-slider .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .pn-slider .slide .overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(11, 63, 58, 0.45) 100%);
+        }
+
+        .pn-slider .caption {
+            color: var(--white);
+            max-width: 780px;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            background: linear-gradient(90deg, rgba(11, 63, 58, 0.45), rgba(11, 63, 58, 0.3));
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(203, 168, 90, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28);
+        }
+
+        .pn-slider .controls {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .pn-slider .btn {
+            pointer-events: auto;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(203, 168, 90, 0.9);
+            color: var(--brand-dark);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+        }
+
+        .pn-slider .btn-left {
+            left: 12px;
+        }
+
+        .pn-slider .btn-right {
+            right: 12px;
+        }
+
+        .pn-slider .dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 0.9rem;
+        }
+
+        .pn-slider .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(11, 63, 58, 0.08);
+            cursor: pointer;
+        }
+
+        .pn-slider .dot.active {
+            background: var(--gold);
+            box-shadow: 0 6px 18px rgba(203, 168, 90, 0.25);
+        }
+
+        /* small screens */
+        @media (max-width: 720px) {
+            .pn-slider .caption {
+                font-size: 0.95rem;
+                padding: 0.6rem 0.75rem;
+            }
+
+            .pn-slider .btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .pn-slider .slide {
+                aspect-ratio: 16/9;
+            }
+        }
+
         /* Primeiro Sinal (Seção explicativa) */
         .first-sign-section {
             display: grid;
             grid-template-columns: 440px 1fr;
             gap: 2.25rem;
             align-items: center;
-            background: linear-gradient(180deg, rgba(203,168,90,0.03), rgba(11,63,58,0.02));
-            border: 1px solid rgba(203,168,90,0.08);
+            background: linear-gradient(180deg, rgba(203, 168, 90, 0.03), rgba(11, 63, 58, 0.02));
+            border: 1px solid rgba(203, 168, 90, 0.08);
             padding: 2rem;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(11,63,58,0.06);
+            box-shadow: 0 10px 30px rgba(11, 63, 58, 0.06);
         }
 
         .first-sign-figure {
@@ -340,7 +487,7 @@
             overflow: hidden;
             border-radius: 12px;
             display: block;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
         }
 
         .first-sign-figure img {
@@ -385,11 +532,11 @@
         }
 
         .first-sign-note {
-            border-left: 3px solid rgba(203,168,90,0.18);
+            border-left: 3px solid rgba(203, 168, 90, 0.18);
             padding-left: 1rem;
             color: #2f4a42;
             font-style: italic;
-            background: rgba(203,168,90,0.02);
+            background: rgba(203, 168, 90, 0.02);
             border-radius: 6px;
             padding: 0.75rem 1rem;
             margin-top: 0.75rem;
@@ -404,7 +551,7 @@
 
         .btn-ghost {
             background: transparent;
-            border: 1px solid rgba(6,45,42,0.08);
+            border: 1px solid rgba(6, 45, 42, 0.08);
             padding: 0.65rem 1rem;
             border-radius: 10px;
             color: var(--brand-dark);
@@ -435,20 +582,33 @@
             height: 56px;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
         }
 
-        .signature-avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+        .signature-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
         .signature-meta {
             color: #27463f;
         }
 
-        .signature-meta strong { display:block; color:var(--brand-dark); }
+        .signature-meta strong {
+            display: block;
+            color: var(--brand-dark);
+        }
 
         @media (max-width: 900px) {
-            .first-sign-section { grid-template-columns: 1fr; }
-            .first-sign-figure { max-height: 300px; }
+            .first-sign-section {
+                grid-template-columns: 1fr;
+            }
+
+            .first-sign-figure {
+                max-height: 300px;
+            }
         }
 
         /* Specialties Section */
@@ -620,6 +780,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -627,18 +788,24 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.05);
             }
         }
 
         @keyframes bounce {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateX(-50%) translateY(0);
             }
+
             50% {
                 transform: translateX(-50%) translateY(-10px);
             }
@@ -648,6 +815,7 @@
             from {
                 transform: rotate(0deg);
             }
+
             to {
                 transform: rotate(360deg);
             }
@@ -682,6 +850,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Linktree Section -->
     <section class="linktree-section" id="linktree">
@@ -691,51 +860,72 @@
             <!-- fallback: imagem -->
             Seu navegador não suporta vídeo. <img src="img/Dra. Bruna.jpg" alt="">
         </video>
-         <div class="profile-container">
-             <!-- usar foto real em assets/bruna-profile.jpg -->
-             <img src="img/Dra. Bruna.jpg" alt="Foto Dra. Bruna Lucas" class="profile-photo" tabindex="0">
+        <div class="profile-container">
+            <!-- usar foto real em assets/bruna-profile.jpg -->
+            <img src="img/Dra. Bruna.jpg" alt="Foto Dra. Bruna Lucas" class="profile-photo" tabindex="0">
 
             <h1 class="profile-name">Dra.BrunaLucasPediatra</h1>
             <p class="profile-title">Pediatra | TEA, TDAH e Atrasos no Neurodesenvolvimento</p>
 
             <div class="links-container">
-                <a href="https://wa.me/5562983100023" target="_blank" rel="noopener noreferrer" class="link-button" aria-label="Whatsapp">
+                <a href="https://wa.me/5562983100023" target="_blank" rel="noopener noreferrer" class="link-button"
+                    aria-label="Whatsapp">
                     <!-- SVG ícone WhatsApp -->
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#007A61" d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.12.56 4.14 1.62 5.95L0 24l6.32-1.64A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.21-1.26-6.22-3.48-8.52zM12 21.6c-1.6 0-3.16-.42-4.54-1.22l-.33-.19-3.75.98.99-3.67-.21-.36A9.6 9.6 0 012.4 12c0-5.31 4.29-9.6 9.6-9.6 2.57 0 4.98.99 6.8 2.81A9.52 9.52 0 0121.6 12c0 5.31-4.29 9.6-9.6 9.6z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path fill="#007A61"
+                            d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.12.56 4.14 1.62 5.95L0 24l6.32-1.64A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.21-1.26-6.22-3.48-8.52zM12 21.6c-1.6 0-3.16-.42-4.54-1.22l-.33-.19-3.75.98.99-3.67-.21-.36A9.6 9.6 0 012.4 12c0-5.31 4.29-9.6 9.6-9.6 2.57 0 4.98.99 6.8 2.81A9.52 9.52 0 0121.6 12c0 5.31-4.29 9.6-9.6 9.6z" />
+                    </svg>
                     <span>WhatsApp</span>
                 </a>
 
-                <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta" target="_blank" rel="noopener noreferrer" class="link-button" aria-label="Agendar consulta">
+                <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta"
+                    target="_blank" rel="noopener noreferrer" class="link-button" aria-label="Agendar consulta">
                     <!-- SVG ícone calendar -->
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#007A61" d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 14H5V9h14v9z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path fill="#007A61"
+                            d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 14H5V9h14v9z" />
+                    </svg>
                     <span>Agendar Consulta</span>
                 </a>
 
-                <a href="https://www.instagram.com/brunalucaspediatra/" target="_blank" rel="noopener noreferrer" class="link-button" aria-label="Instagram">
+                <a href="https://www.instagram.com/brunalucaspediatra/" target="_blank" rel="noopener noreferrer"
+                    class="link-button" aria-label="Instagram">
                     <!-- SVG ícone Instagram (simplificado) -->
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#007A61" d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zM12 7.5A4.5 4.5 0 1016.5 12 4.5 4.5 0 0012 7.5zm0 7.5A3 3 0 1115 12a3 3 0 01-3 3zM17.5 6.1a.9.9 0 11-.9-.9.9.9 0 01.9.9z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path fill="#007A61"
+                            d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zM12 7.5A4.5 4.5 0 1016.5 12 4.5 4.5 0 0012 7.5zm0 7.5A3 3 0 1115 12a3 3 0 01-3 3zM17.5 6.1a.9.9 0 11-.9-.9.9.9 0 01.9.9z" />
+                    </svg>
                     <span>Instagram</span>
                 </a>
 
                 <a href="mailto:dra.brunalucaspediatra@gmail.com" class="link-button" aria-label="E-mail">
                     <!-- SVG ícone email -->
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#007A61" d="M20 4H4a2 2 0 00-2 2v0l10 6 10-6v0a2 2 0 00-2-2zM2 8v8a2 2 0 002 2h16a2 2 0 002-2V8l-10 6L2 8z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path fill="#007A61"
+                            d="M20 4H4a2 2 0 00-2 2v0l10 6 10-6v0a2 2 0 00-2-2zM2 8v8a2 2 0 002 2h16a2 2 0 002-2V8l-10 6L2 8z" />
+                    </svg>
                     <span>E-mail</span>
                 </a>
 
-                <a href="https://maps.app.goo.gl/AXLDYGehHSSDEPUj6?g_st=ipc" target="_blank" rel="noopener noreferrer" class="link-button" aria-label="Localização">
+                <a href="https://maps.app.goo.gl/AXLDYGehHSSDEPUj6?g_st=ipc" target="_blank" rel="noopener noreferrer"
+                    class="link-button" aria-label="Localização">
                     <!-- SVG ícone location -->
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#007A61" d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path fill="#007A61"
+                            d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
+                    </svg>
                     <span>Localização</span>
                 </a>
             </div>
         </div>
 
         <div class="scroll-indicator" role="button" tabindex="0" aria-label="Ir para Sobre">
-            <svg class="scroll-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" width="44" height="44">
-                <circle cx="12" cy="12" r="11" fill="rgba(203,168,90,0.08)" stroke="var(--gold)" stroke-width="1.2"/>
-                <path d="M12 8v6" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-                <path d="M9.5 11.5L12 14l2.5-2.5" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <svg class="scroll-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" width="44"
+                height="44">
+                <circle cx="12" cy="12" r="11" fill="rgba(203,168,90,0.08)" stroke="var(--gold)" stroke-width="1.2" />
+                <path d="M12 8v6" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" fill="none" />
+                <path d="M9.5 11.5L12 14l2.5-2.5" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round" fill="none" />
             </svg>
         </div>
     </section>
@@ -747,11 +937,14 @@
             <h2 class="section-title">Sobre a Dra. Bruna</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Sou a Dra. Bruna Maria Pereira Lucas Silva, pediatra em Goiânia (GO), <strong>CRM-GO 29487</strong>. Dedico-me ao cuidado infantil com foco no desenvolvimento e bem-estar.</p>
+                    <p>Sou a Dra. Bruna Maria Pereira Lucas Silva, pediatra em Goiânia (GO), <strong>CRM-GO
+                            29487</strong>. Dedico-me ao cuidado infantil com foco no desenvolvimento e bem-estar.</p>
                     <br>
-                    <p>Ofereço suporte empático e técnico para crianças com TEA, TDAH e Atrasos no Desenvolvimento. Também sou mãe atípica e acredito que informação e acolhimento andam juntos.</p>
+                    <p>Ofereço suporte empático e técnico para crianças com TEA, TDAH e Atrasos no Desenvolvimento.
+                        Também sou mãe atípica e acredito que informação e acolhimento andam juntos.</p>
                     <br>
-                    <p>Minha missão é proporcionar um atendimento humanizado, respeitoso e baseado nas melhores práticas médicas, sempre colocando as necessidades da criança e da família em primeiro lugar.</p>
+                    <p>Minha missão é proporcionar um atendimento humanizado, respeitoso e baseado nas melhores práticas
+                        médicas, sempre colocando as necessidades da criança e da família em primeiro lugar.</p>
                 </div>
                 <img src="img/Dra. Bruna.jpg" alt="Dra. Bruna Lucas" class="about-photo">
             </div>
@@ -760,61 +953,104 @@
         <!-- Primeiro Sinal (Seção explicativa) -->
         <section class="section first-sign-section" id="primeiro-sinal" aria-labelledby="primeiro-sinal-title">
             <figure class="first-sign-figure" aria-hidden="true">
-                <img src="img/primeiro-sinal-tea.jpg" alt="Mãos e rosto de criança, destaque no olhar — ilustração fotográfica do primeiro sinal" loading="lazy">
+                <img src="img/primeiro-sinal-tea.jpg"
+                    alt="Mãos e rosto de criança, destaque no olhar — ilustração fotográfica do primeiro sinal"
+                    loading="lazy">
             </figure>
 
             <div class="first-sign-content">
                 <h3 id="primeiro-sinal-title">Nem sempre o primeiro sinal é o que a gente espera</h3>
-                <p>Às vezes aparece de forma sutil — um olhar que se perde, um sorriso que demora, um som que não desperta reação. E tudo bem. Não se trata de rotular, mas de perceber com amor e agir com consciência.</p>
+                <p>Às vezes aparece de forma sutil — um olhar que se perde, um sorriso que demora, um som que não
+                    desperta reação. E tudo bem. Não se trata de rotular, mas de perceber com amor e agir com
+                    consciência.</p>
 
                 <div class="first-sign-list" role="list">
                     <div class="first-sign-item" role="listitem">
                         <!-- olho -->
-                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                            stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)">
                             <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
                             <circle cx="12" cy="12" r="3"></circle>
                         </svg>
                         <div>
                             <strong>Um olhar diferente</strong>
-                            <div>Um olhar que se perde ou evita contato visual por momentos pode ser um primeiro indício.</div>
+                            <div>Um olhar que se perde ou evita contato visual por momentos pode ser um primeiro
+                                indício.</div>
                         </div>
                     </div>
 
                     <div class="first-sign-item" role="listitem">
                         <!-- relógio / tempo -->
-                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                            stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)">
                             <circle cx="12" cy="12" r="9"></circle>
                             <path d="M12 7v5l3 2"></path>
                         </svg>
                         <div>
                             <strong>Sorrisos e respostas que demoram</strong>
-                            <div>Um sorriso que surge depois do esperado, ou pouca reação a estímulos sociais, pode passar despercebido.</div>
+                            <div>Um sorriso que surge depois do esperado, ou pouca reação a estímulos sociais, pode
+                                passar despercebido.</div>
                         </div>
                     </div>
 
                     <div class="first-sign-item" role="listitem">
                         <!-- ouvido -->
-                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                            stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)">
                             <path d="M3 12c0-4.97 4.03-9 9-9v0c4.97 0 9 4.03 9 9 0 6-4 8-9 11-5-3-9-5-9-11z"></path>
                         </svg>
                         <div>
                             <strong>Reações sonoras diferentes</strong>
-                            <div>Um som que não desperta reação ou resposta reduzida a estímulos auditivos merece atenção e registro.</div>
+                            <div>Um som que não desperta reação ou resposta reduzida a estímulos auditivos merece
+                                atenção e registro.</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="first-sign-note">Observar é cuidar. Quanto mais cedo entendemos o que o comportamento do nosso filho quer dizer, mais cedo podemos ajudá‑lo a se desenvolver da forma que ele precisa.</div>
+                <div class="first-sign-note">Observar é cuidar. Quanto mais cedo entendemos o que o comportamento do
+                    nosso filho quer dizer, mais cedo podemos ajudá‑lo a se desenvolver da forma que ele precisa.</div>
 
                 <div class="first-sign-cta">
                     <a class="btn-ghost" href="#contato">Anote e Observe</a>
-                    <a class="btn-primary" href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20conversar%20com%20a%20Dra.%20Bruna%20Lucas">Converse com a Dra. Bruna</a>
+                    <a class="btn-primary"
+                        href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20conversar%20com%20a%20Dra.%20Bruna%20Lucas">Converse
+                        com a Dra. Bruna</a>
                 </div>
 
                 <div class="first-sign-signature" aria-hidden="false">
-                                       
+
                 </div>
             </div>
+        </section>
+
+        <!-- PN Inclusiva — Slider contínuo -->
+        <section class="section pn-slider" id="pn-inclusiva" aria-labelledby="pn-inclusiva-title">
+            <h3 class="slider-title" id="pn-inclusiva-title">Decreto nº 12.686/2025 — perguntas e poucas respostas</h3>
+
+            <div class="viewport" aria-hidden="false">
+                <div class="track" id="pn-track" role="list">
+                    <!-- Use img/img-1.jpg ... img/img-6.jpg (coloque os arquivos em /img) -->
+                    <div class="slide" role="listitem"><img src="img/img-1.jpg" alt="Imagem 1" loading="lazy"><div class="overlay"><div class="caption">O Decreto nº 12.686/2025 nasceu como promessa de avanço — mas chega com muitas perguntas e poucas respostas.</div></div></div>
+                    <div class="slide" role="listitem"><img src="img/img-2.jpg" alt="Imagem 2" loading="lazy"><div class="overlay"><div class="caption">O que muda na prática? A transição precisa de diálogo entre família, escola e serviços de saúde.</div></div></div>
+                    <div class="slide" role="listitem"><img src="img/img-3.jpg" alt="Imagem 3" loading="lazy"><div class="overlay"><div class="caption">Garantir inclusão exige recursos, formação e rotas claras — ainda em construção.</div></div></div>
+                    <div class="slide" role="listitem"><img src="img/img-4.jpg" alt="Imagem 4" loading="lazy"><div class="overlay"><div class="caption">Famílias buscam respostas práticas — acompanhamento precoce e informação acessível fazem diferença.</div></div></div>
+                    <div class="slide" role="listitem"><img src="img/img-5.jpg" alt="Imagem 5" loading="lazy"><div class="overlay"><div class="caption">A política é um começo. Precisamos transformar diretrizes em ações concretas.</div></div></div>
+                    <div class="slide" role="listitem"><img src="img/img-6.jpg" alt="Imagem 6" loading="lazy"><div class="overlay"><div class="caption">A construção coletiva garante que nenhum paciente ou família fique para trás.</div></div></div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-left" id="pn-prev" aria-label="Anterior">&larr;</button>
+                    <button class="btn btn-right" id="pn-next" aria-label="Próximo">&rarr;</button>
+                </div>
+            </div>
+
+            <div class="dots" id="pn-dots" role="tablist" aria-label="Navegação de slides"></div>
+        </section>
+
+        <!-- Impact Banner -->
+        <section class="impact-banner">
+            <p class="impact-text">"Cuido com empatia, técnica e respeito." 👩🏼‍⚕️</p>
+            <p class="impact-subtitle">Atendimento em Goiânia e por Telemedicina</p>
         </section>
 
         <!-- Specialties Section -->
@@ -824,17 +1060,20 @@
                 <div class="specialty-card">
                     <div class="specialty-icon">🧩</div>
                     <h3 class="specialty-title">TEA</h3>
-                    <p class="specialty-description">Transtorno do Espectro Autista - Acompanhamento com foco no desenvolvimento e na inclusão social e escolar.</p>
+                    <p class="specialty-description">Transtorno do Espectro Autista - Acompanhamento com foco no
+                        desenvolvimento e na inclusão social e escolar.</p>
                 </div>
                 <div class="specialty-card">
                     <div class="specialty-icon">⚡</div>
                     <h3 class="specialty-title">TDAH</h3>
-                    <p class="specialty-description">Transtorno de Déficit de Atenção e Hiperatividade - Orientação e manejo multidisciplinar personalizado.</p>
+                    <p class="specialty-description">Transtorno de Déficit de Atenção e Hiperatividade - Orientação e
+                        manejo multidisciplinar personalizado.</p>
                 </div>
                 <div class="specialty-card">
                     <div class="specialty-icon">🌱</div>
                     <h3 class="specialty-title">Atrasos no Neurodesenvolvimento</h3>
-                    <p class="specialty-description">Avaliação global e suporte contínuo para o desenvolvimento infantil saudável.</p>
+                    <p class="specialty-description">Avaliação global e suporte contínuo para o desenvolvimento infantil
+                        saudável.</p>
                 </div>
             </div>
         </section>
@@ -876,12 +1115,15 @@
                         <span class="contact-icon">🔗</span>
                         <div>
                             <strong>Links:</strong><br>
-                            <a href="https://linktr.ee/BrunaLucasPediatra" target="_blank" style="color: inherit;">linktr.ee/BrunaLucasPediatra</a>
+                            <a href="https://linktr.ee/BrunaLucasPediatra" target="_blank"
+                                style="color: inherit;">linktr.ee/BrunaLucasPediatra</a>
                         </div>
                     </div>
                 </div>
                 <div class="map-container">
-                    <iframe title="Mapa - Rua 1125, Setor Marista, Goiânia" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.8515445988847!2d-49.26877842386941!3d-16.706766983909267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef0f3b7c3e3f5%3A0x7c8e8f0f0f0f0f0f!2sR.%201125%2C%20312%20-%20St.%20Marista%2C%20Goi%C3%A2nia%20-%20GO!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                    <iframe title="Mapa - Rua 1125, Setor Marista, Goiânia"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.8515445988847!2d-49.26877842386941!3d-16.706766983909267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef0f3b7c3e3f5%3A0x7c8e8f0f0f0f0f0f!2sR.%201125%2C%20312%20-%20St.%20Marista%2C%20Goi%C3%A2nia%20-%20GO!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
@@ -891,17 +1133,31 @@
     <footer>
         <div class="footer-logo">Dra. Bruna Lucas</div>
         <div class="social-icons">
-            <a href="https://wa.me/5562983100023" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp">
+            <a href="https://wa.me/5562983100023" target="_blank" rel="noopener noreferrer" class="social-icon"
+                aria-label="WhatsApp">
                 <!-- SVG WhatsApp -->
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.12.56 4.14 1.62 5.95L0 24l6.32-1.64A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.21-1.26-6.22-3.48-8.52zM12 21.6c-1.6 0-3.16-.42-4.54-1.22l-.33-.19-3.75.98.99-3.67-.21-.36A9.6 9.6 0 012.4 12c0-5.31 4.29-9.6 9.6-9.6 2.57 0 4.98.99 6.8 2.81A9.52 9.52 0 0121.6 12c0 5.31-4.29 9.6-9.6 9.6z"></path></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.12.56 4.14 1.62 5.95L0 24l6.32-1.64A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.21-1.26-6.22-3.48-8.52zM12 21.6c-1.6 0-3.16-.42-4.54-1.22l-.33-.19-3.75.98.99-3.67-.21-.36A9.6 9.6 0 012.4 12c0-5.31 4.29-9.6 9.6-9.6 2.57 0 4.98.99 6.8 2.81A9.52 9.52 0 0121.6 12c0 5.31-4.29 9.6-9.6 9.6z">
+                    </path>
+                </svg>
             </a>
-            <a href="https://www.instagram.com/brunalucaspediatra/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+            <a href="https://www.instagram.com/brunalucaspediatra/" target="_blank" rel="noopener noreferrer"
+                class="social-icon" aria-label="Instagram">
                 <!-- SVG Instagram -->
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zM12 7.5A4.5 4.5 0 1016.5 12 4.5 4.5 0 0012 7.5zm0 7.5A3 3 0 1115 12a3 3 0 01-3 3zM17.5 6.1a.9.9 0 11-.9-.9.9.9 0 01.9.9z"></path></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zM12 7.5A4.5 4.5 0 1016.5 12 4.5 4.5 0 0012 7.5zm0 7.5A3 3 0 1115 12a3 3 0 01-3 3zM17.5 6.1a.9.9 0 11-.9-.9.9.9 0 01.9.9z">
+                    </path>
+                </svg>
             </a>
             <a href="mailto:dra.brunalucaspediatra@gmail.com" class="social-icon" aria-label="Email">
                 <!-- SVG Mail -->
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v0l10 6 10-6v0a2 2 0 00-2-2zM2 8v8a2 2 0 002 2h16a2 2 0 002-2V8l-10 6L2 8z"></path></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M20 4H4a2 2 0 00-2 2v0l10 6 10-6v0a2 2 0 00-2-2zM2 8v8a2 2 0 002 2h16a2 2 0 002-2V8l-10 6L2 8z">
+                    </path>
+                </svg>
             </a>
         </div>
         <p>© 2025 Dra. Bruna Lucas – Pediatria e Neurodesenvolvimento | Todos os direitos reservados.</p>
@@ -960,6 +1216,136 @@
         document.querySelectorAll('a[target="_blank"]').forEach(a => {
             if (!a.rel.includes('noopener')) a.rel = (a.rel + ' noopener noreferrer').trim();
         });
+
+        /* PN Inclusiva slider JS: continuidade (clones + swipe + autoplay) */
+        (function () {
+            const track = document.getElementById('pn-track');
+            if (!track) return;
+
+            const slides = Array.from(track.children);
+            const count = slides.length;
+            // clone first and last for seamless loop in both directions
+            const firstClone = slides[0].cloneNode(true);
+            const lastClone = slides[slides.length - 1].cloneNode(true);
+            firstClone.setAttribute('aria-hidden', 'true');
+            lastClone.setAttribute('aria-hidden', 'true');
+            track.appendChild(firstClone);
+            track.insertBefore(lastClone, track.firstChild);
+
+            let index = 1; // start at the real first (because lastClone is at 0)
+            const total = track.children.length;
+            const nextBtn = document.getElementById('pn-next');
+            const prevBtn = document.getElementById('pn-prev');
+            const dotsContainer = document.getElementById('pn-dots');
+
+            // build dots for original slides
+            for (let i = 0; i < count; i++) {
+                const d = document.createElement('button');
+                d.className = 'dot';
+                d.setAttribute('aria-label', `Slide ${i + 1}`);
+                d.dataset.index = i + 1; // matches index offset
+                dotsContainer.appendChild(d);
+            }
+
+            const dots = Array.from(dotsContainer.children);
+
+            function updateDots() {
+                dots.forEach((dot) => dot.classList.remove('active'));
+                // map current index to 1..count
+                let active = index;
+                if (active === 0) active = count;
+                if (active === total - 1) active = 1;
+                const dotIndex = ((active - 1) % count);
+                if (dots[dotIndex]) dots[dotIndex].classList.add('active');
+            }
+
+            function setTranslate() {
+                track.style.transform = `translateX(${-index * 100}%)`;
+            }
+
+            // initial position
+            track.style.transform = `translateX(${-index * 100}%)`;
+            track.addEventListener('transitionend', () => {
+                // if we moved to clones, jump to corresponding real slide without transition
+                if (track.children[index].classList.contains('clone')) {
+                    track.style.transition = 'none';
+                    if (index === 0) {
+                        index = count;
+                    } else if (index === total - 1) {
+                        index = 1;
+                    }
+                    setTranslate();
+                    // force reflow then restore transition
+                    void track.offsetWidth;
+                    track.style.transition = 'transform 600ms cubic-bezier(.22,.9,.3,1)';
+                }
+                updateDots();
+            });
+
+            // mark clones for detection
+            firstClone.classList.add('clone');
+            lastClone.classList.add('clone');
+
+            function go(n) {
+                index = n;
+                setTranslate();
+            }
+            function next() { go(index + 1); }
+            function prev() { go(index - 1); }
+
+            // buttons
+            nextBtn.addEventListener('click', next);
+            prevBtn.addEventListener('click', prev);
+
+            // dots click
+            dots.forEach(d => d.addEventListener('click', () => {
+                const target = Number(d.dataset.index);
+                index = target;
+                setTranslate();
+            }));
+
+            // autoplay
+            let autoplay = setInterval(next, 4500);
+            const pauseAutoplay = () => clearInterval(autoplay);
+            const resumeAutoplay = () => { clearInterval(autoplay); autoplay = setInterval(next, 4500); };
+
+            // pause on hover/focus
+            track.parentElement.addEventListener('mouseenter', pauseAutoplay);
+            track.parentElement.addEventListener('mouseleave', resumeAutoplay);
+            nextBtn.addEventListener('focus', pauseAutoplay);
+            prevBtn.addEventListener('focus', pauseAutoplay);
+
+            // keyboard
+            track.parentElement.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') next();
+                if (e.key === 'ArrowLeft') prev();
+            });
+
+            // touch / swipe
+            let startX = 0;
+            let deltaX = 0;
+            track.addEventListener('touchstart', (e) => {
+                pauseAutoplay();
+                startX = e.touches[0].clientX;
+            }, { passive: true });
+            track.addEventListener('touchmove', (e) => {
+                deltaX = e.touches[0].clientX - startX;
+            }, { passive: true });
+            track.addEventListener('touchend', () => {
+                if (Math.abs(deltaX) > 40) {
+                    if (deltaX < 0) next(); else prev();
+                }
+                deltaX = 0;
+                resumeAutoplay();
+            });
+
+            // make sure slider is focusable for keyboard
+            track.parentElement.setAttribute('tabindex', '0');
+
+            // initial dots style
+            updateDots();
+        })();
     </script>
 </body>
+
 </html>
