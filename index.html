@@ -334,169 +334,133 @@
 
         /* PN Inclusiva Slider (continuidade suave) */
         .pn-slider {
-            max-width: 900px;
-            max-width: 480px;
-            /* Reduzido para melhor visualização do formato retrato */
-            margin: 0 auto 3.5rem;
-
+            /* Transformado em um card de destaque */
+            background: linear-gradient(180deg, rgba(203, 168, 90, 0.03), rgba(11, 63, 58, 0.02));
+            padding: 2.5rem;
+            border-radius: 20px;
         }
 
         .pn-slider .slider-title {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             color: var(--brand-dark);
             font-size: 1.6rem;
+            line-height: 1.3;
+        }
+
+        .pn-content-wrapper {
+            /* Layout simplificado para texto acima da galeria */
+            text-align: center;
+        }
+
+        .pn-text-content {
+            flex-grow: 1;
+            /* Permite que o conteúdo de texto ocupe o espaço disponível */
+            /* Largura máxima para o bloco de texto */
+            line-height: 1.7;
+            color: #2f4a44;
+            font-size: 1.02rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .pn-text-content p {
+            margin-bottom: 1rem;
+        }
+
+        .pn-issues-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 1.5rem auto;
+            display: inline-flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .pn-issues-list li {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            color: #2f4a44;
+        }
+
+        .pn-issues-list li .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            color: var(--gold);
+            /* Usa uma cor da marca para o ícone */
+            flex-shrink: 0;
+            padding-top: 0.1em; /* Ajuste fino para alinhamento */
+        }
+
+        .pn-issues-list li .icon svg {
+            width: 20px;
+            height: 20px;
         }
 
         .pn-slider .viewport {
-            position: relative;
-            overflow: hidden;
-            width: auto;
-            height: auto;
-            border-radius: 14px;
-            box-shadow: 0 18px 50px rgba(3, 28, 26, 0.12);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(11, 63, 58, 0.02));
+            /* Novo estilo para galeria rolável */
+            overflow-x: auto;
+            padding: 1rem 0;
+            /* Adiciona espaço para a sombra e a barra de rolagem */
+            -webkit-overflow-scrolling: touch;
+            /* Scroll suave em iOS */
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) transparent;
         }
 
         .pn-slider .track {
             display: flex;
-            transition: transform 600ms cubic-bezier(.22, .9, .3, 1);
-            will-change: transform;
+            gap: 1.5rem;
+            width: max-content;
+            /* Permite que o conteúdo ultrapasse a viewport */
         }
 
         .pn-slider .slide {
-            min-width: auto;
-            flex-shrink: 0;
-            position: relative;
-            display: block;
-            aspect-ratio: 4 / 5;
-            /* Ajustado para formato retrato (ex: post de Instagram) */
+            height: 400px;
+            /* Altura fixa e menor para as imagens */
+            width: auto;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(11, 63, 58, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pn-slider .slide:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(11, 63, 58, 0.15);
         }
 
         .pn-slider .slide img {
-            width: 836px;
-            height: auto;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-        }
-
-        .pn-slider .slide .overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: flex-start;
-            /* Movido para o topo */
-            padding: 1rem;
-            background: linear-gradient(to bottom, rgba(11, 63, 58, 0.55) 0%, rgba(0, 0, 0, 0) 30%);
-            pointer-events: none;
-            /* Permite cliques através do overlay */
-        }
-
-        .pn-slider .caption {
-            color: var(--white);
-            max-width: 780px;
-            font-size: 0.9rem;
-            /* Ajustado para caber melhor */
-            line-height: 1.5;
-            background: transparent;
-            /* Removido fundo para um visual mais limpo */
-            padding: 0;
-            border-radius: 8px;
-            border: none;
-            box-shadow: none;
-        }
-
-        .pn-slider .controls {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .pn-slider .btn {
-            pointer-events: auto;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(203, 168, 90, 0.9);
-            color: var(--brand-dark);
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            display: grid;
-            place-items: center;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-            cursor: pointer;
-        }
-
-        .pn-slider .btn-left {
-            left: 12px;
-        }
-
-        .pn-slider .btn-right {
-            right: 12px;
-        }
-
-        .pn-slider .dots {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            margin-top: 0.9rem;
-        }
-
-        .pn-slider .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(11, 63, 58, 0.08);
-            cursor: pointer;
-        }
-
-        .pn-slider .dot.active {
-            background: var(--gold);
-            box-shadow: 0 6px 18px rgba(203, 168, 90, 0.25);
+            object-fit: contain;
+            /* Garante que a imagem inteira seja visível */
+            background-color: #eef2f1;
+            /* Fundo para preencher espaço vazio */
         }
 
         /* small screens */
         @media (max-width: 720px) {
-            .pn-slider .caption {
-                font-size: 0.95rem;
-                padding: 0.6rem 0.75rem;
+            .pn-slider {
+                padding: 1.5rem;
             }
 
-            .pn-slider .btn {
-                width: 40px;
-                height: 40px;
+            .pn-content-wrapper {
+                text-align: left;
             }
 
             .pn-slider .slide {
-                aspect-ratio: 4/5;
-            }
-
-            .pn-slider .slide img {
-                width: 342px;
-                height: 430px;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-                display: block;
+                height: 350px;
             }
         }
 
         /* Primeiro Sinal (Seção explicativa) */
         .first-sign-section {
-            display: grid;
-            grid-template-columns: 440px 1fr;
-            gap: 2.25rem;
-            align-items: center;
             background: linear-gradient(180deg, rgba(203, 168, 90, 0.03), rgba(11, 63, 58, 0.02));
-            border: 1px solid rgba(203, 168, 90, 0.08);
             padding: 2rem;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(11, 63, 58, 0.06);
@@ -518,6 +482,13 @@
             object-fit: cover;
             object-position: center;
             display: block;
+        }
+
+        .first-sign-content {
+            display: grid;
+            grid-template-columns: 1fr; /* Default for mobile */
+            gap: 1.5rem;
+            align-items: center;
         }
 
         .first-sign-content h3 {
@@ -623,12 +594,22 @@
             color: var(--brand-dark);
         }
 
-        @media (max-width: 900px) {
-            .first-sign-section {
-                grid-template-columns: 1fr;
+        @media (min-width: 901px) {
+            .first-sign-content {
+                grid-template-columns: 440px 1fr;
+                gap: 2.25rem;
+                grid-template-areas:
+                    "figure title"
+                    "figure text"
+                    "figure list"
+                    "figure note"
+                    "figure cta"
+                    "figure signature";
             }
 
             .first-sign-figure {
+                grid-area: figure;
+                align-self: start;
                 max-height: 300px;
             }
         }
@@ -642,71 +623,146 @@
         }
 
         .specialty-card {
-            background: var(--cinza-claro);
+            background: var(--white);
             padding: 2rem;
             border-radius: 20px;
             text-align: center;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 1px solid rgba(11, 63, 58, 0.08);
+            box-shadow: 0 8px 25px rgba(3, 28, 26, 0.04);
         }
 
         .specialty-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 122, 97, 0.2);
-            border-color: var(--dourado);
+            box-shadow: 0 15px 40px rgba(11, 63, 58, 0.12);
+            border-color: rgba(203, 168, 90, 0.5);
         }
 
         .specialty-icon {
-            font-size: 3rem;
             margin-bottom: 1rem;
+            color: var(--gold);
+            height: 52px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .specialty-icon svg {
+            width: 52px;
+            height: 52px;
         }
 
         .specialty-title {
             font-size: 1.3rem;
-            color: var(--verde-esmeralda);
+            color: var(--brand-dark);
             margin-bottom: 1rem;
             font-weight: 600;
         }
 
         .specialty-description {
             line-height: 1.6;
-            color: #666;
+            color: #344a45;
+            font-size: 0.95rem;
         }
 
         /* Impact Banner */
         .impact-banner {
-            background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+            background: linear-gradient(135deg, var(--brand-dark), var(--brand));
             color: var(--white);
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
         }
 
         .impact-banner:before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(198, 166, 100, 0.1) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(203, 168, 90, 0.08) 0%, transparent 60%);
             animation: rotate 20s linear infinite;
         }
 
-        .impact-text {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .impact-content {
             position: relative;
             z-index: 1;
+            max-width: 700px;
+        }
+
+        .impact-text {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .impact-text svg {
+            width: 36px;
+            height: 36px;
+            color: var(--gold);
+            flex-shrink: 0;
         }
 
         .impact-subtitle {
-            font-size: 1.2rem;
-            color: var(--dourado);
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .impact-locations {
+            display: flex;
+            gap: 2rem;
             position: relative;
             z-index: 1;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .location-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(203, 168, 90, 0.15);
+            padding: 1.5rem;
+            border-radius: 16px;
+            width: 280px;
+            backdrop-filter: blur(5px);
+        }
+
+        .location-item svg {
+            width: 32px;
+            height: 32px;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .impact-cta {
+            background: var(--gold);
+            color: var(--brand-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .impact-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: #d8b35a;
         }
 
         /* Contact Section */
@@ -723,25 +779,44 @@
             gap: 1.5rem;
         }
 
+        .contact-item-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
         .contact-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 1rem;
-            padding: 1rem;
-            background: var(--cinza-claro);
-            border-radius: 10px;
+            padding: 1.25rem;
+            background: var(--white);
+            border: 1px solid rgba(11, 63, 58, 0.08);
+            border-radius: 16px;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(3, 28, 26, 0.04);
         }
 
         .contact-item:hover {
-            background: var(--verde-esmeralda);
-            color: var(--branco);
-            transform: translateX(5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(11, 63, 58, 0.12);
+            border-color: rgba(203, 168, 90, 0.5);
         }
 
         .contact-icon {
-            font-size: 1.5rem;
             color: var(--dourado);
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .contact-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.25rem;
         }
 
         .map-container {
@@ -843,10 +918,42 @@
             }
         }
 
+        /* Fixed Logo */
+        .fixed-logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(203, 168, 90, 0.1);
+            backdrop-filter: blur(8px);
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(203, 168, 90, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .fixed-logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        .fixed-logo-container img {
+            width: 70px;
+            height: 70px;
+            display: block;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .profile-name {
                 font-size: 1.5rem;
+            }
+
+            .fixed-logo-container img {
+                width: 50px;
+                height: 50px;
             }
 
             .about-content,
@@ -874,6 +981,12 @@
 </head>
 
 <body>
+    <!-- Logo Fixo -->
+    <div class="fixed-logo-container">
+        <a href="#linktree" aria-label="Voltar ao topo">
+            <img src="img/logo-drabruna.jpeg" alt="Logo Dra. Bruna Lucas">
+        </a>
+    </div>
     <!-- Linktree Section -->
     <section class="linktree-section" id="linktree">
         <!-- vídeo de fundo: coloque o arquivo em img/bg-loop.mp4 (ou altere o caminho abaixo) -->
@@ -963,7 +1076,7 @@
                             29487</strong>. Dedico-me ao cuidado infantil com foco no desenvolvimento e bem-estar.</p>
                     <br>
                     <p>Ofereço suporte empático e técnico para crianças com TEA, TDAH e Atrasos no Desenvolvimento.
-                        Também sou mãe atípica e acredito que informação e acolhimento andam juntos.</p>
+                        Sou neurodivergente e também mãe atípica. Acredito que informação e acolhimento andam juntos, e que cada experiência única pode inspirar empatia e compreensão.</p>
                     <br>
                     <p>Minha missão é proporcionar um atendimento humanizado, respeitoso e baseado nas melhores práticas
                         médicas, sempre colocando as necessidades da criança e da família em primeiro lugar.</p>
@@ -974,18 +1087,11 @@
 
         <!-- Primeiro Sinal (Seção explicativa) -->
         <section class="section first-sign-section" id="primeiro-sinal" aria-labelledby="primeiro-sinal-title">
-            <figure class="first-sign-figure" aria-hidden="true">
-                <img src="img/primeiro-sinal-tea.jpg"
-                    alt="Mãos e rosto de criança, destaque no olhar — ilustração fotográfica do primeiro sinal"
-                    loading="lazy">
-            </figure>
-
             <div class="first-sign-content">
                 <h3 id="primeiro-sinal-title">Nem sempre o primeiro sinal é o que a gente espera</h3>
                 <p>Às vezes aparece de forma sutil — um olhar que se perde, um sorriso que demora, um som que não
                     desperta reação. E tudo bem. Não se trata de rotular, mas de perceber com amor e agir com
                     consciência.</p>
-
                 <div class="first-sign-list" role="list">
                     <div class="first-sign-item" role="listitem">
                         <!-- olho -->
@@ -1029,6 +1135,12 @@
                     </div>
                 </div>
 
+                <figure class="first-sign-figure" aria-hidden="true">
+                    <img src="img/primeiro-sinal-tea.jpg"
+                        alt="Mãos e rosto de criança, destaque no olhar — ilustração fotográfica do primeiro sinal"
+                        loading="lazy">
+                </figure>
+
                 <div class="first-sign-note">Observar é cuidar. Quanto mais cedo entendemos o que o comportamento do
                     nosso filho quer dizer, mais cedo podemos ajudá‑lo a se desenvolver da forma que ele precisa.</div>
 
@@ -1047,50 +1159,48 @@
 
         <!-- PN Inclusiva — Slider contínuo -->
         <section class="section pn-slider" id="pn-inclusiva" aria-labelledby="pn-inclusiva-title">
-            <h3 class="slider-title" id="pn-inclusiva-title">Decreto nº 12.686/2025 — perguntas e poucas respostas</h3>
-
-            <div class="viewport" aria-hidden="false">
-                <div class="track" id="pn-track" role="list">
-                    <!-- Use img/img-1.jpg ... img/img-6.jpg (coloque os arquivos em /img) -->
-                    <div class="slide" role="listitem"><img src="img/img-1.jpg" alt="Imagem 1" loading="lazy">
-
-                    </div>
-                    <div class="slide" role="listitem"><img src="img/img-2.jpg" alt="Imagem 2" loading="lazy">
-
-                    </div>
-                    <div class="slide" role="listitem"><img src="img/img-3.jpg" alt="Imagem 3" loading="lazy">
-
-                    </div>
-                    <div class="slide" role="listitem"><img src="img/img-4.jpg" alt="Imagem 4" loading="lazy">
-
-                    </div>
-                    <div class="slide" role="listitem"><img src="img/img-5.jpg" alt="Imagem 5" loading="lazy">
-
-                    </div>
-                    <div class="slide" role="listitem"><img src="img/img-6.jpg" alt="Imagem 6" loading="lazy">
-
-                    </div>
-                    <div class="slide" role="listitem"><img src="img/img-1.jpg" alt="Imagem 1" loading="lazy"></div>
-                    <div class="slide" role="listitem"><img src="img/img-2.jpg" alt="Imagem 2" loading="lazy"></div>
-                    <div class="slide" role="listitem"><img src="img/img-3.jpg" alt="Imagem 3" loading="lazy"></div>
-                    <div class="slide" role="listitem"><img src="img/img-4.jpg" alt="Imagem 4" loading="lazy"></div>
-                    <div class="slide" role="listitem"><img src="img/img-5.jpg" alt="Imagem 5" loading="lazy"></div>
-                    <div class="slide" role="listitem"><img src="img/img-6.jpg" alt="Imagem 6" loading="lazy"></div>
+            <div class="pn-content-wrapper">                
+                <div class="pn-text-content">
+                    <h3 class="slider-title" id="pn-inclusiva-title">Decreto nº 12.686/2025: uma promessa com muitas perguntas e poucas respostas</h3>
+                    <p>O Decreto que cria a Política Nacional de Educação Especial Inclusiva nasceu como um avanço, mas sua implementação gera incertezas. Na prática, o texto é uma robusta carta de intenções, mas que falha em pontos essenciais para se tornar realidade.</p>
                 </div>
 
-                <div class="controls">
-                    <button class="btn btn-left" id="pn-prev" aria-label="Anterior">&larr;</button>
-                    <button class="btn btn-right" id="pn-next" aria-label="Próximo">&rarr;</button>
+                <div class="viewport" aria-hidden="false">
+                    <div class="track" id="pn-track" role="list">
+                        <!-- Use img/img-1.jpg ... img/img-6.jpg (coloque os arquivos em /img) -->
+                        <div class="slide" role="listitem"><img src="img/img-1.jpg" alt="O futuro incerto da inclusão escolar" loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-2.jpg" alt="O Decreto 12.686/2025 e a Política Nacional de Educação Especial Inclusiva" loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-3.jpg" alt="Crítica ao decreto: sem prazo, sem plano" loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-4.jpg" alt="Crítica ao decreto: inclusão sem orçamento não existe" loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-5.jpg" alt="Crítica ao decreto: inclusão ou imposição de modelo único" loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-6.jpg" alt="Conclusão sobre o decreto: acerta nos princípios, mas falha no essencial" loading="lazy"></div>
+                    </div>
                 </div>
             </div>
-
-            <div class="dots" id="pn-dots" role="tablist" aria-label="Navegação de slides"></div>
         </section>
 
         <!-- Impact Banner -->
         <section class="impact-banner">
-            <p class="impact-text">"Cuido com empatia, técnica e respeito." 👩🏼‍⚕️</p>
-            <p class="impact-subtitle">Atendimento em Goiânia e por Telemedicina</p>
+            <div class="impact-content">
+                <h2 class="impact-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M3.22 12H9.5l.7-1.44.7 1.44H15"></path></svg>
+                    Cuidado que une empatia e técnica
+                </h2>
+                <p class="impact-subtitle">Minha missão é oferecer um atendimento que acolhe a família e foca no desenvolvimento pleno de cada criança, com respeito e dedicação.</p>
+            </div>
+            <div class="impact-locations">
+                <div class="location-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <h3>Atendimento Presencial</h3>
+                    <p>Goiânia, GO</p>
+                </div>
+                <div class="location-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
+                    <h3>Telemedicina</h3>
+                    <p>Para todo o Brasil</p>
+                </div>
+            </div>
+            <a href="#contato" class="impact-cta">Agende uma Consulta</a>
         </section>
 
         <!-- Specialties Section -->
@@ -1098,67 +1208,81 @@
             <h2 class="section-title">Especialidades</h2>
             <div class="specialties-grid">
                 <div class="specialty-card">
-                    <div class="specialty-icon">🧩</div>
+                    <div class="specialty-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.9 18.55a1 1 0 0 0-1 1.72v.01a1 1 0 0 0 .45.83 1 1 0 0 1-1.73 1l-.01-.01a1 1 0 0 0-1.41 0 1 1 0 0 0 0 1.41l.01.01a1 1 0 0 1-1 1.73 1 1 0 0 0-.83-.45h-.01a1 1 0 0 0-1.72 1Z"/><path d="M12.5 2.5a1 1 0 0 0-1.41 0L9.67 3.9a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0l1.41-1.41a1 1 0 0 0 0-1.41Z"/><path d="M18.55 2.09A1 1 0 0 0 17.5 3.1v.01a1 1 0 0 0 .83.45 1 1 0 0 1 1 1.73l-.01 1a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l1-.01a1 1 0 0 1 1.73 1 1 1 0 0 0-.45.83v.01a1 1 0 0 0 1 1.72Z"/><path d="M3.1 17.5a1 1 0 0 0 1 .45h.01a1 1 0 0 0 1.72-1l-.01-1a1 1 0 0 1 0-1.41 1 1 0 0 1 1.41 0l1 .01a1 1 0 0 0 1.73-1 1 1 0 0 1-.45-.83v-.01a1 1 0 0 0-1-1.72Z"/><path d="M9.5 14.5a1 1 0 0 0-1.41 0L6.67 15.9a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0l1.41-1.41a1 1 0 0 0 0-1.41Z"/><path d="M14.5 9.5a1 1 0 0 0 0-1.41L13.09 6.67a1 1 0 0 0-1.41 0L10.27 8.09a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0Z"/><path d="M5.45 2.09A1 1 0 0 1 6.5 3.1v.01a1 1 0 0 1-.83.45 1 1 0 0 0-1 1.73l.01 1a1 1 0 0 1 0 1.41 1 1 0 0 1-1.41 0l-1-.01a1 1 0 0 0-1.73 1 1 1 0 0 1 .45.83v.01a1 1 0 0 1-1 1.72Z"/></svg>
+                    </div>
                     <h3 class="specialty-title">TEA</h3>
                     <p class="specialty-description">Transtorno do Espectro Autista - Acompanhamento com foco no
                         desenvolvimento e na inclusão social e escolar.</p>
                 </div>
                 <div class="specialty-card">
-                    <div class="specialty-icon">⚡</div>
+                    <div class="specialty-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8v2Z"/><path d="M22 12a10 10 0 0 1-10 10v-2a8 8 0 0 0 8-8h2Z"/><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8v2Z"/><path d="M2 12a10 10 0 0 0 10-10V2a8 8 0 0 1-8 8h-2Z"/><path d="m13 7-3 5h4l-3 5"/></svg>
+                    </div>
                     <h3 class="specialty-title">TDAH</h3>
                     <p class="specialty-description">Transtorno de Déficit de Atenção e Hiperatividade - Orientação e
                         manejo multidisciplinar personalizado.</p>
                 </div>
                 <div class="specialty-card">
-                    <div class="specialty-icon">🌱</div>
+                    <div class="specialty-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8v2Z"/><path d="M22 12a10 10 0 0 1-10 10v-2a8 8 0 0 0 8-8h2Z"/><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8v2Z"/><path d="M2 12a10 10 0 0 0 10-10V2a8 8 0 0 1-8 8h-2Z"/><path d="M15 12c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2Z"/><path d="M12 16c-2.2 0-4-1.8-4-4"/><path d="M12 8c2.2 0 4 1.8 4 4"/></svg>
+                    </div>
                     <h3 class="specialty-title">Atrasos no Neurodesenvolvimento</h3>
                     <p class="specialty-description">Avaliação global e suporte contínuo para o desenvolvimento infantil
                         saudável.</p>
                 </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v8"/><path d="m8 12 h8"/></svg>
+                    </div>
+                    <h3 class="specialty-title">Puericultura e Acompanhamento</h3>
+                    <p class="specialty-description">Consultas regulares para monitorar o crescimento, a vacinação e a saúde integral do seu filho, da infância à adolescência.</p>
+                </div>
             </div>
-        </section>
-
-        <!-- Impact Banner -->
-        <section class="impact-banner">
-            <p class="impact-text">"Cuido com empatia, técnica e respeito." 👩🏼‍⚕️</p>
-            <p class="impact-subtitle">Atendimento em Goiânia e por Telemedicina</p>
-        </section>
+        </section>        
 
         <!-- Contact Section -->
         <section class="section" id="contato">
             <h2 class="section-title">Localização e Contato</h2>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <span class="contact-icon">📍</span>
-                        <div>
-                            <strong>Endereço:</strong><br>
-                            Rua 1125, nº 312, sala 302<br>
-                            Setor Marista, Goiânia - GO
+                    <a href="https://maps.app.goo.gl/AXLDYGehHSSDEPUj6?g_st=ipc" target="_blank" rel="noopener noreferrer" class="contact-item-link">
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                            <div>
+                                <strong>Endereço</strong>
+                                Rua 1125, nº 312, sala 302<br>
+                                Setor Marista, Goiânia - GO
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">📞</span>
-                        <div>
-                            <strong>Telefone:</strong><br>
-                            (62) 98310-0023
+                    </a>
+                    <a href="https://wa.me/5562983100023" target="_blank" rel="noopener noreferrer" class="contact-item-link">
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                            <div>
+                                <strong>Telefone</strong>
+                                (62) 98310-0023
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">✉️</span>
-                        <div>
-                            <strong>E-mail:</strong><br>
-                            dra.brunalucaspediatra@gmail.com
+                    </a>
+                    <a href="mailto:dra.brunalucaspediatra@gmail.com" class="contact-item-link">
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+                            <div>
+                                <strong>E-mail</strong>
+                                dra.brunalucaspediatra@gmail.com
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🔗</span>
-                        <div>
-                            <strong>Links:</strong><br>
-                            <a href="https://linktr.ee/BrunaLucasPediatra" target="_blank"
-                                style="color: inherit;">linktr.ee/BrunaLucasPediatra</a>
+                    </a>
+                    <a href="https://linktr.ee/BrunaLucasPediatra" target="_blank" rel="noopener noreferrer" class="contact-item-link">
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg></div>
+                            <div>
+                                <strong>Outros Links</strong>
+                                linktr.ee/BrunaLucasPediatra
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="map-container">
                     <iframe title="Mapa - Rua 1125, Setor Marista, Goiânia"
@@ -1257,134 +1381,7 @@
             if (!a.rel.includes('noopener')) a.rel = (a.rel + ' noopener noreferrer').trim();
         });
 
-        /* PN Inclusiva slider JS: continuidade (clones + swipe + autoplay) */
-        (function () {
-            const track = document.getElementById('pn-track');
-            if (!track) return;
-
-            const slides = Array.from(track.children);
-            const count = slides.length;
-            // clone first and last for seamless loop in both directions
-            const firstClone = slides[0].cloneNode(true);
-            const lastClone = slides[slides.length - 1].cloneNode(true);
-            firstClone.setAttribute('aria-hidden', 'true');
-            lastClone.setAttribute('aria-hidden', 'true');
-            track.appendChild(firstClone);
-            track.insertBefore(lastClone, track.firstChild);
-
-            let index = 1; // start at the real first (because lastClone is at 0)
-            const total = track.children.length;
-            const nextBtn = document.getElementById('pn-next');
-            const prevBtn = document.getElementById('pn-prev');
-            const dotsContainer = document.getElementById('pn-dots');
-
-            // build dots for original slides
-            for (let i = 0; i < count; i++) {
-                const d = document.createElement('button');
-                d.className = 'dot';
-                d.setAttribute('aria-label', `Slide ${i + 1}`);
-                d.dataset.index = i + 1; // matches index offset
-                dotsContainer.appendChild(d);
-            }
-
-            const dots = Array.from(dotsContainer.children);
-
-            function updateDots() {
-                dots.forEach((dot) => dot.classList.remove('active'));
-                // map current index to 1..count
-                let active = index;
-                if (active === 0) active = count;
-                if (active === total - 1) active = 1;
-                const dotIndex = ((active - 1) % count);
-                if (dots[dotIndex]) dots[dotIndex].classList.add('active');
-            }
-
-            function setTranslate() {
-                track.style.transform = `translateX(${-index * 100}%)`;
-            }
-
-            // initial position
-            track.style.transform = `translateX(${-index * 100}%)`;
-            track.addEventListener('transitionend', () => {
-                // if we moved to clones, jump to corresponding real slide without transition
-                if (track.children[index].classList.contains('clone')) {
-                    track.style.transition = 'none';
-                    if (index === 0) {
-                        index = count;
-                    } else if (index === total - 1) {
-                        index = 1;
-                    }
-                    setTranslate();
-                    // force reflow then restore transition
-                    void track.offsetWidth;
-                    track.style.transition = 'transform 600ms cubic-bezier(.22,.9,.3,1)';
-                }
-                updateDots();
-            });
-
-            // mark clones for detection
-            firstClone.classList.add('clone');
-            lastClone.classList.add('clone');
-
-            function go(n) {
-                index = n;
-                setTranslate();
-            }
-            function next() { go(index + 1); }
-            function prev() { go(index - 1); }
-
-            // buttons
-            nextBtn.addEventListener('click', next);
-            prevBtn.addEventListener('click', prev);
-
-            // dots click
-            dots.forEach(d => d.addEventListener('click', () => {
-                const target = Number(d.dataset.index);
-                index = target;
-                setTranslate();
-            }));
-
-            // autoplay
-            let autoplay = setInterval(next, 4500);
-            const pauseAutoplay = () => clearInterval(autoplay);
-            const resumeAutoplay = () => { clearInterval(autoplay); autoplay = setInterval(next, 4500); };
-
-            // pause on hover/focus
-            track.parentElement.addEventListener('mouseenter', pauseAutoplay);
-            track.parentElement.addEventListener('mouseleave', resumeAutoplay);
-            nextBtn.addEventListener('focus', pauseAutoplay);
-            prevBtn.addEventListener('focus', pauseAutoplay);
-
-            // keyboard
-            track.parentElement.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') next();
-                if (e.key === 'ArrowLeft') prev();
-            });
-
-            // touch / swipe
-            let startX = 0;
-            let deltaX = 0;
-            track.addEventListener('touchstart', (e) => {
-                pauseAutoplay();
-                startX = e.touches[0].clientX;
-            }, { passive: true });
-            track.addEventListener('touchmove', (e) => {
-                deltaX = e.touches[0].clientX - startX;
-            }, { passive: true });
-            track.addEventListener('touchend', () => {
-                if (Math.abs(deltaX) > 40) {
-                    if (deltaX < 0) next(); else prev();
-                }
-                deltaX = 0;
-                resumeAutoplay();
-            });
-
-            // make sure slider is focusable for keyboard
-            track.parentElement.setAttribute('tabindex', '0');
-
-            // initial dots style
-            updateDots();
-        })();
+        // O código JS do slider foi removido pois não é mais necessário para a galeria rolável.
     </script>
 </body>
 
