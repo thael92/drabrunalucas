@@ -11,7 +11,7 @@
     <title>Dra. Bruna Lucas - Pediatra | TEA, TDAH e Neurodesenvolvimento</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/logo-drabruna.jpeg" type="image/jpeg">
+    <link rel="icon" href="img/logo-drabruna.png" type="image/jpeg">
     <link rel="apple-touch-icon" href="img/logo-drabruna.jpeg">
 
     <!-- fonte -->
@@ -19,1175 +19,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            /* paleta inspirada na logo */
-            --brand-dark: #0b3f3a;
-            /* fundo profundo da logo */
-            --brand: #006F5A;
-            /* verde principal */
-            --gold: #CBA85A;
-            /* dourado quente */
-            --white: #FFFFFF;
-            --muted-bg: #F6F5F3;
-            --text-dark: #203230;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--texto-escuro);
-            overflow-x: hidden;
-            background: var(--cinza-claro);
-        }
-
-        /* Linktree Section */
-        .linktree-section {
-            min-height: 100vh;
-            /* degrade semi-transparente para permitir ver o vídeo por baixo (fallback poster permanece em img/Dra. Bruna.jpg) */
-            background: linear-gradient(135deg, rgba(11, 63, 58, 0.48) 0%, rgba(0, 111, 90, 0.38) 60%);
-            /* background-size / position deixados como fallback caso o vídeo não carregue */
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            position: relative;
-            color: var(--white);
-            overflow: hidden;
-            /* importante para esconder overflow do vídeo */
-        }
-
-        /* vídeo de fundo */
-        .linktree-section .bg-video {
-            position: absolute;
-            inset: 0;
-            /* top:0; right:0; bottom:0; left:0; */
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            z-index: 0;
-            pointer-events: none;
-            /* evita interferir em cliques */
-            filter: brightness(.56) saturate(.95);
-            /* ajuste visual para melhor contraste sobre conteúdo */
-        }
-
-        /* garantir que o conteúdo fique sobre o vídeo */
-        .profile-container {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            animation: fadeInUp 0.8s ease-out;
-            backdrop-filter: blur(6px);
-            padding: 2rem;
-            border-radius: 16px;
-            background: linear-gradient(180deg, rgba(11, 63, 58, 0.12), rgba(0, 0, 0, 0.08));
-            border: 1px solid rgba(203, 168, 90, 0.12);
-        }
-
-        .profile-photo {
-            width: clamp(110px, 18vw, 180px);
-            height: clamp(110px, 18vw, 180px);
-            border-radius: 50%;
-            border: 4px solid rgba(198, 166, 100, 0.95);
-            object-fit: cover;
-            object-position: center;
-            margin: 0 auto 1.25rem;
-            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
-            background: rgba(255, 255, 255, 0.06);
-            display: block;
-            transition: transform .35s ease, box-shadow .25s ease;
-        }
-
-        .profile-photo:focus,
-        .profile-photo:hover {
-            transform: translateY(-4px) scale(1.04);
-            outline: 3px solid rgba(198, 166, 100, 0.18);
-            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Nome, título e ênfases com cores da logo */
-        .profile-name {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
-        }
-
-        .profile-title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--gold);
-            margin-bottom: 2.5rem;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
-        }
-
-        .links-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        /* botões claros com destaque em dourado ao hover */
-        .link-button {
-            background: rgba(255, 255, 255, 0.96);
-            color: var(--brand);
-            padding: 0.9rem 1.25rem;
-            border-radius: 12px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 0.75rem;
-            font-weight: 600;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 30px rgba(3, 28, 26, 0.12);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(6, 45, 42, 0.04);
-        }
-
-        .link-button svg {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-        }
-
-        .link-button:focus {
-            box-shadow: 0 0 0 4px rgba(0, 122, 97, 0.18);
-        }
-
-        .link-button:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(198, 166, 100, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .link-button:hover:before {
-            left: 100%;
-        }
-
-        .link-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 40px rgba(6, 45, 42, 0.18);
-            background: linear-gradient(90deg, rgba(203, 168, 90, 0.98), rgba(200, 160, 70, 0.95));
-            color: var(--white);
-        }
-
-        .link-icon {
-            font-size: 1.5rem;
-        }
-
-        .scroll-indicator {
-            position: fixed;
-            bottom: 28px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 40;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 56px;
-            height: 56px;
-            border-radius: 999px;
-            background: rgba(11, 63, 58, 0.06);
-            backdrop-filter: blur(6px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-            cursor: pointer;
-            transition: transform .28s ease, box-shadow .28s ease;
-            outline: none;
-            animation: bounce 2.2s infinite;
-        }
-
-        .scroll-indicator:focus,
-        .scroll-indicator:hover {
-            transform: translateX(-50%) translateY(-6px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
-        }
-
-        .scroll-arrow {
-            width: 44px;
-            height: 44px;
-            display: block;
-        }
-
-        /* Main Content Sections */
-        .main-content {
-            background: var(--branco);
-        }
-
-        .section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* títulos de seção e acentos em verde/dourado */
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--brand);
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), rgba(203, 168, 90, 0.85));
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 2rem;
-            align-items: center;
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        .about-text {
-            color: var(--text-dark, #203230);
-            font-size: 1.05rem;
-            line-height: 1.75;
-            text-align: left;
-        }
-
-        .about-text p {
-            margin-bottom: 1rem;
-            color: #2f4a44;
-        }
-
-        /* destaque do CRM */
-        .about-text strong {
-            color: var(--brand-dark);
-        }
-
-        /* foto da Dra. — crop seguro, contraste e borda sutil */
-        .about-photo {
-            width: 100%;
-            max-width: 360px;
-            height: auto;
-            display: block;
-            margin: 0;
-            border-radius: 14px;
-            object-fit: cover;
-            object-position: center;
-            box-shadow: 0 14px 40px rgba(3, 28, 26, 0.12);
-            border: 1px solid rgba(11, 63, 58, 0.06);
-        }
-
-        /* espaçamento entre parágrafos caso HTML contenha <br> */
-        .about-text br {
-            display: none;
-        }
-
-        /* responsivo: empilha e amplia imagem */
-        @media (max-width: 900px) {
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
-            }
-
-            .about-photo {
-                max-width: 420px;
-                margin: 0 auto;
-                width: 88%;
-            }
-
-            .about-text {
-                font-size: 1rem;
-            }
-        }
-
-        /* PN Inclusiva Slider (continuidade suave) */
-        .pn-slider {
-            /* Transformado em um card de destaque */
-            background: linear-gradient(180deg, rgba(203, 168, 90, 0.03), rgba(11, 63, 58, 0.02));
-            padding: 2.5rem;
-            border-radius: 20px;
-        }
-
-        .pn-slider .slider-title {
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--brand-dark);
-            font-size: 1.6rem;
-            line-height: 1.3;
-        }
-
-        .pn-content-wrapper {
-            /* Layout simplificado para texto acima da galeria */
-            text-align: center;
-        }
-
-        .pn-text-content {
-            flex-grow: 1;
-            /* Permite que o conteúdo de texto ocupe o espaço disponível */
-            /* Largura máxima para o bloco de texto */
-            line-height: 1.7;
-            color: #2f4a44;
-            font-size: 1.02rem;
-            max-width: 800px;
-            margin: 0 auto 2.5rem;
-        }
-
-        .pn-text-content p {
-            margin-bottom: 1rem;
-        }
-
-        .pn-issues-list {
-            list-style: none;
-            padding-left: 0;
-            margin: 1.5rem auto;
-            display: inline-flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .pn-issues-list li {
-            position: relative;
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 0.5rem;
-            color: #2f4a44;
-        }
-
-        .pn-issues-list li .icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 0.75rem;
-            color: var(--gold);
-            /* Usa uma cor da marca para o ícone */
-            flex-shrink: 0;
-            padding-top: 0.1em; /* Ajuste fino para alinhamento */
-        }
-
-        .pn-issues-list li .icon svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .pn-slider .viewport {
-            /* Novo estilo para galeria rolável */
-            overflow-x: auto;
-            padding: 1rem 0;
-            /* Adiciona espaço para a sombra e a barra de rolagem */
-            -webkit-overflow-scrolling: touch;
-            /* Scroll suave em iOS */
-            scrollbar-width: thin;
-            scrollbar-color: var(--gold) transparent;
-        }
-
-        .pn-slider .track {
-            display: flex;
-            gap: 1.5rem;
-            width: max-content;
-            /* Permite que o conteúdo ultrapasse a viewport */
-        }
-
-        .pn-slider .slide {
-            height: 400px;
-            /* Altura fixa e menor para as imagens */
-            width: auto;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(11, 63, 58, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pn-slider .slide:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 18px 40px rgba(11, 63, 58, 0.15);
-        }
-
-        .pn-slider .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Garante que a imagem inteira seja visível */
-            background-color: #eef2f1;
-            /* Fundo para preencher espaço vazio */
-        }
-
-        /* small screens */
-        @media (max-width: 720px) {
-            .pn-slider {
-                padding: 1.5rem;
-            }
-
-            .pn-content-wrapper {
-                text-align: left;
-            }
-
-            .pn-slider .slide {
-                height: 350px;
-            }
-        }
-
-        /* Primeiro Sinal (Seção explicativa) */
-        .first-sign-section {
-            background: linear-gradient(180deg, rgba(203, 168, 90, 0.03), rgba(11, 63, 58, 0.02));
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(11, 63, 58, 0.06);
-        }
-
-        .first-sign-figure {
-            width: 100%;
-            height: 100%;
-            max-height: 500px;
-            overflow: hidden;
-            border-radius: 12px;
-            display: block;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .first-sign-figure img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-        }
-
-        .first-sign-content {
-            display: grid;
-            grid-template-columns: 1fr; /* Default for mobile */
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .first-sign-content h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.6rem;
-            color: var(--brand-dark);
-        }
-
-        .first-sign-content p {
-            line-height: 1.7;
-            color: #344a45;
-            margin-bottom: 1rem;
-            font-size: 1.02rem;
-        }
-
-        .first-sign-list {
-            display: grid;
-            gap: 0.6rem;
-            margin: 1rem 0 1.25rem;
-        }
-
-        .first-sign-item {
-            display: flex;
-            gap: 0.9rem;
-            align-items: flex-start;
-        }
-
-        .first-sign-item svg {
-            width: 36px;
-            height: 36px;
-            flex-shrink: 0;
-            color: var(--gold);
-            margin-top: 4px;
-        }
-
-        .first-sign-note {
-            border-left: 3px solid rgba(203, 168, 90, 0.18);
-            padding-left: 1rem;
-            color: #2f4a42;
-            font-style: italic;
-            background: rgba(203, 168, 90, 0.02);
-            border-radius: 6px;
-            padding: 0.75rem 1rem;
-            margin-top: 0.75rem;
-        }
-
-        .first-sign-cta {
-            margin-top: 1.15rem;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .btn-ghost {
-            background: transparent;
-            border: 1px solid rgba(6, 45, 42, 0.08);
-            padding: 0.65rem 1rem;
-            border-radius: 10px;
-            color: var(--brand-dark);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all .22s ease;
-        }
-
-        .btn-primary {
-            background: linear-gradient(90deg, var(--gold), #d8b35a);
-            color: var(--brand-dark);
-            padding: 0.65rem 1rem;
-            border-radius: 10px;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-        }
-
-        .first-sign-signature {
-            margin-top: 1.25rem;
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .signature-avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
-        }
-
-        .signature-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .signature-meta {
-            color: #27463f;
-        }
-
-        .signature-meta strong {
-            display: block;
-            color: var(--brand-dark);
-        }
-
-        @media (min-width: 901px) {
-            .first-sign-content {
-                grid-template-columns: 440px 1fr;
-                gap: 2.25rem;
-                grid-template-areas:
-                    "figure title"
-                    "figure text"
-                    "figure list"
-                    "figure note"
-                    "figure cta"
-                    "figure signature";
-            }
-
-            .first-sign-figure {
-                grid-area: figure;
-                align-self: start;
-                max-height: 500px;
-            }
-        }
-
-        /* Specialties Section */
-        .specialties-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .specialty-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(11, 63, 58, 0.08);
-            box-shadow: 0 8px 25px rgba(3, 28, 26, 0.04);
-        }
-
-        .specialty-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(11, 63, 58, 0.12);
-            border-color: rgba(203, 168, 90, 0.5);
-        }
-
-        .specialty-icon {
-            margin-bottom: 1rem;
-            color: var(--gold);
-            height: 52px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .specialty-icon svg {
-            width: 52px;
-            height: 52px;
-        }
-
-        .specialty-title {
-            font-size: 1.3rem;
-            color: var(--brand-dark);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .specialty-description {
-            line-height: 1.6;
-            color: #344a45;
-            font-size: 0.95rem;
-        }
-
-        /* Impact Banner */
-        .impact-banner {
-            background: linear-gradient(135deg, var(--brand-dark), var(--brand));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .impact-banner-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-            color: var(--white);
-            text-align: left;
-        }
-
-        .impact-banner:before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 150%;
-            height: 150%;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(203, 168, 90, 0.08) 0%, transparent 60%);
-            animation: rotate 20s linear infinite;
-        }
-
-        .impact-image-wrapper {
-            width: 100%;
-            max-width: 450px;
-            grid-area: image; /* Nomeia a área para o grid */
-            justify-self: center;
-        }
-
-        .impact-image-wrapper img {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .impact-content {
-            display: flex;
-            grid-area: content; /* Nomeia a área para o grid */
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .impact-text {
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .impact-text svg {
-            width: 36px;
-            height: 36px;
-            color: var(--gold);
-            flex-shrink: 0;
-        }
-
-        .impact-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.6;
-        }
-
-        .impact-locations {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .location-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(203, 168, 90, 0.15);
-            padding: 1.5rem;
-            border-radius: 16px;
-            flex: 1;
-            backdrop-filter: blur(5px);
-        }
-
-        .location-item svg {
-            width: 32px;
-            height: 32px;
-            color: var(--gold);
-            margin-bottom: 0.75rem;
-        }
-
-        .impact-cta {
-            background: var(--gold);
-            color: var(--brand-dark);
-            padding: 1rem 2.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .impact-cta:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            background: #d8b35a;
-            align-self: flex-start;
-        }
-
-        @media (max-width: 900px) {
-            .impact-banner-grid {
-                grid-template-columns: 1fr;
-                grid-template-areas: "content"
-                                     "image"; /* Define a ordem para mobile */
-                text-align: center;
-            }
-
-            .impact-cta {
-                align-self: center;
-            }
-        }
-
-        @media (min-width: 901px) {
-            .impact-banner-grid {
-                grid-template-areas: "image content"; /* Define a ordem para desktop */
-            }
-        }
-
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact-item-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1.25rem;
-            color: var(--brand);
-            background: var(--white);
-            border: 1px solid rgba(11, 63, 58, 0.08);
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(3, 28, 26, 0.04);
-        }
-
-        .contact-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(11, 63, 58, 0.12);
-            border-color: rgba(203, 168, 90, 0.5);
-        }
-
-        .contact-icon {
-            color: var(--dourado);
-            flex-shrink: 0;
-            margin-top: 0.1rem;
-        }
-
-        .contact-icon svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .contact-item strong {
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .map-container {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(180deg, var(--brand-dark), #04332e);
-            color: var(--white);
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        /* ajustes rápidos para ícones sociais */
-        .social-icon {
-            width: 44px;
-            height: 44px;
-            display: inline-grid;
-            place-items: center;
-            border-radius: 50%;
-            background: var(--gold);
-            color: var(--brand-dark);
-            text-decoration: none;
-            transition: transform .28s ease, background .2s ease;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-4px) scale(1.03);
-            background: #e6c37a;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Reviews Section */
-        .reviews-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .reviews-summary {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .reviews-summary .google-logo svg {
-            width: 80px;
-            height: auto;
-        }
-
-        .reviews-rating {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--brand-dark);
-        }
-
-        .reviews-stars {
-            color: #fbbc05; /* Google yellow */
-            display: flex;
-        }
-
-        .reviews-stars svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .reviews-count {
-            color: #5f6368; /* Google grey */
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .review-card {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(11, 63, 58, 0.08);
-            box-shadow: 0 8px 25px rgba(3, 28, 26, 0.04);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .review-author {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .author-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            font-weight: 600;
-            color: var(--white);
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .author-name {
-            font-weight: 600;
-            color: var(--brand-dark);
-        }
-
-        .review-text {
-            color: #344a45;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            flex-grow: 1;
-            border-left: 3px solid var(--gold);
-            padding-left: 1rem;
-        }
-
-        /* Fixed Logo */
-        .fixed-logo-container {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            background: rgba(203, 168, 90, 0.1);
-            backdrop-filter: blur(8px);
-            padding: 10px;
-            border-radius: 50%;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(203, 168, 90, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .fixed-logo-container:hover {
-            transform: scale(1.05);
-        }
-
-        .fixed-logo-container img {
-            width: 70px;
-            height: 70px;
-            display: block;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .profile-name {
-                font-size: 1.5rem;
-            }
-
-            .fixed-logo-container img {
-                width: 50px;
-                height: 50px;
-            }
-
-            .about-content,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 3rem 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .impact-text {
-                font-size: 1.5rem;
-            }
-
-            .specialties-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .reviews-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 
 <body>
-    <!-- Logo Fixo -->
-    <div class="fixed-logo-container">
-        <a href="#linktree" aria-label="Voltar ao topo">
-            <img src="img/logo-drabruna.jpeg" alt="Logo Dra. Bruna Lucas">
-        </a>
-    </div>
-    <!-- Linktree Section -->
-    <section class="linktree-section" id="linktree">
-        <!-- vídeo de fundo: coloque o arquivo em img/bg-loop.mp4 (ou altere o caminho abaixo) -->
-        <video class="bg-video" autoplay muted loop playsinline poster="img/Dra. Bruna.jpg" aria-hidden="true">
-            <source src="videos/videoplayback.mp4" type="video/mp4">
-            <!-- fallback: imagem -->
-            Seu navegador não suporta vídeo. <img src="img/Dra. Bruna.jpg" alt="">
-        </video>
-        <div class="profile-container">
-            <!-- usar foto real em assets/bruna-profile.jpg -->
-            <img src="img/Dra. Bruna.jpg" alt="Foto Dra. Bruna Lucas" class="profile-photo" tabindex="0">
-
-            <h1 class="profile-name">Dra.BrunaLucasPediatra</h1>
-            <p class="profile-title">Pediatra | TEA, TDAH e Atrasos no Neurodesenvolvimento</p>
-
-            <div class="links-container">
-                <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta" target="_blank" rel="noopener noreferrer" class="link-button"
-                    aria-label="Whatsapp">
-                    <!-- SVG ícone WhatsApp -->
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path fill="#007A61"
-                            d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.12.56 4.14 1.62 5.95L0 24l6.32-1.64A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.21-1.26-6.22-3.48-8.52zM12 21.6c-1.6 0-3.16-.42-4.54-1.22l-.33-.19-3.75.98.99-3.67-.21-.36A9.6 9.6 0 012.4 12c0-5.31 4.29-9.6 9.6-9.6 2.57 0 4.98.99 6.8 2.81A9.52 9.52 0 0121.6 12c0 5.31-4.29 9.6-9.6 9.6z" />
-                    </svg>
-                    <span>WhatsApp</span>
-                </a>
-
-                <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta"
-                    target="_blank" rel="noopener noreferrer" class="link-button" aria-label="Agendar consulta">
-                    <!-- SVG ícone calendar -->
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path fill="#007A61"
-                            d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 14H5V9h14v9z" />
-                    </svg>
-                    <span>Agendar Consulta</span>
-                </a>
-
-                <a href="https://www.instagram.com/dra.brunalucaspediatra?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                    target="_blank" rel="noopener noreferrer" class="link-button" aria-label="Instagram">
-                    <!-- SVG ícone Instagram (simplificado) -->
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path fill="#007A61"
-                            d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zM12 7.5A4.5 4.5 0 1016.5 12 4.5 4.5 0 0012 7.5zm0 7.5A3 3 0 1115 12a3 3 0 01-3 3zM17.5 6.1a.9.9 0 11-.9-.9.9.9 0 01.9.9z" />
-                    </svg>
-                    <span>Instagram</span>
-                </a>
-
-                <a href="mailto:dra.brunalucaspediatra@gmail.com" class="link-button" aria-label="E-mail">
-                    <!-- SVG ícone email -->
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path fill="#007A61"
-                            d="M20 4H4a2 2 0 00-2 2v0l10 6 10-6v0a2 2 0 00-2-2zM2 8v8a2 2 0 002 2h16a2 2 0 002-2V8l-10 6L2 8z" />
-                    </svg>
-                    <span>E-mail</span>
-                </a>
-
-                <a href="https://maps.app.goo.gl/AXLDYGehHSSDEPUj6?g_st=ipc" target="_blank" rel="noopener noreferrer"
-                    class="link-button" aria-label="Localização">
-                    <!-- SVG ícone location -->
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path fill="#007A61"
-                            d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
-                    </svg>
-                    <span>Localização</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="scroll-indicator" role="button" tabindex="0" aria-label="Ir para Sobre">
+     <div class="scroll-indicator" role="button" tabindex="0" aria-label="Ir para Sobre">
             <svg class="scroll-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" width="44"
                 height="44">
                 <circle cx="12" cy="12" r="11" fill="rgba(203,168,90,0.08)" stroke="var(--gold)" stroke-width="1.2" />
@@ -1196,7 +33,13 @@
                     stroke-linejoin="round" fill="none" />
             </svg>
         </div>
-    </section>
+    <!-- Logo Fixo -->
+    <div class="fixed-logo-container">
+        <a href="#linktree" aria-label="Voltar ao topo">
+            <img src="img/logo-drabruna.png" alt="Logo Dra. Bruna Lucas">
+        </a>
+    </div>
+
 
     <!-- Main Content -->
     <main class="main-content">
@@ -1206,10 +49,12 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>Sou a Dra. Bruna Maria Pereira Lucas Silva, pediatra em Goiânia (GO), <strong>CRM-GO
-                            29487, RQE 19256</strong>. Dedico-me ao cuidado infantil com foco no desenvolvimento e bem-estar.</p>
+                            29487, RQE 19256</strong>. Dedico-me ao cuidado infantil com foco no desenvolvimento e
+                        bem-estar.</p>
                     <br>
                     <p>Ofereço suporte empático e técnico para crianças com TEA, TDAH e Atrasos no Desenvolvimento.
-                        Sou neurodivergente e também mãe atípica. Acredito que informação e acolhimento andam juntos, e que cada experiência única pode inspirar empatia e compreensão.</p>
+                        Sou neurodivergente e também mãe atípica. Acredito que informação e acolhimento andam juntos, e
+                        que cada experiência única pode inspirar empatia e compreensão.</p>
                     <br>
                     <p>Minha missão é proporcionar um atendimento humanizado, respeitoso e baseado nas melhores práticas
                         médicas, sempre colocando as necessidades da criança e da família em primeiro lugar.</p>
@@ -1292,21 +137,32 @@
 
         <!-- PN Inclusiva — Slider contínuo -->
         <section class="section pn-slider" id="pn-inclusiva" aria-labelledby="pn-inclusiva-title">
-            <div class="pn-content-wrapper">                
+            <div class="pn-content-wrapper">
                 <div class="pn-text-content">
-                    <h3 class="slider-title" id="pn-inclusiva-title">Decreto nº 12.686/2025: uma promessa com muitas perguntas e poucas respostas</h3>
-                    <p>O Decreto que cria a Política Nacional de Educação Especial Inclusiva nasceu como um avanço, mas sua implementação gera incertezas. Na prática, o texto é uma robusta carta de intenções, mas que falha em pontos essenciais para se tornar realidade.</p>
+                    <h3 class="slider-title" id="pn-inclusiva-title">Decreto nº 12.686/2025: uma promessa com muitas
+                        perguntas e poucas respostas</h3>
+                    <p>O Decreto que cria a Política Nacional de Educação Especial Inclusiva nasceu como um avanço, mas
+                        sua implementação gera incertezas. Na prática, o texto é uma robusta carta de intenções, mas que
+                        falha em pontos essenciais para se tornar realidade.</p>
                 </div>
 
                 <div class="viewport" aria-hidden="false">
                     <div class="track" id="pn-track" role="list">
                         <!-- Use img/img-1.jpg ... img/img-6.jpg (coloque os arquivos em /img) -->
-                        <div class="slide" role="listitem"><img src="img/img-1.jpg" alt="O futuro incerto da inclusão escolar" loading="lazy"></div>
-                        <div class="slide" role="listitem"><img src="img/img-2.jpg" alt="O Decreto 12.686/2025 e a Política Nacional de Educação Especial Inclusiva" loading="lazy"></div>
-                        <div class="slide" role="listitem"><img src="img/img-3.jpg" alt="Crítica ao decreto: sem prazo, sem plano" loading="lazy"></div>
-                        <div class="slide" role="listitem"><img src="img/img-4.jpg" alt="Crítica ao decreto: inclusão sem orçamento não existe" loading="lazy"></div>
-                        <div class="slide" role="listitem"><img src="img/img-5.jpg" alt="Crítica ao decreto: inclusão ou imposição de modelo único" loading="lazy"></div>
-                        <div class="slide" role="listitem"><img src="img/img-6.jpg" alt="Conclusão sobre o decreto: acerta nos princípios, mas falha no essencial" loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-1.jpg"
+                                alt="O futuro incerto da inclusão escolar" loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-2.jpg"
+                                alt="O Decreto 12.686/2025 e a Política Nacional de Educação Especial Inclusiva"
+                                loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-3.jpg"
+                                alt="Crítica ao decreto: sem prazo, sem plano" loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-4.jpg"
+                                alt="Crítica ao decreto: inclusão sem orçamento não existe" loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-5.jpg"
+                                alt="Crítica ao decreto: inclusão ou imposição de modelo único" loading="lazy"></div>
+                        <div class="slide" role="listitem"><img src="img/img-6.jpg"
+                                alt="Conclusão sobre o decreto: acerta nos princípios, mas falha no essencial"
+                                loading="lazy"></div>
                     </div>
                 </div>
             </div>
@@ -1317,26 +173,45 @@
             <div class="impact-banner-grid">
                 <div class="impact-content">
                     <h2 class="impact-text">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M3.22 12H9.5l.7-1.44.7 1.44H15"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+                            </path>
+                            <path d="M3.22 12H9.5l.7-1.44.7 1.44H15"></path>
+                        </svg>
                         Cuidado que une empatia e técnica
                     </h2>
-                    <p class="impact-subtitle">Minha missão é oferecer um atendimento que acolhe a família e foca no desenvolvimento pleno de cada criança, com respeito e dedicação.</p>
+                    <p class="impact-subtitle">Minha missão é oferecer um atendimento que acolhe a família e foca no
+                        desenvolvimento pleno de cada criança, com respeito e dedicação.</p>
                     <div class="impact-locations">
                         <div class="location-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
                             <h3>Atendimento Presencial</h3>
                             <p>Goiânia, GO</p>
                         </div>
                         <div class="location-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" />
+                                <rect x="2" y="6" width="14" height="12" rx="2" />
+                            </svg>
                             <h3>Telemedicina</h3>
                             <p>Para todo o Brasil</p>
                         </div>
                     </div>
-                    <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta" target="_blank" rel="noopener noreferrer" class="impact-cta">Agende uma Consulta</a>
+                    <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta"
+                        target="_blank" rel="noopener noreferrer" class="impact-cta">Agende uma Consulta</a>
                 </div>
                 <div class="impact-image-wrapper">
-                    <img src="img/empatia.jpg" alt="Dra. Bruna Lucas em atendimento humanizado com criança" loading="lazy">
+                    <img src="img/empatia.jpg" alt="Dra. Bruna Lucas em atendimento humanizado com criança"
+                        loading="lazy">
                 </div>
             </div>
         </section>
@@ -1347,7 +222,23 @@
             <div class="specialties-grid">
                 <div class="specialty-card">
                     <div class="specialty-icon" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.9 18.55a1 1 0 0 0-1 1.72v.01a1 1 0 0 0 .45.83 1 1 0 0 1-1.73 1l-.01-.01a1 1 0 0 0-1.41 0 1 1 0 0 0 0 1.41l.01.01a1 1 0 0 1-1 1.73 1 1 0 0 0-.83-.45h-.01a1 1 0 0 0-1.72 1Z"/><path d="M12.5 2.5a1 1 0 0 0-1.41 0L9.67 3.9a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0l1.41-1.41a1 1 0 0 0 0-1.41Z"/><path d="M18.55 2.09A1 1 0 0 0 17.5 3.1v.01a1 1 0 0 0 .83.45 1 1 0 0 1 1 1.73l-.01 1a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l1-.01a1 1 0 0 1 1.73 1 1 1 0 0 0-.45.83v.01a1 1 0 0 0 1 1.72Z"/><path d="M3.1 17.5a1 1 0 0 0 1 .45h.01a1 1 0 0 0 1.72-1l-.01-1a1 1 0 0 1 0-1.41 1 1 0 0 1 1.41 0l1 .01a1 1 0 0 0 1.73-1 1 1 0 0 1-.45-.83v-.01a1 1 0 0 0-1-1.72Z"/><path d="M9.5 14.5a1 1 0 0 0-1.41 0L6.67 15.9a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0l1.41-1.41a1 1 0 0 0 0-1.41Z"/><path d="M14.5 9.5a1 1 0 0 0 0-1.41L13.09 6.67a1 1 0 0 0-1.41 0L10.27 8.09a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0Z"/><path d="M5.45 2.09A1 1 0 0 1 6.5 3.1v.01a1 1 0 0 1-.83.45 1 1 0 0 0-1 1.73l.01 1a1 1 0 0 1 0 1.41 1 1 0 0 1-1.41 0l-1-.01a1 1 0 0 0-1.73 1 1 1 0 0 1 .45.83v.01a1 1 0 0 1-1 1.72Z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.9 18.55a1 1 0 0 0-1 1.72v.01a1 1 0 0 0 .45.83 1 1 0 0 1-1.73 1l-.01-.01a1 1 0 0 0-1.41 0 1 1 0 0 0 0 1.41l.01.01a1 1 0 0 1-1 1.73 1 1 0 0 0-.83-.45h-.01a1 1 0 0 0-1.72 1Z" />
+                            <path
+                                d="M12.5 2.5a1 1 0 0 0-1.41 0L9.67 3.9a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0l1.41-1.41a1 1 0 0 0 0-1.41Z" />
+                            <path
+                                d="M18.55 2.09A1 1 0 0 0 17.5 3.1v.01a1 1 0 0 0 .83.45 1 1 0 0 1 1 1.73l-.01 1a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l1-.01a1 1 0 0 1 1.73 1 1 1 0 0 0-.45.83v.01a1 1 0 0 0 1 1.72Z" />
+                            <path
+                                d="M3.1 17.5a1 1 0 0 0 1 .45h.01a1 1 0 0 0 1.72-1l-.01-1a1 1 0 0 1 0-1.41 1 1 0 0 1 1.41 0l1 .01a1 1 0 0 0 1.73-1 1 1 0 0 1-.45-.83v-.01a1 1 0 0 0-1-1.72Z" />
+                            <path
+                                d="M9.5 14.5a1 1 0 0 0-1.41 0L6.67 15.9a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0l1.41-1.41a1 1 0 0 0 0-1.41Z" />
+                            <path
+                                d="M14.5 9.5a1 1 0 0 0 0-1.41L13.09 6.67a1 1 0 0 0-1.41 0L10.27 8.09a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0Z" />
+                            <path
+                                d="M5.45 2.09A1 1 0 0 1 6.5 3.1v.01a1 1 0 0 1-.83.45 1 1 0 0 0-1 1.73l.01 1a1 1 0 0 1 0 1.41 1 1 0 0 1-1.41 0l-1-.01a1 1 0 0 0-1.73 1 1 1 0 0 1 .45.83v.01a1 1 0 0 1-1 1.72Z" />
+                        </svg>
                     </div>
                     <h3 class="specialty-title">TEA</h3>
                     <p class="specialty-description">Transtorno do Espectro Autista - Acompanhamento com foco no
@@ -1355,7 +246,14 @@
                 </div>
                 <div class="specialty-card">
                     <div class="specialty-icon" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8v2Z"/><path d="M22 12a10 10 0 0 1-10 10v-2a8 8 0 0 0 8-8h2Z"/><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8v2Z"/><path d="M2 12a10 10 0 0 0 10-10V2a8 8 0 0 1-8 8h-2Z"/><path d="m13 7-3 5h4l-3 5"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22a10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8v2Z" />
+                            <path d="M22 12a10 10 0 0 1-10 10v-2a8 8 0 0 0 8-8h2Z" />
+                            <path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8v2Z" />
+                            <path d="M2 12a10 10 0 0 0 10-10V2a8 8 0 0 1-8 8h-2Z" />
+                            <path d="m13 7-3 5h4l-3 5" />
+                        </svg>
                     </div>
                     <h3 class="specialty-title">TDAH</h3>
                     <p class="specialty-description">Transtorno de Déficit de Atenção e Hiperatividade - Orientação e
@@ -1363,7 +261,16 @@
                 </div>
                 <div class="specialty-card">
                     <div class="specialty-icon" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8v2Z"/><path d="M22 12a10 10 0 0 1-10 10v-2a8 8 0 0 0 8-8h2Z"/><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8v2Z"/><path d="M2 12a10 10 0 0 0 10-10V2a8 8 0 0 1-8 8h-2Z"/><path d="M15 12c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2Z"/><path d="M12 16c-2.2 0-4-1.8-4-4"/><path d="M12 8c2.2 0 4 1.8 4 4"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22a10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8v2Z" />
+                            <path d="M22 12a10 10 0 0 1-10 10v-2a8 8 0 0 0 8-8h2Z" />
+                            <path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8v2Z" />
+                            <path d="M2 12a10 10 0 0 0 10-10V2a8 8 0 0 1-8 8h-2Z" />
+                            <path d="M15 12c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2Z" />
+                            <path d="M12 16c-2.2 0-4-1.8-4-4" />
+                            <path d="M12 8c2.2 0 4 1.8 4 4" />
+                        </svg>
                     </div>
                     <h3 class="specialty-title">Atrasos no Neurodesenvolvimento</h3>
                     <p class="specialty-description">Avaliação global e suporte contínuo para o desenvolvimento infantil
@@ -1371,10 +278,16 @@
                 </div>
                 <div class="specialty-card">
                     <div class="specialty-icon" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v8"/><path d="m8 12 h8"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                            <path d="M12 8v8" />
+                            <path d="m8 12 h8" />
+                        </svg>
                     </div>
                     <h3 class="specialty-title">Puericultura e Acompanhamento</h3>
-                    <p class="specialty-description">Consultas regulares para monitorar o crescimento, a vacinação e a saúde integral do seu filho, da infância à adolescência.</p>
+                    <p class="specialty-description">Consultas regulares para monitorar o crescimento, a vacinação e a
+                        saúde integral do seu filho, da infância à adolescência.</p>
                 </div>
             </div>
         </section>
@@ -1389,16 +302,32 @@
                     <div>
                         <div class="reviews-rating">5.0</div>
                         <div class="reviews-stars" aria-label="5 de 5 estrelas">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
                         </div>
                         <div class="reviews-count">Baseado em 49 avaliações</div>
                     </div>
                 </div>
-                <a href="https://www.google.com/search?sca_esv=1d5ae73f0554544d&cs=0&output=search&kgmid=/g/11xf4fyq7r&q=Dra+Bruna+Lucas+Pediatra&shndl=30&shem=lcuae,uaasie,shrtsdl&source=sh/x/loc/uni/m1/1&kgs=edd96baad4f42bca&utm_source=lcuae,uaasie,shrtsdl,sh/x/loc/uni/m1/1#lrd=0xa70fee36673262db:0xe0402a14a29f34f0,1,,,," target="_blank" rel="noopener noreferrer" class="btn-ghost">Ver todas as avaliações</a>
+                <a href="https://www.google.com/search?sca_esv=1d5ae73f0554544d&cs=0&output=search&kgmid=/g/11xf4fyq7r&q=Dra+Bruna+Lucas+Pediatra&shndl=30&shem=lcuae,uaasie,shrtsdl&source=sh/x/loc/uni/m1/1&kgs=edd96baad4f42bca&utm_source=lcuae,uaasie,shrtsdl,sh/x/loc/uni/m1/1#lrd=0xa70fee36673262db:0xe0402a14a29f34f0,1,,,,"
+                    target="_blank" rel="noopener noreferrer" class="btn-ghost">Ver todas as avaliações</a>
             </div>
             <div class="reviews-grid">
                 <div class="review-card">
@@ -1406,35 +335,45 @@
                         <div class="author-avatar" style="background-color: #e57373;">A</div>
                         <div class="author-name">Ana Paula Alves Simonine Sousa</div>
                     </div>
-                    <p class="review-text">"Simplesmente maravilhosa, eu como mãe indico de olhos fechados, muito atenciosa, me passou muita segurança e minhas filhas ficaram encantadas com a doutora Bruna..."</p>
+                    <p class="review-text">"Simplesmente maravilhosa, eu como mãe indico de olhos fechados, muito
+                        atenciosa, me passou muita segurança e minhas filhas ficaram encantadas com a doutora Bruna..."
+                    </p>
                 </div>
                 <div class="review-card">
                     <div class="review-author">
                         <div class="author-avatar" style="background-color: #81c784;">M</div>
                         <div class="author-name">Maria Eduarda Arantes Pereira</div>
                     </div>
-                    <p class="review-text">"Excelente profissional! A Dra. Bruna me acompanha desde a infância e sempre demonstrou muita dedicação e cuidado em cada atendimento. É atenciosa, competente e transmite confiança."</p>
+                    <p class="review-text">"Excelente profissional! A Dra. Bruna me acompanha desde a infância e sempre
+                        demonstrou muita dedicação e cuidado em cada atendimento. É atenciosa, competente e transmite
+                        confiança."</p>
                 </div>
                 <div class="review-card">
                     <div class="review-author">
                         <div class="author-avatar" style="background-color: #64b5f6;">K</div>
                         <div class="author-name">Katriny Isabel</div>
                     </div>
-                    <p class="review-text">"Encontrar uma pediatra como a Dra. Bruna é um verdadeiro presente. Ela não trata apenas de sintomas ela cuida de pessoas, com um coração enorme e uma dedicação que transborda em cada consulta."</p>
+                    <p class="review-text">"Encontrar uma pediatra como a Dra. Bruna é um verdadeiro presente. Ela não
+                        trata apenas de sintomas ela cuida de pessoas, com um coração enorme e uma dedicação que
+                        transborda em cada consulta."</p>
                 </div>
                 <div class="review-card">
                     <div class="review-author">
                         <div class="author-avatar" style="background-color: #ffb74d;">C</div>
                         <div class="author-name">Carolina Divetta França</div>
                     </div>
-                    <p class="review-text">"Pensem numa pediatra que ajuda até os pequenos a fazer xixi para o exame de urina... Pois é, ela é assim. Empática, com escuta ativa, carinhosa, atualizada, preocupada com a saúde dos pequenos."</p>
+                    <p class="review-text">"Pensem numa pediatra que ajuda até os pequenos a fazer xixi para o exame de
+                        urina... Pois é, ela é assim. Empática, com escuta ativa, carinhosa, atualizada, preocupada com
+                        a saúde dos pequenos."</p>
                 </div>
                 <div class="review-card">
                     <div class="review-author">
                         <div class="author-avatar" style="background-color: #9575cd;">A</div>
                         <div class="author-name">Ana viviane Caraca</div>
                     </div>
-                    <p class="review-text">"Dra Bruna, é uma Pediatra das melhores que eu já tive oportunidade de conhecer, tem uma atenção ímpar, faz todo um check-up geral, e seu atendimento é fenomenal! Não troco por ninguém."</p>
+                    <p class="review-text">"Dra Bruna, é uma Pediatra das melhores que eu já tive oportunidade de
+                        conhecer, tem uma atenção ímpar, faz todo um check-up geral, e seu atendimento é fenomenal! Não
+                        troco por ninguém."</p>
                 </div>
                 <div class="review-card">
                     <div class="review-author">
@@ -1451,9 +390,15 @@
             <h2 class="section-title">Localização e Contato</h2>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <a href="https://maps.app.goo.gl/AXLDYGehHSSDEPUj6?g_st=ipc" target="_blank" rel="noopener noreferrer" class="contact-item-link">
+                    <a href="https://maps.app.goo.gl/AXLDYGehHSSDEPUj6?g_st=ipc" target="_blank"
+                        rel="noopener noreferrer" class="contact-item-link">
                         <div class="contact-item">
-                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg></div>
                             <div>
                                 <strong>Endereço</strong>
                                 Rua 1125, nº 312, sala 302<br>
@@ -1461,9 +406,15 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://wa.me/5562983100023" target="_blank" rel="noopener noreferrer" class="contact-item-link">
+                    <a href="https://wa.me/5562983100023" target="_blank" rel="noopener noreferrer"
+                        class="contact-item-link">
                         <div class="contact-item">
-                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg></div>
                             <div>
                                 <strong>Telefone</strong>
                                 (62) 98310-0023
@@ -1472,16 +423,27 @@
                     </a>
                     <a href="mailto:dra.brunalucaspediatra@gmail.com" class="contact-item-link">
                         <div class="contact-item">
-                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                </svg></div>
                             <div>
                                 <strong>E-mail</strong>
                                 dra.brunalucaspediatra@gmail.com
                             </div>
                         </div>
                     </a>
-                    <a href="https://linktr.ee/BrunaLucasPediatra" target="_blank" rel="noopener noreferrer" class="contact-item-link">
+                    <a href="https://linktr.ee/BrunaLucasPediatra" target="_blank" rel="noopener noreferrer"
+                        class="contact-item-link">
                         <div class="contact-item">
-                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg></div>
+                            <div class="contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72" />
+                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72" />
+                                </svg></div>
                             <div>
                                 <strong>Outros Links</strong>
                                 linktr.ee/BrunaLucasPediatra
