@@ -20,6 +20,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Interactive carousel styles (small, local additions) */
+        .interactive-carousel { position: relative; display: flex; align-items: center; gap: .75rem; }
+        .interactive-carousel .carousel-viewport { overflow: hidden; width: 100%; }
+        .interactive-carousel .carousel-track { display: flex; gap: 1rem; transition: transform .45s ease; will-change: transform; }
+        .interactive-carousel .carousel-slide { flex: 0 0 auto; width: 320px; }
+        .interactive-carousel .carousel-btn { background: var(--gold, #cba85a); color: #fff; border: none; padding: .5rem .75rem; border-radius: .375rem; cursor: pointer; font-weight: 600; }
+        .interactive-carousel .carousel-btn:focus { outline: 3px solid rgba(203,168,90,0.25); }
+        .interactive-carousel .carousel-dots { display:flex; gap:.5rem; justify-content:center; margin-top:.75rem; }
+        .interactive-carousel .dot { width:10px; height:10px; border-radius:50%; background:#ddd; cursor:pointer; }
+        .interactive-carousel .dot.active { background:var(--gold, #cba85a); }
+        @media (max-width:600px){ .interactive-carousel .carousel-slide{ width: calc(100% - 2rem); } }
+    </style>
 
 </head>
 
@@ -382,68 +395,78 @@
             </div>
         </section>
 
-        <!-- Interactive Section -->
+        <!-- Interactive Section: Carousel -->
         <section class="section interactive-section" id="interativo">
             <h2 class="section-title">Escolha uma Atividade</h2>
             <p class="section-subtitle">Aprenda, brinque e descubra mais sobre o desenvolvimento infantil.</p>
-            <div class="interactive-grid">
-                <!-- Card 1: Quiz -->
-                <article class="interactive-card">
-                    <div class="card-image-container">
-                        <img src="img/quiz-desenvolvimento-infantil.png" alt="Criança brincando com blocos de montar coloridos." loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+            <div class="interactive-carousel" aria-roledescription="carousel" aria-label="Atividades interativas">
+                <button class="carousel-btn prev-btn" aria-label="Anterior">‹</button>
+                <div class="carousel-viewport" role="group">
+                    <div class="carousel-track" id="interactiveTrack">
+                        <!-- slide 1 -->
+                        <div class="carousel-slide" role="group" aria-roledescription="slide">
+                            <article class="interactive-card">
+                                <div class="card-image-container">
+                                    <img src="img/quiz-desenvolvimento-infantil.png" alt="Criança brincando com blocos de montar coloridos." loading="lazy">
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-icon">...<!-- svg trimmed for brevity --></div>
+                                    <h3 class="card-title">Mito ou Verdade?</h3>
+                                    <p class="card-description">Teste seus conhecimentos sobre o desenvolvimento infantil e aprenda de forma divertida.</p>
+                                    <button class="btn-primary card-cta" data-modal-target="quiz-modal">Interagir</button>
+                                </div>
+                            </article>
                         </div>
-                        <h3 class="card-title">Mito ou Verdade?</h3>
-                        <p class="card-description">Teste seus conhecimentos sobre o desenvolvimento infantil e aprenda de forma divertida.</p>
-                        <button class="btn-primary card-cta" data-modal-target="quiz-modal">Interagir</button>
-                    </div>
-                </article>
-                <!-- Card 2: Emotion Wheel -->
-                <article class="interactive-card">
-                    <div class="card-image-container">
-                        <img src="img/roda-das-emocoes.png" alt="Desenhos de emojis com diferentes expressões faciais." loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+
+                        <!-- slide 2 -->
+                        <div class="carousel-slide" role="group" aria-roledescription="slide">
+                            <article class="interactive-card">
+                                <div class="card-image-container">
+                                    <img src="img/roda-das-emocoes.png" alt="Desenhos de emojis com diferentes expressões faciais." loading="lazy">
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-icon">...<!-- svg trimmed for brevity --></div>
+                                    <h3 class="card-title">Roda das Emoções</h3>
+                                    <p class="card-description">Uma atividade para crianças aprenderem a identificar e expressar seus sentimentos.</p>
+                                    <button class="btn-primary card-cta" data-modal-target="emotions-modal">Interagir</button>
+                                </div>
+                            </article>
                         </div>
-                        <h3 class="card-title">Roda das Emoções</h3>
-                        <p class="card-description">Uma atividade para crianças aprenderem a identificar e expressar seus sentimentos.</p>
-                        <button class="btn-primary card-cta" data-modal-target="emotions-modal">Interagir</button>
-                    </div>
-                </article>
-                <!-- Card 3: Monte a Carinha -->
-                <article class="interactive-card">
-                    <div class="card-image-container">
-                        <img src="img/monte-a-carinha.png" alt="Ilustração colorida de partes de um rosto para montar." loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.63 15.63a2.5 2.5 0 1 0-3.26 3.26"/><path d="M12 12a2.5 2.5 0 1 0-3.26 3.26"/><path d="M12 12a2.5 2.5 0 1 0 3.26-3.26"/><path d="M12 12a2.5 2.5 0 1 0-3.26-3.26"/><circle cx="12" cy="12" r="10"/></svg>
+
+                        <!-- slide 3 -->
+                        <div class="carousel-slide" role="group" aria-roledescription="slide">
+                            <article class="interactive-card">
+                                <div class="card-image-container">
+                                    <img src="img/monte-a-carinha.png" alt="Ilustração colorida de partes de um rosto para montar." loading="lazy">
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-icon">...<!-- svg trimmed for brevity --></div>
+                                    <h3 class="card-title">Monte a Carinha</h3>
+                                    <p class="card-description">Solte a imaginação e crie rostos divertidos arrastando as peças. Perfeito para estimular a criatividade!</p>
+                                    <button class="btn-primary card-cta" data-modal-target="carinha-modal">Brincar</button>
+                                </div>
+                            </article>
                         </div>
-                        <h3 class="card-title">Monte a Carinha</h3>
-                        <p class="card-description">Solte a imaginação e crie rostos divertidos arrastando as peças. Perfeito para estimular a criatividade!</p>
-                        <button class="btn-primary card-cta" data-modal-target="carinha-modal">Brincar</button>
-                    </div>
-                </article>
-                <!-- Card 4: Ache o Animal -->
-                <article class="interactive-card">
-                    <div class="card-image-container">
-                        <img src="img/ache-o-animal.png" alt="Ilustração de vários animais da fazenda em um campo verde." loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2 0-4-1-4-4 0-2 2-4 4-4s4 2 4 4c0 3-2 4-4 4Z"/><path d="M20 14c0-3.9-3.58-7-8-7s-8 3.1-8 7c0 2.52 1.33 4.76 3.38 6.08L4 22h16l-3.38-1.92A6.83 6.83 0 0 0 20 14Z"/></svg>
+
+                        <!-- slide 4 -->
+                        <div class="carousel-slide" role="group" aria-roledescription="slide">
+                            <article class="interactive-card">
+                                <div class="card-image-container">
+                                    <img src="img/ache-o-animal.png" alt="Ilustração de vários animais da fazenda em um campo verde." loading="lazy">
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-icon">...<!-- svg trimmed for brevity --></div>
+                                    <h3 class="card-title">Ache o Animal</h3>
+                                    <p class="card-description">Ouça a pergunta e encontre o animal correto. Um jogo divertido para aprender sobre os sons dos bichos.</p>
+                                    <button class="btn-primary card-cta" data-modal-target="animal-modal">Jogar</button>
+                                </div>
+                            </article>
                         </div>
-                        <h3 class="card-title">Ache o Animal</h3>
-                        <p class="card-description">Ouça a pergunta e encontre o animal correto. Um jogo divertido para aprender sobre os sons dos bichos.</p>
-                        <button class="btn-primary card-cta" data-modal-target="animal-modal">Jogar</button>
                     </div>
-                </article>
+                </div>
+                <button class="carousel-btn next-btn" aria-label="Próximo">›</button>
             </div>
+            <div class="carousel-dots" id="interactiveDots" role="tablist" aria-label="Navegação por slides"></div>
         </section>
 
         <!-- Modals -->
@@ -999,6 +1022,68 @@
                 });
             }
             document.querySelector('[data-modal-target="animal-modal"]').addEventListener('click', loadAnimalGame);
+
+            // Interactive section carousel logic
+            (function initInteractiveCarousel(){
+                const track = document.getElementById('interactiveTrack');
+                const slides = track ? Array.from(track.children) : [];
+                const prevBtn = document.querySelector('.interactive-carousel .prev-btn');
+                const nextBtn = document.querySelector('.interactive-carousel .next-btn');
+                const dotsContainer = document.getElementById('interactiveDots');
+                if (!track || slides.length === 0) return;
+
+                let current = 0;
+                const slideCount = slides.length;
+                const update = (animate = true) => {
+                    const slide = slides[current];
+                    const slideWidth = slide.getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 16);
+                    const offset = slideWidth * current;
+                    if (!animate) track.style.transition = 'none'; else track.style.transition = '';
+                    track.style.transform = `translateX(-${offset}px)`;
+                    // update dots
+                    dotsContainer.querySelectorAll('.dot').forEach((d,i)=> d.classList.toggle('active', i===current));
+                    // set aria-selected
+                    dotsContainer.querySelectorAll('.dot').forEach((d,i)=> d.setAttribute('aria-pressed', i===current));
+                };
+
+                // create dots
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'dot';
+                    dot.type = 'button';
+                    dot.setAttribute('aria-label', `Ir para o slide ${i+1}`);
+                    dot.addEventListener('click', () => { current = i; update(); resetAutoplay(); });
+                    dotsContainer.appendChild(dot);
+                });
+
+                // wire buttons
+                prevBtn && prevBtn.addEventListener('click', () => { current = (current - 1 + slideCount) % slideCount; update(); resetAutoplay(); });
+                nextBtn && nextBtn.addEventListener('click', () => { current = (current + 1) % slideCount; update(); resetAutoplay(); });
+
+                // keyboard support
+                dotsContainer.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') { current = (current - 1 + slideCount) % slideCount; update(); resetAutoplay(); }
+                    if (e.key === 'ArrowRight') { current = (current + 1) % slideCount; update(); resetAutoplay(); }
+                });
+
+                // autoplay
+                let autoplayId = null;
+                const startAutoplay = () => { stopAutoplay(); autoplayId = setInterval(() => { current = (current + 1) % slideCount; update(); }, 4500); };
+                const stopAutoplay = () => { if (autoplayId) { clearInterval(autoplayId); autoplayId = null; } };
+                const resetAutoplay = () => { stopAutoplay(); startAutoplay(); };
+
+                // pause on hover/focus
+                track.addEventListener('mouseenter', stopAutoplay);
+                track.addEventListener('mouseleave', startAutoplay);
+                track.addEventListener('focusin', stopAutoplay);
+                track.addEventListener('focusout', startAutoplay);
+
+                // initial state
+                update(false);
+                startAutoplay();
+                // mark first dot active
+                dotsContainer.querySelector('.dot') && dotsContainer.querySelector('.dot').classList.add('active');
+            })();
         });
     </script>
 </body>
