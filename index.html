@@ -33,9 +33,19 @@
         .interactive-carousel .dot.active { background:var(--gold, #cba85a); }
         @media (max-width:600px){ .interactive-carousel .carousel-slide{ width: calc(100% - 2rem); } }
     </style>
-
+    <style>
+        /* Hero slideshow crossfade */
+        .hero-slideshow { position: relative; width: 100%; max-width: 920px; border-radius: 20px; overflow: hidden; aspect-ratio: 16/9; min-height: 220px; background: #f3f3f3; }
+        /* fallback for browsers without aspect-ratio */
+        .hero-slideshow::before { content: ''; display: block; padding-top: 56.25%; }
+        .hero-slideshow .hero-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out; display: block; }
+        .hero-slideshow .hero-slide.visible { opacity: 1; }
+        .hero-slideshow-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; display:flex; gap:8px; z-index: 4; }
+        .hero-slideshow-dots button { width:10px; height:10px; border-radius:50%; border:none; background: rgba(255,255,255,0.6); cursor:pointer; }
+        .hero-slideshow-dots button.active { background: var(--gold); }
+        @media (max-width:480px){ .hero-slideshow { max-width: 320px; } }
+    </style>
 </head>
-
 <body>
     <!-- Header com Menu Hamburguer -->
     <header class="header">
@@ -104,22 +114,18 @@
             </div>
 
             <div class="hero-image">
-                <div class="image-wrapper">
-                    <img src="img/Dra. Bruna.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
+                <div class="image-wrapper hero-slideshow" aria-hidden="false">
+                    <img class="hero-slide" src="img/Dra. Bruna-hero.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
+                    <img class="hero-slide" src="img/Dra. Bruna-hero-2.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
+                    <img class="hero-slide" src="img/Dra. Bruna-hero-3.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
+                    <img class="hero-slide" src="img/Dra. Bruna-hero-4.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
+                    <img class="hero-slide" src="img/Dra. Bruna-hero-5.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
+                    <div class="hero-slideshow-dots" aria-hidden="true"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator" role="button" tabindex="0" aria-label="Ir para Sobre">
-            <svg class="scroll-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" width="44"
-                height="44">
-                <circle cx="12" cy="12" r="11" fill="rgba(203,168,90,0.08)" stroke="var(--gold)" stroke-width="1.2" />
-                <path d="M12 8v6" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" fill="none" />
-                <path d="M9.5 11.5L12 14l2.5-2.5" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round"
-                    stroke-linejoin="round" fill="none" />
-            </svg>
-        </div>
+        
     </section>
 
     <!-- Main Content -->
@@ -1083,6 +1089,67 @@
                 startAutoplay();
                 // mark first dot active
                 dotsContainer.querySelector('.dot') && dotsContainer.querySelector('.dot').classList.add('active');
+            })();
+
+            // --- Hero slideshow init ---
+            (function initHeroSlideshow(){
+                const slideshow = document.querySelector('.hero-slideshow');
+                if(!slideshow) return;
+                const slides = Array.from(slideshow.querySelectorAll('.hero-slide'));
+                const dotsWrap = slideshow.querySelector('.hero-slideshow-dots');
+                let current = 0;
+                let interval = null;
+                const delay = 4000;
+
+                // create dots
+                slides.forEach((s, i) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.setAttribute('aria-label', 'Ir para imagem ' + (i+1));
+                    btn.addEventListener('click', () => goTo(i));
+                    dotsWrap.appendChild(btn);
+                });
+
+                const dots = Array.from(dotsWrap.children);
+
+                function update() {
+                    slides.forEach((s, i) => s.classList.toggle('visible', i === current));
+                    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+                }
+
+                function goTo(i) {
+                    current = (i + slides.length) % slides.length;
+                    update();
+                }
+
+                function next() { goTo(current + 1); }
+
+                function start() {
+                    stop();
+                    interval = setInterval(next, delay);
+                }
+
+                function stop() {
+                    if(interval) { clearInterval(interval); interval = null; }
+                }
+
+                // pause on hover/focus
+                slideshow.addEventListener('mouseenter', stop);
+                slideshow.addEventListener('mouseleave', start);
+                slideshow.addEventListener('focusin', stop);
+                slideshow.addEventListener('focusout', start);
+
+                // keyboard
+                slideshow.addEventListener('keydown', (e) => {
+                    if(e.key === 'ArrowLeft') { goTo(current - 1); }
+                    if(e.key === 'ArrowRight') { goTo(current + 1); }
+                });
+
+                // initialize
+                slides.forEach(s => s.setAttribute('aria-hidden', 'true'));
+                slideshow.setAttribute('tabindex', '0');
+                goTo(0);
+                start();
             })();
         });
     </script>
