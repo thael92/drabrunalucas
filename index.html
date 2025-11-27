@@ -20,31 +20,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Interactive carousel styles (small, local additions) */
-        .interactive-carousel { position: relative; display: flex; align-items: center; gap: .75rem; }
-        .interactive-carousel .carousel-viewport { overflow: hidden; width: 100%; }
-        .interactive-carousel .carousel-track { display: flex; gap: 1rem; transition: transform .45s ease; will-change: transform; }
-        .interactive-carousel .carousel-slide { flex: 0 0 auto; width: 320px; }
-        .interactive-carousel .carousel-btn { background: var(--gold, #cba85a); color: #fff; border: none; padding: .5rem .75rem; border-radius: .375rem; cursor: pointer; font-weight: 600; }
-        .interactive-carousel .carousel-btn:focus { outline: 3px solid rgba(203,168,90,0.25); }
-        .interactive-carousel .carousel-dots { display:flex; gap:.5rem; justify-content:center; margin-top:.75rem; }
-        .interactive-carousel .dot { width:10px; height:10px; border-radius:50%; background:#ddd; cursor:pointer; }
-        .interactive-carousel .dot.active { background:var(--gold, #cba85a); }
-        @media (max-width:600px){ .interactive-carousel .carousel-slide{ width: calc(100% - 2rem); } }
-    </style>
-    <style>
-        /* Hero slideshow crossfade */
-        .hero-slideshow { position: relative; width: 100%; max-width: 920px; border-radius: 20px; overflow: hidden; aspect-ratio: 16/9; min-height: 220px; background: #f3f3f3; }
-        /* fallback for browsers without aspect-ratio */
-        .hero-slideshow::before { content: ''; display: block; padding-top: 56.25%; }
-        .hero-slideshow .hero-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out; display: block; }
-        .hero-slideshow .hero-slide.visible { opacity: 1; }
-        .hero-slideshow-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; display:flex; gap:8px; z-index: 4; }
-        .hero-slideshow-dots button { width:10px; height:10px; border-radius:50%; border:none; background: rgba(255,255,255,0.6); cursor:pointer; }
-        .hero-slideshow-dots button.active { background: var(--gold); }
-        @media (max-width:480px){ .hero-slideshow { max-width: 320px; } }
-    </style>
+    <!-- interactive carousel styles moved to style.css for centralization and responsive breakpoints -->
+    <!-- hero-slideshow CSS moved to style.css -->
 </head>
 <body>
     <!-- Header com Menu Hamburguer -->
@@ -83,22 +60,22 @@
     </header>
 
     <!-- Seção Hero / Initial Section -->
-    <section class="hero-section" id="home">
+    <section class="hero-section" id="home" role="region" aria-labelledby="hero-title">
         <div class="hero-background">
             <div class="hero-gradient-overlay"></div>
         </div>
 
         <div class="hero-content">
             <div class="hero-text">
-                <h1 class="hero-title">Dra. Bruna Lucas – Pediatra & Neurodesenvolvimento</h1>
-                <p class="hero-subtitle">Atendimento humanizado com foco em TEA, TDAH e desenvolvimento infantil.</p>
+                <h1 id="hero-title" class="hero-title">Dra. Bruna Lucas – Pediatra & Neurodesenvolvimento</h1>
+                <p id="hero-subtitle" class="hero-subtitle">Atendimento humanizado com foco em TEA, TDAH e desenvolvimento infantil.</p>
 
                 <div class="hero-cta">
                     <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta"
-                        target="_blank" rel="noopener noreferrer" class="btn-primary btn-lg">
+                        target="_blank" rel="noopener noreferrer" class="btn-primary btn-lg" aria-label="Abrir WhatsApp para agendar consulta">
                         Agendar Consulta
                     </a>
-                    <a href="#especialidades" class="btn-ghost btn-lg">Conhecer Especialidades</a>
+                    <a href="#especialidades" class="btn-ghost btn-lg" aria-label="Ver especialidades">Conhecer Especialidades</a>
                 </div>
 
                 <div class="hero-badges">
@@ -114,13 +91,14 @@
             </div>
 
             <div class="hero-image">
-                <div class="image-wrapper hero-slideshow" aria-hidden="false">
-                    <img class="hero-slide" src="img/Dra. Bruna-hero.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
-                    <img class="hero-slide" src="img/Dra. Bruna-hero-2.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
-                    <img class="hero-slide" src="img/Dra. Bruna-hero-3.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
-                    <img class="hero-slide" src="img/Dra. Bruna-hero-4.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
-                    <img class="hero-slide" src="img/Dra. Bruna-hero-5.jpg" alt="Dra. Bruna Lucas - Pediatra" loading="lazy">
-                    <div class="hero-slideshow-dots" aria-hidden="true"></div>
+                <div class="image-wrapper hero-slideshow" role="region" aria-label="Slideshow de imagens" aria-roledescription="carousel">
+                    <img id="hero-slide-1" class="hero-slide" src="img/Dra. Bruna-hero.jpg" alt="Dra. Bruna Lucas atendendo uma criança" loading="lazy" aria-hidden="false">
+                    <img id="hero-slide-2" class="hero-slide" src="img/Dra. Bruna-hero-2.jpg" alt="Dra. Bruna sorrindo em consultório" loading="lazy" aria-hidden="true">
+                    <img id="hero-slide-3" class="hero-slide" src="img/Dra. Bruna-hero-3.jpg" alt="Dra. Bruna com família" loading="lazy" aria-hidden="true">
+                    <img id="hero-slide-4" class="hero-slide" src="img/Dra. Bruna-hero-4.jpg" alt="Dra. Bruna em atendimento humanizado" loading="lazy" aria-hidden="true">
+                    <img id="hero-slide-5" class="hero-slide" src="img/Dra. Bruna-hero-5.jpg" alt="Dra. Bruna em ambiente acolhedor" loading="lazy" aria-hidden="true">
+                    <div id="hero-slideshow-status" class="sr-only" aria-live="polite"></div>
+                    <div class="hero-slideshow-dots" role="tablist" aria-label="Navegação do carrossel"></div>
                 </div>
             </div>
         </div>
@@ -408,9 +386,9 @@
             <div class="interactive-carousel" aria-roledescription="carousel" aria-label="Atividades interativas">
                 <button class="carousel-btn prev-btn" aria-label="Anterior">‹</button>
                 <div class="carousel-viewport" role="group">
-                    <div class="carousel-track" id="interactiveTrack">
+                    <div class="carousel-track" id="interactiveTrack" role="list">
                         <!-- slide 1 -->
-                        <div class="carousel-slide" role="group" aria-roledescription="slide">
+                        <div class="carousel-slide" role="listitem" aria-roledescription="slide">
                             <article class="interactive-card">
                                 <div class="card-image-container">
                                     <img src="img/quiz-desenvolvimento-infantil.png" alt="Criança brincando com blocos de montar coloridos." loading="lazy">
@@ -425,7 +403,7 @@
                         </div>
 
                         <!-- slide 2 -->
-                        <div class="carousel-slide" role="group" aria-roledescription="slide">
+                        <div class="carousel-slide" role="listitem" aria-roledescription="slide">
                             <article class="interactive-card">
                                 <div class="card-image-container">
                                     <img src="img/roda-das-emocoes.png" alt="Desenhos de emojis com diferentes expressões faciais." loading="lazy">
@@ -440,7 +418,7 @@
                         </div>
 
                         <!-- slide 3 -->
-                        <div class="carousel-slide" role="group" aria-roledescription="slide">
+                        <div class="carousel-slide" role="listitem" aria-roledescription="slide">
                             <article class="interactive-card">
                                 <div class="card-image-container">
                                     <img src="img/monte-a-carinha.png" alt="Ilustração colorida de partes de um rosto para montar." loading="lazy">
@@ -455,7 +433,7 @@
                         </div>
 
                         <!-- slide 4 -->
-                        <div class="carousel-slide" role="group" aria-roledescription="slide">
+                        <div class="carousel-slide" role="listitem" aria-roledescription="slide">
                             <article class="interactive-card">
                                 <div class="card-image-container">
                                     <img src="img/ache-o-animal.png" alt="Ilustração de vários animais da fazenda em um campo verde." loading="lazy">
@@ -471,6 +449,7 @@
                     </div>
                 </div>
                 <button class="carousel-btn next-btn" aria-label="Próximo">›</button>
+                <div id="interactive-carousel-status" class="sr-only" aria-live="polite"></div>
             </div>
             <div class="carousel-dots" id="interactiveDots" role="tablist" aria-label="Navegação por slides"></div>
         </section>
@@ -557,6 +536,27 @@
                 <div id="animal-feedback" class="animal-feedback" aria-live="polite"></div>
             </div>
             <button id="next-animal-btn" class="btn-primary" style="margin: 1rem auto; display: none;">Próxima Pergunta</button>
+        </div>
+
+        <!-- Lightbox modal for zoomable images -->
+        <div class="modal modal-image" id="lightbox-modal" role="dialog" aria-modal="true" aria-hidden="true">
+            <button class="modal-close" aria-label="Fechar modal">&times;</button>
+            <div class="image-modal-content">
+                <img id="lightbox-img" src="" alt="" loading="lazy">
+            </div>
+        </div>
+
+        <!-- Gallery modal for carousel images (fullscreen slider) -->
+        <div class="modal modal-gallery" id="gallery-modal" role="dialog" aria-modal="true" aria-hidden="true">
+            <button class="modal-close" aria-label="Fechar modal">&times;</button>
+            <div class="gallery-wrap">
+                <button class="gallery-nav gallery-prev" aria-label="Anterior">‹</button>
+                <div class="gallery-viewport">
+                    <div class="gallery-track" id="galleryTrack"></div>
+                </div>
+                <button class="gallery-nav gallery-next" aria-label="Próximo">›</button>
+            </div>
+            <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Navegação da galeria"></div>
         </div>
 
         <!-- Reviews Section -->
@@ -774,7 +774,7 @@
             });
         });
 
-        // Scroll reveal animation
+    // Scroll reveal animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -791,6 +791,23 @@
         document.querySelectorAll('.section').forEach(section => {
             observer.observe(section);
         });
+
+        // Live-sync header/footer heights to CSS variables so calc(100vh - header) is accurate
+        function syncHeaderFooterVars() {
+            const headerEl = document.querySelector('.header');
+            const footerEl = document.querySelector('footer');
+            if (headerEl) {
+                const h = headerEl.offsetHeight || 80;
+                document.documentElement.style.setProperty('--header-height', h + 'px');
+            }
+            if (footerEl) {
+                const f = footerEl.offsetHeight || 0;
+                document.documentElement.style.setProperty('--footer-height', f + 'px');
+            }
+        }
+        // initial sync & update on resize
+        syncHeaderFooterVars();
+        window.addEventListener('resize', () => { syncHeaderFooterVars(); });
 
         // Smooth scroll for arrow
         const scrollIndicator = document.querySelector('.scroll-indicator');
@@ -1029,66 +1046,309 @@
             }
             document.querySelector('[data-modal-target="animal-modal"]').addEventListener('click', loadAnimalGame);
 
-            // Interactive section carousel logic
+            // Interactive section carousel logic - responsive pages, swipe, and accessible
             (function initInteractiveCarousel(){
+                const carousel = document.querySelector('.interactive-carousel');
+                if(!carousel) return;
+                const viewport = carousel.querySelector('.carousel-viewport');
                 const track = document.getElementById('interactiveTrack');
                 const slides = track ? Array.from(track.children) : [];
-                const prevBtn = document.querySelector('.interactive-carousel .prev-btn');
-                const nextBtn = document.querySelector('.interactive-carousel .next-btn');
+                const prevBtn = carousel.querySelector('.prev-btn');
+                const nextBtn = carousel.querySelector('.next-btn');
                 const dotsContainer = document.getElementById('interactiveDots');
+                const statusEl = document.getElementById('interactive-carousel-status');
                 if (!track || slides.length === 0) return;
 
-                let current = 0;
-                const slideCount = slides.length;
-                const update = (animate = true) => {
-                    const slide = slides[current];
-                    const slideWidth = slide.getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 16);
-                    const offset = slideWidth * current;
-                    if (!animate) track.style.transition = 'none'; else track.style.transition = '';
-                    track.style.transform = `translateX(-${offset}px)`;
-                    // update dots
-                    dotsContainer.querySelectorAll('.dot').forEach((d,i)=> d.classList.toggle('active', i===current));
-                    // set aria-selected
-                    dotsContainer.querySelectorAll('.dot').forEach((d,i)=> d.setAttribute('aria-pressed', i===current));
-                };
+                let currentPage = 0;
+                let slidesPerView = 1;
+                let pages = 1;
+                let autoplayId = null;
 
-                // create dots
-                slides.forEach((_, i) => {
+                function computeLayout() {
+                    // compute slidesPerView based on measured slide width + gap
+                    const gapPx = parseFloat(getComputedStyle(track).gap || '16');
+                    const slideRect = slides[0].getBoundingClientRect();
+                    const slideFullWidth = Math.max(1, slideRect.width) + gapPx;
+                    const viewportWidth = viewport.clientWidth;
+                    let perView = Math.max(1, Math.floor((viewportWidth + gapPx) / slideFullWidth));
+                    if (!perView || perView < 1) perView = 1;
+                    perView = Math.min(perView, slides.length);
+                    const prevStartIndex = currentPage * slidesPerView; // keep current position
+                    slidesPerView = perView;
+                    pages = Math.max(1, Math.ceil(slides.length / slidesPerView));
+                    // recalc currentPage to maintain visual continuity
+                    currentPage = Math.floor(prevStartIndex / slidesPerView);
+                    if (currentPage >= pages) currentPage = Math.max(0, pages - 1);
+                }
+
+                function buildDots() {
+                    dotsContainer.innerHTML = '';
+                    for (let p = 0; p < pages; p++) {
+                        const start = p * slidesPerView + 1;
+                        const end = Math.min(slides.length, (p + 1) * slidesPerView);
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = 'dot';
+                        btn.setAttribute('aria-label', `Ir para itens ${start} a ${end}`);
+                        btn.setAttribute('aria-controls', 'interactiveTrack');
+                        btn.setAttribute('role', 'tab');
+                        btn.setAttribute('aria-selected', 'false');
+                        btn.addEventListener('click', () => { currentPage = p; update(); resetAutoplay(); });
+                        btn.addEventListener('keydown', (e) => {
+                            if (e.key === 'ArrowLeft') { currentPage = Math.max(0, currentPage - 1); update(); resetAutoplay(); }
+                            if (e.key === 'ArrowRight') { currentPage = Math.min(pages - 1, currentPage + 1); update(); resetAutoplay(); }
+                        });
+                        dotsContainer.appendChild(btn);
+                    }
+                }
+
+                function update(animate = true) {
+                    const gapPx = parseFloat(getComputedStyle(track).gap || '16');
+                    const slideRect = slides[0].getBoundingClientRect();
+                    const slideFullWidth = Math.max(1, slideRect.width) + gapPx;
+                    const startIndex = currentPage * slidesPerView;
+                    const offset = slideFullWidth * startIndex;
+                    track.style.transition = animate ? '' : 'none';
+                    track.style.transform = `translateX(-${offset}px)`;
+
+                    // set aria-hidden for slides and toggle simple visible class for minor visual feedback
+                    slides.forEach((s, i) => {
+                        const visible = i >= startIndex && i < startIndex + slidesPerView;
+                        s.setAttribute('aria-hidden', visible ? 'false' : 'true');
+                        s.classList.toggle('visible', visible);
+                    });
+
+                    // update dots
+                    Array.from(dotsContainer.children).forEach((d, i) => {
+                        d.classList.toggle('active', i === currentPage);
+                        d.setAttribute('aria-pressed', i === currentPage ? 'true' : 'false');
+                        d.setAttribute('aria-selected', i === currentPage ? 'true' : 'false');
+                        d.tabIndex = 0;
+                    });
+
+                    // announce page status
+                    if (statusEl) {
+                        const showingStart = startIndex + 1;
+                        const showingEnd = Math.min(slides.length, startIndex + slidesPerView);
+                        statusEl.textContent = `Mostrando ${showingStart} a ${showingEnd} de ${slides.length} atividades`; 
+                    }
+                }
+
+                function prevPage() { currentPage = Math.max(0, currentPage - 1); update(); }
+                function nextPage() { currentPage = Math.min(pages - 1, currentPage + 1); update(); }
+
+                // Buttons
+                prevBtn && prevBtn.addEventListener('click', () => { prevPage(); resetAutoplay(); });
+                nextBtn && nextBtn.addEventListener('click', () => { nextPage(); resetAutoplay(); });
+
+                // keyboard support on the carousel element
+                carousel.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') { prevPage(); resetAutoplay(); }
+                    if (e.key === 'ArrowRight') { nextPage(); resetAutoplay(); }
+                });
+
+                // autoplay mechanism (page-based)
+                function startAutoplay(){ stopAutoplay(); if (pages <= 1) return; autoplayId = setInterval(()=>{ currentPage = (currentPage + 1) % pages; update(); }, 4500); }
+                function stopAutoplay(){ if (autoplayId) { clearInterval(autoplayId); autoplayId = null; } }
+                function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
+
+                // pause on hover/focus
+                viewport.addEventListener('mouseenter', stopAutoplay);
+                viewport.addEventListener('mouseleave', startAutoplay);
+                viewport.addEventListener('focusin', stopAutoplay);
+                viewport.addEventListener('focusout', startAutoplay);
+
+                // build initial layout
+                function rebuild(){
+                    computeLayout();
+                    buildDots();
+                    update(false);
+                }
+
+                // handle window resize: recompute layout and rebuild dots
+                let resizeTimer = null;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => { rebuild(); }, 120);
+                });
+
+                // touch swipe support (simple)
+                let touchStartX = 0;
+                let touchMoved = false;
+                viewport.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; touchMoved = false; stopAutoplay(); }, {passive:true});
+                viewport.addEventListener('touchmove', (e) => { touchMoved = true; }, {passive:true});
+                viewport.addEventListener('touchend', (e) => {
+                    const endX = e.changedTouches[0].clientX;
+                    const delta = endX - touchStartX;
+                    const threshold = Math.max(40, viewport.clientWidth * 0.12);
+                    if (Math.abs(delta) > threshold){
+                        if (delta < 0) { nextPage(); resetAutoplay(); } else { prevPage(); resetAutoplay(); }
+                    }
+                    if (!autoplayId) startAutoplay();
+                });
+
+                // initial build and start
+                rebuild();
+                // re-run after resources load to ensure measurements are correct (images may affect layout)
+                window.addEventListener('load', rebuild);
+                startAutoplay();
+
+            })();
+
+            // --- Lightbox / zoom images binding ---
+            (function initZoomImages(){
+                const selectors = [
+                    '.hero-slide',
+                    '.about-photo',
+                    '.impact-image-wrapper img',
+                    '.first-sign-figure img',
+                    '.pn-slider .slide img',
+                    '.card-image-container img',
+                    '.carousel-slide img',
+                    '.reviews-track img'
+                ].join(', ');
+
+                const images = Array.from(document.querySelectorAll(selectors));
+                const modal = document.getElementById('lightbox-modal');
+                const lightboxImg = document.getElementById('lightbox-img');
+                if(!modal || !lightboxImg || images.length === 0) return;
+
+                images.forEach(img => {
+                    // ignore very small images like icons
+                    if (img.clientWidth < 80) return;
+                    img.style.cursor = 'zoom-in';
+                    img.addEventListener('click', () => {
+                        // If inside a carousel variant, open the gallery for that carousel
+                        const carouselParent = img.closest('.hero-slideshow, .pn-slider, .interactive-carousel, .reviews-track');
+                        if (carouselParent) {
+                            const imageNodes = Array.from(carouselParent.querySelectorAll('img'))
+                                .filter(i => i.clientWidth >= 80);
+                            const index = imageNodes.indexOf(img);
+                            const srcs = imageNodes.map(i => i.currentSrc || i.src || i.getAttribute('src'));
+                            openGalleryModal(srcs, index);
+                            return;
+                        }
+                        // fallback: open single-image lightbox
+                        lightboxImg.src = img.currentSrc || img.src || img.getAttribute('src');
+                        lightboxImg.alt = img.alt || '';
+                        openModal(modal);
+                    });
+                });
+            })();
+
+            // Open a responsive gallery modal with given image sources and start index
+            function openGalleryModal(imageSrcs = [], startIndex = 0) {
+                const galleryModal = document.getElementById('gallery-modal');
+                const galleryTrack = galleryModal.querySelector('.gallery-track');
+                const dotsContainer = document.getElementById('galleryDots');
+                const prevBtn = galleryModal.querySelector('.gallery-prev');
+                const nextBtn = galleryModal.querySelector('.gallery-next');
+
+                // clear existing
+                galleryTrack.innerHTML = '';
+                dotsContainer.innerHTML = '';
+
+                // build slides
+                imageSrcs.forEach((src, idx) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'gallery-slide';
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = '';
+                    slide.appendChild(img);
+                    galleryTrack.appendChild(slide);
+
                     const dot = document.createElement('button');
-                    dot.className = 'dot';
                     dot.type = 'button';
-                    dot.setAttribute('aria-label', `Ir para o slide ${i+1}`);
-                    dot.addEventListener('click', () => { current = i; update(); resetAutoplay(); });
+                    dot.className = 'dot';
+                    dot.setAttribute('role', 'tab');
+                    dot.setAttribute('aria-pressed', 'false');
+                    dot.setAttribute('aria-label', `Ir para imagem ${idx+1}`);
+                    dot.addEventListener('click', () => goto(idx));
                     dotsContainer.appendChild(dot);
                 });
 
-                // wire buttons
-                prevBtn && prevBtn.addEventListener('click', () => { current = (current - 1 + slideCount) % slideCount; update(); resetAutoplay(); });
-                nextBtn && nextBtn.addEventListener('click', () => { current = (current + 1) % slideCount; update(); resetAutoplay(); });
+                const slides = Array.from(galleryTrack.children);
+                let current = Math.max(0, Math.min(startIndex, slides.length - 1));
 
-                // keyboard support
-                dotsContainer.addEventListener('keydown', (e) => {
-                    if (e.key === 'ArrowLeft') { current = (current - 1 + slideCount) % slideCount; update(); resetAutoplay(); }
-                    if (e.key === 'ArrowRight') { current = (current + 1) % slideCount; update(); resetAutoplay(); }
-                });
+                function update() {
+                    galleryTrack.style.transform = `translateX(-${current * 100}%)`;
+                    Array.from(dotsContainer.children).forEach((d, i) => {
+                        d.classList.toggle('active', i === current);
+                        d.setAttribute('aria-pressed', i === current ? 'true' : 'false');
+                        d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+                    });
+                }
 
-                // autoplay
-                let autoplayId = null;
-                const startAutoplay = () => { stopAutoplay(); autoplayId = setInterval(() => { current = (current + 1) % slideCount; update(); }, 4500); };
-                const stopAutoplay = () => { if (autoplayId) { clearInterval(autoplayId); autoplayId = null; } };
-                const resetAutoplay = () => { stopAutoplay(); startAutoplay(); };
+                function goto(idx) {
+                    current = (idx + slides.length) % slides.length;
+                    update();
+                }
 
-                // pause on hover/focus
-                track.addEventListener('mouseenter', stopAutoplay);
-                track.addEventListener('mouseleave', startAutoplay);
-                track.addEventListener('focusin', stopAutoplay);
-                track.addEventListener('focusout', startAutoplay);
+                prevBtn.onclick = () => goto(current - 1);
+                nextBtn.onclick = () => goto(current + 1);
 
-                // initial state
-                update(false);
-                startAutoplay();
-                // mark first dot active
-                dotsContainer.querySelector('.dot') && dotsContainer.querySelector('.dot').classList.add('active');
+                // keyboard (assign to avoid duplicate listeners)
+                galleryModal.onkeydown = (e) => {
+                    if (e.key === 'ArrowLeft') goto(current - 1);
+                    if (e.key === 'ArrowRight') goto(current + 1);
+                };
+
+                // touch swipe (assignment to avoid duplicate handlers)
+                let sX = 0, sMoved = false;
+                galleryTrack.ontouchstart = (ev) => { sX = ev.touches[0].clientX; sMoved = false; };
+                galleryTrack.ontouchmove = (ev) => { sMoved = true; };
+                galleryTrack.ontouchend = (ev) => {
+                    const dx = ev.changedTouches[0].clientX - sX;
+                    const threshold = Math.max(40, window.innerWidth * 0.05);
+                    if (sMoved && Math.abs(dx) > threshold) {
+                        if (dx < 0) goto(current + 1); else goto(current - 1);
+                    }
+                };
+
+                // open modal and focus for keyboard navigation
+                openModal(galleryModal);
+                galleryModal.setAttribute('tabindex', '0');
+                try { galleryModal.focus(); } catch (err) { /* ignore */ }
+                update();
+            }
+
+            // --- Fale Comigo badge init ---
+            (function initFaleBadge(){
+                const badge = document.getElementById('faleBadge');
+                const whatsappBtn = document.querySelector('.whatsapp-float');
+                if(!badge) return;
+                let showTimer = null, hideTimer = null;
+                let stopped = false;
+
+                function clearTimers(){
+                    if(showTimer) { clearTimeout(showTimer); showTimer = null; }
+                    if(hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+                }
+
+                function show(){
+                    if(stopped) return;
+                    badge.classList.add('visible');
+                    badge.setAttribute('aria-hidden', 'false');
+                    hideTimer = setTimeout(hide, 10000); // show for 10s
+                }
+
+                function hide(){
+                    badge.classList.remove('visible');
+                    badge.setAttribute('aria-hidden', 'true');
+                    // after 3s, show again
+                    showTimer = setTimeout(show, 3000);
+                }
+
+                // Clicking the whatsapp button should hide the badge and stop the cycle (user action)
+                function stopCycle(){ stopped = true; clearTimers(); badge.classList.remove('visible'); badge.setAttribute('aria-hidden','true'); }
+                whatsappBtn && whatsappBtn.addEventListener('click', stopCycle);
+
+                // Start cycle
+                show();
+
+                // clean up on unload
+                window.addEventListener('beforeunload', clearTimers);
             })();
 
             // --- Hero slideshow init ---
@@ -1101,20 +1361,36 @@
                 let interval = null;
                 const delay = 4000;
 
-                // create dots
+                // create dots with ARIA attributes
                 slides.forEach((s, i) => {
                     const btn = document.createElement('button');
                     btn.type = 'button';
+                    btn.setAttribute('role', 'tab');
                     btn.setAttribute('aria-label', 'Ir para imagem ' + (i+1));
+                    btn.setAttribute('aria-controls', s.id || ('hero-slide-' + (i+1)));
+                    btn.setAttribute('aria-pressed', 'false');
                     btn.addEventListener('click', () => goTo(i));
+                    btn.addEventListener('keydown', (e) => {
+                        if(e.key === 'ArrowLeft') goTo(current - 1);
+                        if(e.key === 'ArrowRight') goTo(current + 1);
+                    });
                     dotsWrap.appendChild(btn);
                 });
 
                 const dots = Array.from(dotsWrap.children);
+                const statusEl = slideshow.querySelector('#hero-slideshow-status');
 
                 function update() {
-                    slides.forEach((s, i) => s.classList.toggle('visible', i === current));
-                    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+                    slides.forEach((s, i) => {
+                        s.classList.toggle('visible', i === current);
+                        s.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+                    });
+                    dots.forEach((d, i) => {
+                        d.classList.toggle('active', i === current);
+                        d.setAttribute('aria-pressed', i === current ? 'true' : 'false');
+                        d.setAttribute('tabindex', '0');
+                    });
+                    if(statusEl) statusEl.textContent = slides[current] ? slides[current].alt || ('Imagem ' + (current + 1)) : '';
                 }
 
                 function goTo(i) {
@@ -1151,10 +1427,19 @@
                 goTo(0);
                 start();
             })();
+
+            // Close any open modal with the Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal').forEach(closeModal);
+                }
+            });
         });
     </script>
 
-        <a href="https://wa.me/5562983100023?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp">
+    <!-- Floating 'Fale Comigo' badge (appears behind the WhatsApp button) -->
+    <span id="faleBadge" class="fale-badge" aria-hidden="true">Fale Comigo</span>
+    <a href="https://wa.me/5562983100023?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp">
             <!-- Ícone oficial WhatsApp: fundo verde, símbolo branco -->
             <svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="16" cy="16" r="16" fill="#25D366"/>
