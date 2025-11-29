@@ -1459,6 +1459,30 @@ footer {
     background: #e6c37a;
 }
 
+/* Footer social icons: use the glyph icons (Font Awesome), no background circle; brand color for the glyph */
+footer .social-icons .social-icon { background: none; width: auto; height: auto; padding: .25rem .4rem; border-radius: 6px; box-shadow: none; }
+footer .social-icons .social-icon i { font-size: 20px; display: inline-block; }
+footer .social-icons .social-icon.social-whatsapp i { color: #25D366; }
+footer .social-icons .social-icon.social-instagram i { color: #E1306C; }
+footer .social-icons .social-icon.social-email i { color: var(--white); }
+
+/* Ensure FA glyphs are rendered correctly and visible */
+footer .social-icons .social-icon i {
+    font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free", "Font Awesome 5 Free"; /* fallback */
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-solid { font-weight: 900; }
+
+/* Social brand-specific styles */
+/* previously had per-social backgrounds; now using Font Awesome glyphs and footer-specific styles */
+
+.developer-credit { display:flex; gap: 0.6rem; align-items:center; justify-content:center; margin-top: 0.75rem; color: var(--white); }
+.developer-credit a img { height: 28px; display:block; }
+
 /* Animations */
 @keyframes fadeInUp {
     from {
@@ -1961,6 +1985,16 @@ footer {
     cursor: pointer;
     opacity: 0.7;
     transition: opacity 0.2s ease;
+}
+
+/* Make the close button visible on the fullscreen gallery modal */
+.modal.modal-gallery .modal-close {
+    color: var(--white);
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    top: 6.5rem;
+    right: 1.5rem;
+    z-index: 1001; /* put above gallery content */
 }
 
 .modal-close:hover {

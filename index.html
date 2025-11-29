@@ -19,6 +19,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <!-- Font Awesome (brands & solid icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <!-- interactive carousel styles moved to style.css for centralization and responsive breakpoints -->
     <!-- hero-slideshow CSS moved to style.css -->
@@ -724,31 +726,20 @@
     <footer>
         <div class="footer-logo">Dra. Bruna Lucas</div>
         <div class="social-icons">
-            <a href="https://wa.me/5562983100023" target="_blank" rel="noopener noreferrer" class="social-icon"
-                aria-label="WhatsApp">
-                <!-- SVG WhatsApp -->
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                        d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.12.56 4.14 1.62 5.95L0 24l6.32-1.64A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.21-1.26-6.22-3.48-8.52zM12 21.6c-1.6 0-3.16-.42-4.54-1.22l-.33-.19-3.75.98.99-3.67-.21-.36A9.6 9.6 0 012.4 12c0-5.31 4.29-9.6 9.6-9.6 2.57 0 4.98.99 6.8 2.81A9.52 9.52 0 0121.6 12c0 5.31-4.29 9.6-9.6 9.6z">
-                    </path>
-                </svg>
+            <a href="https://wa.me/5562983100023" target="_blank" rel="noopener noreferrer" class="social-icon social-whatsapp" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
             </a>
-            <a href="https://www.instagram.com/dra.brunalucaspediatra?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
-                <!-- SVG Instagram -->
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                        d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zM12 7.5A4.5 4.5 0 1016.5 12 4.5 4.5 0 0012 7.5zm0 7.5A3 3 0 1115 12a3 3 0 01-3 3zM17.5 6.1a.9.9 0 11-.9-.9.9.9 0 01.9.9z">
-                    </path>
-                </svg>
+            <a href="https://www.instagram.com/dra.brunalucaspediatra" target="_blank" rel="noopener noreferrer" class="social-icon social-instagram" aria-label="Instagram">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
             </a>
-            <a href="mailto:dra.brunalucaspediatra@gmail.com" class="social-icon" aria-label="Email">
-                <!-- SVG Mail -->
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                        d="M20 4H4a2 2 0 00-2 2v0l10 6 10-6v0a2 2 0 00-2-2zM2 8v8a2 2 0 002 2h16a2 2 0 002-2V8l-10 6L2 8z">
-                    </path>
-                </svg>
+            <a href="mailto:dra.brunalucaspediatra@gmail.com" class="social-icon social-email" aria-label="Email">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="developer-credit">
+            <span>Desenvolvido por </span>
+            <a href="https://confidesign.com.br" target="_blank" rel="noopener noreferrer" aria-label="Confidesign">
+                <img src="img/confidesign.png" alt="Confidesign" style="height:28px; display:block;">
             </a>
         </div>
         <p>© 2025 Dra. Bruna Lucas – Pediatria e Neurodesenvolvimento | Todos os direitos reservados.</p>
@@ -1310,6 +1301,14 @@
                 openModal(galleryModal);
                 galleryModal.setAttribute('tabindex', '0');
                 try { galleryModal.focus(); } catch (err) { /* ignore */ }
+
+                // Close when clicking outside the gallery content area (because modal is full-viewport)
+                galleryModal.onclick = (ev) => {
+                    // If the click isn't on the image, nav, dots, or close button, close modal
+                    const isOnImage = !!ev.target.closest('.gallery-slide img');
+                    const isOnControl = !!(ev.target.closest('.gallery-nav') || ev.target.closest('.gallery-dots') || ev.target.closest('.modal-close'));
+                    if (!isOnImage && !isOnControl) closeModal(galleryModal);
+                };
                 update();
             }
 
