@@ -69,7 +69,10 @@
 
         <div class="hero-content">
             <div class="hero-text">
-                <h1 id="hero-title" class="hero-title">Dra. Bruna Lucas – Pediatra & Neurodesenvolvimento</h1>
+                <div class="hero-title-wrapper">
+                    <canvas id="hero-title-canvas" class="title-canvas" aria-hidden="true"></canvas>
+                    <h1 id="hero-title" class="hero-title">Dra. Bruna Lucas – Pediatra & Neurodesenvolvimento</h1>
+                </div>
                 <p id="hero-subtitle" class="hero-subtitle">Atendimento humanizado com foco em TEA, TDAH e desenvolvimento infantil.</p>
 
                 <div class="hero-cta">
@@ -471,7 +474,7 @@
             </div>
             <div id="quiz-final-cta" style="display: none; text-align: center; margin-top: 1.5rem;">
                 <p>Gostou do quiz? O desenvolvimento infantil é fascinante e complexo.</p>
-                <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20d%C3%BAvidas%20com%20a%20especialista" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top: 1rem;">Tirar dúvidas com a especialista</a>
+                <a href="https://wa.me/5562983100023?text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20d%C3%BAvidas%20com%20a%20especialista" target="_blank" rel="noopener noreferrer" class="btn-primary quiz-cta-btn">Tirar dúvidas com a especialista</a>
             </div>
         </div>
 
@@ -517,7 +520,7 @@
             <h3 id="carinha-modal-title" class="modal-title">Monte a Carinha</h3>
             <div class="carinha-game-container">
                 <div id="face-canvas" class="face-canvas">
-                    <img src="img/rosto-base.png" alt="Área para montar o rosto" class="face-base">
+                    <img src="img/carinha/rosto.jpeg" alt="Área para montar o rosto" class="face-base">
                 </div>
                 <div id="parts-container" class="parts-container">
                     <!-- Peças serão injetadas pelo JS -->
@@ -536,8 +539,10 @@
                     <!-- Animais serão injetados pelo JS -->
                 </div>
                 <div id="animal-feedback" class="animal-feedback" aria-live="polite"></div>
+                <div id="animal-celebration" class="animal-celebration" style="display:none;">🎉 Parabéns! 🎉</div>
+                <div id="confetti-container" class="confetti-container" style="display:none;"></div>
+                <button id="next-animal-btn" class="btn-primary" style="margin: 1rem auto; display: none;">Próxima Pergunta</button>
             </div>
-            <button id="next-animal-btn" class="btn-primary" style="margin: 1rem auto; display: none;">Próxima Pergunta</button>
         </div>
 
         <!-- Lightbox modal for zoomable images -->
@@ -974,8 +979,9 @@
             const faceCanvas = document.getElementById('face-canvas');
             const partsContainer = document.getElementById('parts-container');
             const resetCarinhaBtn = document.getElementById('reset-carinha-btn');
+            const touchCursor = document.getElementById('touch-cursor'); // Adicionar esta linha
             const parts = {
-                eyes: ['olhos-1.png', 'olhos-2.png', 'olhos-3.png'],
+                eyes: ['olhos-1.png', 'olhos-2.png', 'olhos-3.png','olhos-4.png'],
                 noses: ['nariz-1.png', 'nariz-2.png'],
                 mouths: ['boca-1.png', 'boca-2.png', 'boca-3.png'],
                 accessories: ['acessorio-1.png', 'acessorio-2.png']
@@ -989,6 +995,9 @@
                         const img = document.createElement('img');
                         img.src = `img/carinha/${partFile}`;
                         img.className = 'draggable-part';
+                        if (category === 'accessories') {
+                            img.classList.add('accessory-part');
+                        }
                         img.draggable = true;
                         img.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', img.src));
                         partsContainer.appendChild(img);
@@ -1003,11 +1012,97 @@
                 const newPart = document.createElement('img');
                 newPart.src = imgSrc;
                 newPart.className = 'dropped-part';
+                // Adiciona a classe 'accessory-part' se a imagem for um acessório
+                if (imgSrc.includes('acessorio')) {
+                    newPart.classList.add('accessory-part');
+                }
                 newPart.style.left = `${e.clientX - faceCanvas.getBoundingClientRect().left - 50}px`;
                 newPart.style.top = `${e.clientY - faceCanvas.getBoundingClientRect().top - 50}px`;
                 faceCanvas.appendChild(newPart);
             });
-            
+
+            let draggedTouchPart = null;
+            let initialX, initialY, xOffset = 0, yOffset = 0;
+
+            function dragStartTouch(e) {
+                if (e.target.classList.contains('draggable-part')) {
+                    draggedTouchPart = e.target.cloneNode(true); // Clone the image to drag
+                    draggedTouchPart.classList.add('dragging-touch-part');
+                    draggedTouchPart.style.position = 'absolute';
+                    draggedTouchPart.style.zIndex = '1000';
+                    document.body.appendChild(draggedTouchPart);
+
+                    const touch = e.touches[0];
+                    initialX = touch.clientX - draggedTouchPart.offsetLeft;
+                    initialY = touch.clientY - draggedTouchPart.offsetTop;
+
+                    e.preventDefault(); // Prevent scrolling
+
+                    // Show and position touch cursor
+                    touchCursor.style.display = 'block';
+                    touchCursor.style.left = `${touch.clientX - touchCursor.offsetWidth / 2}px`;
+                    touchCursor.style.top = `${touch.clientY - touchCursor.offsetHeight / 2}px`;
+                }
+            }
+
+            function dragTouch(e) {
+                if (draggedTouchPart) {
+                    const touch = e.touches[0];
+                    e.preventDefault(); // Prevent scrolling
+
+                    draggedTouchPart.style.left = `${touch.clientX - initialX}px`;
+                    draggedTouchPart.style.top = `${touch.clientY - initialY}px`;
+
+                    // Update touch cursor position
+                    touchCursor.style.left = `${touch.clientX - touchCursor.offsetWidth / 2}px`;
+                    touchCursor.style.top = `${touch.clientY - touchCursor.offsetHeight / 2}px`;
+
+                    // Check if over faceCanvas for visual feedback
+                    const faceCanvasRect = faceCanvas.getBoundingClientRect();
+                    if (touch.clientX > faceCanvasRect.left &&
+                        touch.clientX < faceCanvasRect.right &&
+                        touch.clientY > faceCanvasRect.top &&
+                        touch.clientY < faceCanvasRect.bottom) {
+                        touchCursor.classList.add('over-canvas');
+                    } else {
+                        touchCursor.classList.remove('over-canvas');
+                    }
+                }
+            }
+
+            function dragEndTouch(e) {
+                if (draggedTouchPart) {
+                    const touch = e.changedTouches[0];
+                    const faceCanvasRect = faceCanvas.getBoundingClientRect();
+
+                    // Hide touch cursor
+                    touchCursor.style.display = 'none';
+                    touchCursor.classList.remove('over-canvas');
+
+                    // Check if dropped inside faceCanvas
+                    if (touch.clientX > faceCanvasRect.left &&
+                        touch.clientX < faceCanvasRect.right &&
+                        touch.clientY > faceCanvasRect.top &&
+                        touch.clientY < faceCanvasRect.bottom) {
+                        const newPart = document.createElement('img');
+                        newPart.src = draggedTouchPart.src;
+                        newPart.className = 'dropped-part';
+                        if (draggedTouchPart.classList.contains('accessory-part')) {
+                            newPart.classList.add('accessory-part');
+                        }
+                        newPart.style.left = `${touch.clientX - faceCanvasRect.left - draggedTouchPart.offsetWidth / 2}px`;
+                        newPart.style.top = `${touch.clientY - faceCanvasRect.top - draggedTouchPart.offsetHeight / 2}px`;
+                        faceCanvas.appendChild(newPart);
+                    }
+                    draggedTouchPart.remove();
+                    draggedTouchPart = null;
+                }
+            }
+
+            partsContainer.addEventListener('touchstart', dragStartTouch, { passive: false });
+            document.addEventListener('touchmove', dragTouch, { passive: false });
+            document.addEventListener('touchend', dragEndTouch, { passive: false });
+
             document.querySelector('[data-modal-target="carinha-modal"]').addEventListener('click', loadCarinhaGame);
             resetCarinhaBtn.addEventListener('click', loadCarinhaGame);
 
@@ -1015,16 +1110,29 @@
             const animalQuestionEl = document.getElementById('animal-question');
             const animalGrid = document.getElementById('animal-grid');
             const animalFeedback = document.getElementById('animal-feedback');
+            const animalCelebration = document.getElementById('animal-celebration');
+            const confettiContainer = document.getElementById('confetti-container');
             const nextAnimalBtn = document.getElementById('next-animal-btn');
             const animalData = [
-                { sound: "Muuu", correct: "vaca.png", options: ["vaca.png", "galinha.png", "porco.png"] },
-                { sound: "Au Au", correct: "cachorro.png", options: ["gato.png", "cachorro.png", "ovelha.png"] },
-                { sound: "Miau", correct: "gato.png", options: ["cavalo.png", "pato.png", "gato.png"] }
+                { sound: "Muuu", correct: "1vaca.jpeg", options: ["1vaca.jpeg", "galinha.jpeg", "porco.jpeg"] },
+                { sound: "Au Au", correct: "1cachorro.jpeg", options: ["1gato.jpeg", "1cachorro.jpeg", "ovelha.jpeg"] },
+                { sound: "Miau", correct: "1gato.jpeg", options: ["cavalo.jpeg", "pato.jpeg", "1gato.jpeg"] }
             ];
             let currentAnimalQuestion = 0;
 
             function loadAnimalGame() {
-                // This is a simplified version. A full implementation would be more complex.
+                animalFeedback.textContent = '';
+                animalCelebration.style.display = 'none';
+                confettiContainer.style.display = 'none';
+                confettiContainer.innerHTML = ''; // Limpa confetes antigos
+                nextAnimalBtn.style.display = 'none';
+
+                if (currentAnimalQuestion >= animalData.length) {
+                    animalQuestionEl.textContent = 'Parabéns! Você completou o jogo!';
+                    animalGrid.innerHTML = '';
+                    return;
+                }
+
                 const game = animalData[currentAnimalQuestion];
                 animalQuestionEl.textContent = `Qual animal está fazendo "${game.sound}"?`;
                 animalGrid.innerHTML = '';
@@ -1032,10 +1140,49 @@
                     const animalDiv = document.createElement('div');
                     animalDiv.className = 'animal-option';
                     animalDiv.innerHTML = `<img src="img/animais/${animalFile}" alt="Animal">`;
+                    animalDiv.dataset.animal = animalFile; // Adiciona data-animal ao div
+                    animalDiv.addEventListener('click', checkAnimalAnswer);
                     animalGrid.appendChild(animalDiv);
                 });
             }
-            document.querySelector('[data-modal-target="animal-modal"]').addEventListener('click', loadAnimalGame);
+
+            function checkAnimalAnswer(e) {
+                const selectedAnimal = e.target.dataset.animal;
+                const correctAnswer = animalData[currentAnimalQuestion].correct;
+
+                if (selectedAnimal === correctAnswer) {
+                    animalFeedback.textContent = 'Correto!';
+                    animalFeedback.style.color = 'green';
+                    animalCelebration.style.display = 'block';
+                    confettiContainer.style.display = 'block';
+                    generateConfetti();
+                    // Remove event listeners only when correct, to prevent further clicks during transition
+                    document.querySelectorAll('.animal-option img').forEach(img => img.removeEventListener('click', checkAnimalAnswer));
+                    setTimeout(() => {
+                        currentAnimalQuestion++;
+                        loadAnimalGame();
+                    }, 2000); // Avança após 2 segundos
+                } else {
+                    animalFeedback.textContent = `Errado. Tente novamente!`;
+                    animalFeedback.style.color = 'red';
+                }
+            }
+
+            function generateConfetti() {
+                confettiContainer.innerHTML = ''; // Clear previous confetti
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = `${Math.random() * 100}%`;
+                    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                    confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+                    confettiContainer.appendChild(confetti);
+                }
+            }
+            document.querySelector('[data-modal-target="animal-modal"]').addEventListener('click', () => {
+                currentAnimalQuestion = 0; // Reinicia o jogo ao abrir o modal
+                loadAnimalGame();
+            });
 
             // Interactive section carousel logic - responsive pages, swipe, and accessible
             (function initInteractiveCarousel(){
@@ -1225,6 +1372,230 @@
                         openModal(modal);
                     });
                 });
+            })();
+
+            // --- Hero title particle vapor reveal ---
+            (function initTitleParticles(){
+                const wrapper = document.querySelector('.hero-title-wrapper');
+                const canvas = document.getElementById('hero-title-canvas');
+                const title = document.getElementById('hero-title');
+                if(!wrapper || !canvas || !title) return;
+                // Respect reduced-motion preference: reveal text normally
+                const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (prefersReduced) {
+                    wrapper.classList.add('reduced-motion');
+                    canvas.style.display = 'none';
+                    // restore visible H1 color for visual fallback
+                    title.style.color = '';
+                    return;
+                }
+
+                const ctx = canvas.getContext('2d');
+                if (!ctx) { wrapper.classList.add('reduced-motion'); canvas.style.display = 'none'; title.style.color = ''; return; }
+                let particles = [];
+                let animationId = null;
+                let hasStarted = false;
+                let DPR = Math.max(1, window.devicePixelRatio || 1);
+                let tmpCanvas = document.createElement('canvas');
+                const tmpCtx = tmpCanvas.getContext('2d');
+                const config = {
+                    sampleGap: 6, // px gap to sample text pixels
+                    maxParticles: 1200,
+                    particleSize: 1.8,
+                    drift: 0.07, // how fast particles move to target
+                    friction: 0.88,
+                    particleAlpha: 0.85
+                };
+
+                function measureAndResize(){
+                    const rect = title.getBoundingClientRect();
+                    // set wrapper size to measured size for mobile/responsive
+                    wrapper.style.width = rect.width + 'px';
+                    wrapper.style.height = rect.height + 'px';
+                    const w = Math.max(1, Math.round(rect.width * DPR));
+                    const h = Math.max(1, Math.round(rect.height * DPR));
+                    canvas.width = w; canvas.height = h;
+                    canvas.style.width = rect.width + 'px';
+                    canvas.style.height = rect.height + 'px';
+                    // tmp canvas for drawText and pixel sampling
+                    tmpCanvas.width = w;
+                    tmpCanvas.height = h;
+                    tmpCtx.clearRect(0,0,w,h);
+                    // draw the text with computed styles
+                    const style = window.getComputedStyle(title);
+                    const fontWeight = style.fontWeight || '700';
+                    const fontSize = parseFloat(style.fontSize) || 48;
+                    const fontFamily = style.fontFamily || 'Poppins, sans-serif';
+                    tmpCtx.fillStyle = '#ffffff';
+                    tmpCtx.textBaseline = 'top';
+                    tmpCtx.font = `${fontWeight} ${fontSize * DPR}px ${fontFamily}`;
+                    // center the text properly
+                    tmpCtx.textAlign = 'left';
+                    // simple text wrap function matching wrapper width
+                    const words = title.textContent.trim().split(/\s+/);
+                    const maxWidth = Math.max(10, Math.round(rect.width * DPR - 8 * DPR));
+                    const lineHeight = Math.round(fontSize * DPR * 1.1);
+                    let line = '';
+                    let yOffset = 0;
+                    const lines = [];
+                    words.forEach(word => {
+                        const testLine = line ? (line + ' ' + word) : word;
+                        const measured = tmpCtx.measureText(testLine).width;
+                        if (measured <= maxWidth) {
+                            line = testLine;
+                        } else {
+                            if (line) lines.push(line);
+                            line = word;
+                        }
+                    });
+                    if (line) lines.push(line);
+                    // center vertically in the canvas area
+                    const totalTextHeight = lines.length * lineHeight;
+                    let startY = Math.max(0, Math.round((rect.height * DPR - totalTextHeight) / 2));
+                    lines.forEach((ln, i) => {
+                        tmpCtx.fillText(ln, 0, startY + i * lineHeight);
+                    });
+                    // sample pixels
+                    const data = tmpCtx.getImageData(0, 0, w, h).data;
+                    const targets = [];
+                    const gap = Math.max(2, Math.round(config.sampleGap * DPR));
+                    for (let y = 0; y < h; y += gap) {
+                        for (let x = 0; x < w; x += gap) {
+                            const idx = (y * w + x) * 4;
+                            const alpha = data[idx + 3];
+                            if (alpha > 128) {
+                                targets.push({ x: x / DPR, y: y / DPR });
+                            }
+                        }
+                    }
+                    // downsample to maxParticles evenly
+                    const step = Math.max(1, Math.floor(targets.length / config.maxParticles));
+                    const filtered = step > 1 ? targets.filter((_,i) => i % step === 0) : targets;
+                    // create or update particles to match targets length
+                    particles = filtered.map(t => {
+                        const startX = (Math.random() * wrapper.clientWidth) - wrapper.clientWidth * 0.3;
+                        const startY = Math.random() * wrapper.clientHeight * 1.8 - wrapper.clientHeight * 0.9;
+                        return {
+                            x: startX,
+                            y: startY,
+                            vx: (Math.random() - 0.5) * 2,
+                            vy: (Math.random() - 0.5) * 2,
+                            tx: t.x,
+                            ty: t.y,
+                            r: Math.random() * config.particleSize + 0.6,
+                            alpha: Math.random() * 0.6 + 0.2,
+                            settled: false
+                        };
+                    });
+                }
+
+                function updateAndDraw(){
+                    const cw = canvas.width, ch = canvas.height;
+                    if (!ctx) return;
+                    // semi-transparent fill to create ghosting/vapor trails
+                    ctx.globalCompositeOperation = 'source-over';
+                    ctx.fillStyle = 'rgba(1,6,4,0.18)';
+                    ctx.fillRect(0,0,cw,ch);
+                    ctx.globalCompositeOperation = 'lighter';
+                    // draw particles
+                    for (let i = 0; i < particles.length; i++) {
+                        const p = particles[i];
+                        // compute forces toward target
+                        const dx = p.tx * DPR - p.x * DPR;
+                        const dy = p.ty * DPR - p.y * DPR;
+                        const ax = dx * config.drift;
+                        const ay = dy * config.drift;
+                        p.vx += ax; p.vy += ay;
+                        p.vx *= config.friction; p.vy *= config.friction;
+                        p.x += p.vx; p.y += p.vy;
+                        // small jitter to simulate vapor
+                        p.x += (Math.random() - 0.5) * 0.3; p.y += (Math.random() - 0.5) * 0.3;
+                        // draw
+                        ctx.beginPath();
+                        const drawX = Math.round(p.x * DPR);
+                        const drawY = Math.round(p.y * DPR);
+                        ctx.fillStyle = `rgba(255,255,255,${p.alpha * config.particleAlpha})`;
+                        ctx.shadowBlur = p.r * 5 * DPR;
+                        ctx.shadowColor = `rgba(255,255,255,${p.alpha})`;
+                        ctx.arc(drawX, drawY, Math.max(0.6, p.r * DPR), 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    // schedule next frame
+                    animationId = requestAnimationFrame(updateAndDraw);
+                }
+
+                function start(){
+                    if (hasStarted) return; hasStarted = true;
+                    cancelAnimationFrame(animationId);
+                    updateAndDraw();
+                }
+
+                function stop(){
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
+
+                let resizeTimer = null;
+                function onResize(){
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        DPR = Math.max(1, window.devicePixelRatio || 1);
+                        measureAndResize();
+                    }, 80);
+                }
+
+                window.addEventListener('resize', onResize);
+
+                // interactive disturbance on hover/move
+                wrapper.addEventListener('mousemove', (e) => {
+                    const r = wrapper.getBoundingClientRect();
+                    const mx = e.clientX - r.left;
+                    const my = e.clientY - r.top;
+                    particles.forEach(p => {
+                        const dx = p.x - mx;
+                        const dy = p.y - my;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        const radius = Math.max(40, wrapper.clientWidth * 0.12);
+                        if (dist < radius) {
+                            const force = (radius - dist) / 12;
+                            // normalize vector
+                            if (dist === 0) return;
+                            p.vx += (dx / dist) * force;
+                            p.vy += (dy / dist) * force;
+                        }
+                    });
+                }, { passive: true });
+
+                // Reconstruct particles and canvas when the hero enters the viewport
+                const hero = document.querySelector('.hero-section');
+                const io = new IntersectionObserver((entries)=>{
+                    entries.forEach(e => {
+                        if(e.isIntersecting) {
+                            // ensure fonts are ready so measurements are accurate
+                            if(window.document.fonts && window.document.fonts.ready) {
+                                window.document.fonts.ready.then(() => {
+                                    DPR = Math.max(1, window.devicePixelRatio || 1);
+                                    measureAndResize();
+                                    start();
+                                });
+                            } else {
+                                DPR = Math.max(1, window.devicePixelRatio || 1);
+                                measureAndResize();
+                                start();
+                            }
+                        } else {
+                            // optionally pause when out of view to save CPU
+                            stop();
+                        }
+                    });
+                }, { threshold: 0.2 });
+                if(hero) io.observe(hero);
+
+                // initial sizing in case hero is already visible
+                if (document.visibilityState === 'visible') {
+                    DPR = Math.max(1, window.devicePixelRatio || 1);
+                    measureAndResize();
+                }
             })();
 
             // Open a responsive gallery modal with given image sources and start index
@@ -1445,7 +1816,7 @@
                 <path d="M23.472 19.339c-.355-.177-2.104-1.037-2.43-1.155-.326-.119-.563-.177-.8.177-.237.355-.914 1.155-1.122 1.392-.207.237-.414.266-.769.089-.355-.178-1.5-.553-2.86-1.763-1.057-.944-1.771-2.108-1.98-2.463-.207-.355-.022-.546.155-.723.159-.158.355-.414.533-.622.178-.207.237-.355.355-.592.119-.237.06-.444-.03-.622-.089-.178-.8-1.924-1.096-2.637-.289-.693-.583-.599-.8-.61-.207-.009-.444-.011-.681-.011-.237 0-.622.089-.948.444-.326.355-1.24 1.211-1.24 2.955 0 1.744 1.269 3.429 1.446 3.666.178.237 2.5 3.82 6.063 5.215.849.292 1.51.466 2.027.596.851.203 1.626.174 2.239.106.683-.076 2.104-.859 2.402-1.689.296-.83.296-1.541.207-1.689-.089-.148-.326-.237-.681-.414z" fill="#FFF"/>
             </svg>
         </a>
-
+    <div id="touch-cursor" class="touch-cursor" style="display:none;"></div>
 </body>
 
 </html>

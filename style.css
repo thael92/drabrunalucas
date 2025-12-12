@@ -27,6 +27,7 @@ body {
     max-width: 100%;
     background: var(--muted-bg);
 }
+
 /* ===== HEADER E NAVEGAÇÃO ===== */
 .header {
     position: fixed;
@@ -168,8 +169,10 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden; /* Garante que o overlay não vaze */
-    padding-top: var(--header-height); /* ajusta para o header */
+    overflow: hidden;
+    /* Garante que o overlay não vaze */
+    padding-top: var(--header-height);
+    /* ajusta para o header */
 }
 
 .hero-background {
@@ -189,7 +192,8 @@ body {
 .hero-content {
     display: grid;
     /* columns: main text flexible + visual column fixed-ish */
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 520px); /* Colunas mais flexíveis */
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 520px);
+    /* Colunas mais flexíveis */
     gap: 2.5rem;
     align-items: center;
     z-index: 2;
@@ -199,6 +203,7 @@ body {
     padding: 2rem;
     width: 100%;
 }
+
 .hero-image {
     animation: fadeInRight 0.8s ease-out;
     position: relative;
@@ -213,28 +218,40 @@ body {
 /* Avoid hero-image overlapping text on larger displays */
 @media (min-width: 900px) {
     .hero-content {
-        gap: 3rem; /* increase gap for larger screens */
+        gap: 3rem;
+        /* increase gap for larger screens */
     }
+
     .hero-image {
-        justify-self: end; /* anchor the image to the column edge */
-        max-width: 520px; /* avoid going wider than the column */
+        justify-self: end;
+        /* anchor the image to the column edge */
+        max-width: 520px;
+        /* avoid going wider than the column */
     }
+
     .hero-text {
-        padding-right: 1.25rem; /* safe padding so text doesn't get too close to image */
+        padding-right: 1.25rem;
+        /* safe padding so text doesn't get too close to image */
         position: relative;
-        z-index: 3; /* keep text above image if small overlap remains */
+        z-index: 3;
+        /* keep text above image if small overlap remains */
     }
 }
 
 @media (min-width: 1200px) {
     .hero-content {
-        gap: 4rem; /* even larger gap on wide desktop */
+        gap: 4rem;
+        /* even larger gap on wide desktop */
     }
+
     .hero-image {
-        max-width: 600px; /* allow larger hero image but still within column width */
+        max-width: 600px;
+        /* allow larger hero image but still within column width */
     }
+
     .hero-text {
-        padding-right: 2rem; /* more breathing room */
+        padding-right: 2rem;
+        /* more breathing room */
     }
 }
 
@@ -244,7 +261,10 @@ body {
         grid-template-columns: minmax(0, 1fr) minmax(360px, 600px);
         gap: 3.5rem;
     }
-    .hero-image { max-width: 600px; }
+
+    .hero-image {
+        max-width: 600px;
+    }
 }
 
 .hero-text {
@@ -258,6 +278,57 @@ body {
     margin-bottom: 1rem;
     line-height: 1.2;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Container for the canvas-powered particle title reveal */
+.hero-title-wrapper {
+    display: inline-block;
+    position: relative;
+    line-height: 1.2;
+    vertical-align: middle;
+}
+
+/* Canvas overlay that draws the particles. The DOM H1 remains in place for accessibility and SEO */
+.title-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* allow clicks to pass through to the CTA */
+    z-index: 5;
+    mix-blend-mode: screen;
+    /* subtle color blend over the background */
+}
+
+/* When a canvas is present we want to visually hide the native text while keeping it in the DOM */
+.hero-title-wrapper .hero-title {
+    color: transparent;
+    text-shadow: none;
+}
+
+/* fallback for users that prefer reduced motion */
+.hero-title-wrapper.reduced-motion .hero-title {
+    color: var(--white);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Respect prefer-reduced-motion: hide the particle canvas and show H1 */
+@media (prefers-reduced-motion: reduce) {
+    .title-canvas {
+        display: none !important;
+    }
+
+    .hero-title-wrapper .hero-title {
+        color: var(--white) !important;
+    }
+}
+
+/* Smaller screens: reduce particle density and keep the canvas aligned */
+@media (max-width: 900px) {
+    .title-canvas {
+        mix-blend-mode: normal;
+    }
 }
 
 .hero-subtitle {
@@ -351,14 +422,17 @@ body {
 .image-wrapper {
     position: relative;
     display: inline-block;
-    width: 100%; /* Ocupa toda a coluna do grid */
-    height: 100%; /* Ocupa toda a altura disponível */
+    width: 100%;
+    /* Ocupa toda a coluna do grid */
+    height: 100%;
+    /* Ocupa toda a altura disponível */
     margin: 0 auto;
 }
 
 /* Specific sizing for hero slideshow wrapper to ensure a wide rectangular hero */
 .image-wrapper.hero-slideshow {
-    max-width: 100%; /* Remove max-width fixo para se adaptar ao grid */
+    max-width: 100%;
+    /* Remove max-width fixo para se adaptar ao grid */
     width: 100%;
     height: 600px;
     margin: 0 auto;
@@ -368,33 +442,44 @@ body {
 /* Smaller screens: stack hero content and reduce hero height */
 @media (max-width: 900px) {
     .hero-section {
-        padding-top: 100px; /* Mais espaço no topo em telas menores */
+        padding-top: 100px;
+        /* Mais espaço no topo em telas menores */
         padding-bottom: 4rem;
-        min-height: auto; /* Altura automática para se ajustar ao conteúdo */
+        min-height: auto;
+        /* Altura automática para se ajustar ao conteúdo */
     }
+
     .hero-content {
         grid-template-columns: 1fr;
         gap: 1.5rem;
         padding: 1.5rem;
-        text-align: center; /* Centraliza o texto quando empilhado */
+        text-align: center;
+        /* Centraliza o texto quando empilhado */
     }
+
     .hero-image {
-        order: -1; /* coloca a imagem acima do texto no mobile */
+        order: -1;
+        /* coloca a imagem acima do texto no mobile */
         max-width: 100%;
         margin-bottom: 0.75rem;
     }
+
     .image-wrapper.hero-slideshow {
         height: 400px;
         max-width: 98vw;
         border-radius: 12px;
     }
-    .image-wrapper img { object-position: center center; }
+
+    .image-wrapper img {
+        object-position: center center;
+    }
 }
 
 .image-wrapper::before {
     content: '';
     position: absolute;
-    inset: -6px; /* reduz ligeiramente a área para evitar overflow visual */
+    inset: -6px;
+    /* reduz ligeiramente a área para evitar overflow visual */
     background: radial-gradient(circle at 30% 30%, rgba(198, 166, 93, 0.15), transparent 70%);
     border-radius: 20px;
     z-index: -1;
@@ -403,11 +488,13 @@ body {
 .image-wrapper img {
     width: 100%;
     height: auto;
-    height: 100%; /* Faz a imagem preencher o wrapper */
+    height: 100%;
+    /* Faz a imagem preencher o wrapper */
     display: block;
     border-radius: 20px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    object-fit: cover;
+    /* Garante que a imagem cubra o espaço sem distorcer */
 }
 
 /* Specific sizing for hero slideshow wrapper to ensure a wide rectangular hero */
@@ -433,9 +520,10 @@ body {
     }
 
     .navbar {
-    position: fixed;
-    top: var(--header-height); /* Altura do novo header */
-    height: calc(100vh - var(--header-height) - var(--footer-height));
+        position: fixed;
+        top: var(--header-height);
+        /* Altura do novo header */
+        height: calc(100vh - var(--header-height) - var(--footer-height));
         left: 0;
         right: 0;
         top: 63px;
@@ -494,14 +582,15 @@ body {
 
     .hero-image {
         order: -1;
-        margin-bottom: 1.5rem; /* Espaço entre imagem e texto */
+        margin-bottom: 1.5rem;
+        /* Espaço entre imagem e texto */
     }
 
     .image-wrapper {
         max-width: 350px;
     }
 
-    
+
 
 }
 
@@ -1135,7 +1224,8 @@ body {
 
 @media (min-width: 901px) {
     .first-sign-content {
-        grid-template-columns: minmax(300px, 440px) 1fr; /* Coluna flexível para evitar overflow */
+        grid-template-columns: minmax(300px, 440px) 1fr;
+        /* Coluna flexível para evitar overflow */
         gap: 2.25rem;
         grid-template-areas:
             "figure title"
@@ -1346,7 +1436,8 @@ body {
 
 /* Contact Section */
 .contact-grid {
-    display: grid; /* Garante que o grid seja aplicado */
+    display: grid;
+    /* Garante que o grid seja aplicado */
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     margin-top: 3rem;
@@ -1384,7 +1475,8 @@ body {
 }
 
 .contact-icon {
-    color: var(--gold); /* Corrigido para usar a variável CSS correta */
+    color: var(--gold);
+    /* Corrigido para usar a variável CSS correta */
     flex-shrink: 0;
     margin-top: 0.1rem;
 }
@@ -1400,22 +1492,47 @@ body {
 }
 
 .map-container {
-    border-radius: 20px;
+    position: relative;
+    padding-bottom: 75%;
+    /* 4:3 Aspect Ratio (change this value for different ratios) */
+    height: 0;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    grid-column: 2 / -1;
+    /* default to second column on desktop */
 }
 
 .map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 400px;
-    min-height: 350px; /* Altura mínima para o mapa em telas menores */
-    border: none;
+    height: 100%;
+    border: 0;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        /* single column on mobile */
+    }
+
+    .contact-info,
+    .map-container {
+        grid-column: 1 / -1;
+        /* full width on mobile */
+    }
+
+    .map-container {
+        padding-bottom: 56.25%;
+        /* 16:9 Aspect Ratio for mobile */
+    }
 }
 
 /* Responsividade da Seção de Contato */
 @media (max-width: 900px) {
     .contact-grid {
-        grid-template-columns: 1fr; /* Empilha as colunas em telas menores */
+        grid-template-columns: 1fr;
+        /* Empilha as colunas em telas menores */
     }
 }
 
@@ -1460,28 +1577,64 @@ footer {
 }
 
 /* Footer social icons: use the glyph icons (Font Awesome), no background circle; brand color for the glyph */
-footer .social-icons .social-icon { background: none; width: auto; height: auto; padding: .25rem .4rem; border-radius: 6px; box-shadow: none; }
-footer .social-icons .social-icon i { font-size: 20px; display: inline-block; }
-footer .social-icons .social-icon.social-whatsapp i { color: #25D366; }
-footer .social-icons .social-icon.social-instagram i { color: #E1306C; }
-footer .social-icons .social-icon.social-email i { color: var(--white); }
+footer .social-icons .social-icon {
+    background: none;
+    width: auto;
+    height: auto;
+    padding: .25rem .4rem;
+    border-radius: 6px;
+    box-shadow: none;
+}
+
+footer .social-icons .social-icon i {
+    font-size: 20px;
+    display: inline-block;
+}
+
+footer .social-icons .social-icon.social-whatsapp i {
+    color: #25D366;
+}
+
+footer .social-icons .social-icon.social-instagram i {
+    color: #E1306C;
+}
+
+footer .social-icons .social-icon.social-email i {
+    color: var(--white);
+}
 
 /* Ensure FA glyphs are rendered correctly and visible */
 footer .social-icons .social-icon i {
-    font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free", "Font Awesome 5 Free"; /* fallback */
+    font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free", "Font Awesome 5 Free";
+    /* fallback */
     font-style: normal;
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-solid { font-weight: 900; }
+
+footer .social-icons .social-icon i.fas,
+footer .social-icons .social-icon i.fa-solid {
+    font-weight: 900;
+}
 
 /* Social brand-specific styles */
 /* previously had per-social backgrounds; now using Font Awesome glyphs and footer-specific styles */
 
-.developer-credit { display:flex; gap: 0.6rem; align-items:center; justify-content:center; margin-top: 0.75rem; color: var(--white); }
-.developer-credit a img { height: 28px; display:block; }
+.developer-credit {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.developer-credit a img {
+    height: 28px;
+    display: block;
+}
 
 /* Animations */
 @keyframes fadeInUp {
@@ -1652,8 +1805,13 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
 
 /* animação contínua que move metade da largura (assumindo duplicação via JS) */
 @keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 /* acessibilidade: reduz movimento se preferências do usuário pedirem */
@@ -1661,6 +1819,7 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     .reviews-track {
         animation: none;
     }
+
     .reviews-carousel {
         overflow-x: auto;
     }
@@ -1688,6 +1847,7 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    margin-bottom: 3rem;
 }
 
 /* interactive carousel styles (moved from inline head style for responsiveness) */
@@ -1697,22 +1857,29 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     align-items: center;
     gap: 0.75rem;
 }
+
 .interactive-carousel .carousel-viewport {
     overflow: hidden;
     width: 100%;
-    flex: 1; /* take remaining space inside the flex container */
-    min-width: 0; /* allow proper shrinking in flex layout */
+    flex: 1;
+    /* take remaining space inside the flex container */
+    min-width: 0;
+    /* allow proper shrinking in flex layout */
 }
+
 .interactive-carousel .carousel-track {
     display: flex;
     gap: 1rem;
     transition: transform 0.45s ease;
     will-change: transform;
 }
+
 .interactive-carousel .carousel-slide {
     flex: 0 0 auto;
-    width: calc(100% - 2rem); /* mobile default: single slide with small page padding */
+    width: calc(100% - 2rem);
+    /* mobile default: single slide with small page padding */
 }
+
 .interactive-carousel .carousel-btn {
     background: var(--gold, #cba85a);
     color: #fff;
@@ -1722,20 +1889,47 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     cursor: pointer;
     font-weight: 600;
 }
-.interactive-carousel .carousel-btn:focus { outline: 3px solid rgba(203,168,90,0.25); }
-.interactive-carousel .carousel-dots { display:flex; gap:.5rem; justify-content:center; margin-top:.75rem; }
-.interactive-carousel .dot { width:10px; height:10px; border-radius:50%; background:#ddd; cursor:pointer; }
-.interactive-carousel .dot.active { background:var(--gold, #cba85a); }
-.interactive-carousel .dot:focus { outline: 3px solid rgba(203,168,90,0.2); box-shadow: 0 0 0 4px rgba(203,168,90,0.06); }
+
+.interactive-carousel .carousel-btn:focus {
+    outline: 3px solid rgba(203, 168, 90, 0.25);
+}
+
+.interactive-carousel .carousel-dots {
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+    margin-top: .75rem;
+}
+
+.interactive-carousel .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+}
+
+.interactive-carousel .dot.active {
+    background: var(--gold, #cba85a);
+}
+
+.interactive-carousel .dot:focus {
+    outline: 3px solid rgba(203, 168, 90, 0.2);
+    box-shadow: 0 0 0 4px rgba(203, 168, 90, 0.06);
+}
 
 /* tablet: 2 columns */
 @media (min-width: 640px) and (max-width: 959px) {
-    .interactive-carousel .carousel-slide { width: calc((100% - 1rem) / 2); }
+    .interactive-carousel .carousel-slide {
+        width: calc((100% - 1rem) / 2);
+    }
 }
 
 /* desktop: 3 columns */
 @media (min-width: 960px) {
-    .interactive-carousel .carousel-slide { width: calc((100% - 2rem) / 3); }
+    .interactive-carousel .carousel-slide {
+        width: calc((100% - 2rem) / 3);
+    }
 }
 
 
@@ -1818,7 +2012,8 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
 }
 
 @media (max-width: 768px) {
-    .interactive-grid { /* This is already handled by auto-fit, but can be explicit */
+    .interactive-grid {
+        /* This is already handled by auto-fit, but can be explicit */
         grid-template-columns: 1fr;
     }
 }
@@ -1863,15 +2058,18 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     max-width: 95vw;
     max-height: 95vh;
     padding: 0.75rem;
-    background: rgba(10, 10, 10, 0.95); /* dark background to highlight image */
+    background: rgba(10, 10, 10, 0.95);
+    /* dark background to highlight image */
     border-radius: 12px;
 }
+
 .modal.modal-image .image-modal-content {
     width: 100%;
     height: 100%;
     display: block;
     text-align: center;
 }
+
 .modal.modal-image img {
     max-width: 100%;
     max-height: 85vh;
@@ -1880,10 +2078,12 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     margin: 0 auto;
     border-radius: 8px;
 }
+
 .modal.modal-image .modal-close {
     color: var(--white);
-    top: 0.5rem; right: 0.5rem;
-    background: rgba(255,255,255,0.06);
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
     border-radius: 6px;
 }
 
@@ -1895,8 +2095,10 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     max-height: none;
     padding: 1rem;
     border-radius: 0;
-    background: transparent; /* backdrop is handled by #modal-backdrop */
+    background: transparent;
+    /* backdrop is handled by #modal-backdrop */
 }
+
 .modal.modal-gallery .gallery-wrap {
     position: relative;
     width: 100%;
@@ -1905,11 +2107,13 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     align-items: center;
     justify-content: center;
 }
+
 .modal.modal-gallery .gallery-viewport {
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
+
 .modal.modal-gallery .gallery-track {
     display: flex;
     gap: 0;
@@ -1917,6 +2121,7 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     transition: transform 0.45s ease;
     will-change: transform;
 }
+
 .modal.modal-gallery .gallery-slide {
     min-width: 100%;
     height: 100%;
@@ -1924,6 +2129,7 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     align-items: center;
     justify-content: center;
 }
+
 .modal.modal-gallery .gallery-slide img {
     max-width: 95%;
     max-height: 90vh;
@@ -1931,6 +2137,7 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     display: block;
     margin: 0 auto;
 }
+
 .modal.modal-gallery .gallery-nav {
     position: absolute;
     top: 50%;
@@ -1939,15 +2146,22 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.06);
+    background: rgba(255, 255, 255, 0.06);
     color: var(--white);
     display: grid;
     place-items: center;
     border: none;
     cursor: pointer;
 }
-.modal.modal-gallery .gallery-prev { left: 1rem; }
-.modal.modal-gallery .gallery-next { right: 1rem; }
+
+.modal.modal-gallery .gallery-prev {
+    left: 1rem;
+}
+
+.modal.modal-gallery .gallery-next {
+    right: 1rem;
+}
+
 .modal.modal-gallery .gallery-dots {
     position: absolute;
     bottom: 18px;
@@ -1957,15 +2171,33 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     gap: 0.5rem;
     z-index: 999;
 }
-.modal.modal-gallery .gallery-dots button { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.25); border: none; }
-.modal.modal-gallery .gallery-dots button.active { background: var(--gold); }
 
-@media (max-width: 900px) {
-    .modal.modal-gallery .gallery-nav { width: 40px; height: 40px; }
-    .modal.modal-gallery .gallery-viewport { height: calc(100vh - 56px); }
+.modal.modal-gallery .gallery-dots button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
 }
 
-.modal.modal-lg { max-width: 800px; }
+.modal.modal-gallery .gallery-dots button.active {
+    background: var(--gold);
+}
+
+@media (max-width: 900px) {
+    .modal.modal-gallery .gallery-nav {
+        width: 40px;
+        height: 40px;
+    }
+
+    .modal.modal-gallery .gallery-viewport {
+        height: calc(100vh - 56px);
+    }
+}
+
+.modal.modal-lg {
+    max-width: 800px;
+}
 
 .modal:not([aria-hidden="true"]) {
     opacity: 1;
@@ -1990,11 +2222,12 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
 /* Make the close button visible on the fullscreen gallery modal */
 .modal.modal-gallery .modal-close {
     color: var(--white);
-    background: rgba(255,255,255,0.06);
+    background: rgba(255, 255, 255, 0.06);
     border-radius: 6px;
     top: 6.5rem;
     right: 1.5rem;
-    z-index: 1001; /* put above gallery content */
+    z-index: 1001;
+    /* put above gallery content */
 }
 
 .modal-close:hover {
@@ -2014,15 +2247,18 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     max-width: 95vw;
     max-height: 95vh;
     padding: 0.75rem;
-    background: rgba(10, 10, 10, 0.95); /* dark background to highlight image */
+    background: rgba(10, 10, 10, 0.95);
+    /* dark background to highlight image */
     border-radius: 12px;
 }
+
 .modal.modal-image .image-modal-content {
     width: 100%;
     height: 100%;
     display: block;
     text-align: center;
 }
+
 .modal.modal-image img {
     max-width: 100%;
     max-height: 85vh;
@@ -2031,10 +2267,12 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     margin: 0 auto;
     border-radius: 8px;
 }
+
 .modal.modal-image .modal-close {
     color: var(--white);
-    top: 0.5rem; right: 0.5rem;
-    background: rgba(255,255,255,0.06);
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
     border-radius: 6px;
 }
 
@@ -2051,12 +2289,14 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     text-align: center;
     margin-bottom: 1.5rem;
 }
+
 .quiz-options {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
+
 .quiz-explanation {
     background-color: var(--muted-bg);
     border-left: 4px solid var(--gold);
@@ -2064,6 +2304,7 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     border-radius: 8px;
     line-height: 1.6;
 }
+
 .quiz-nav {
     text-align: center;
     margin-top: 1.5rem;
@@ -2076,6 +2317,7 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
+
 .emotion-item {
     display: flex;
     flex-direction: column;
@@ -2086,21 +2328,26 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     border-radius: 12px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 .emotion-item:hover {
     background-color: var(--muted-bg);
     transform: scale(1.05);
 }
+
 .emotion-item.selected {
     background-color: rgba(198, 166, 93, 0.15);
     transform: scale(1.1);
 }
+
 .emotion-emoji {
     font-size: 3rem;
 }
+
 .emotion-label {
     font-weight: 500;
     color: var(--brand-dark);
 }
+
 .emotion-feedback-box {
     min-height: 60px;
     background-color: var(--muted-bg);
@@ -2120,8 +2367,8 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
 
 .face-canvas {
     position: relative;
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     margin: 0 auto;
     background-color: #fff4e6;
     border-radius: 50%;
@@ -2130,8 +2377,8 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
 }
 
 .face-base {
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
     opacity: 0.5;
 }
@@ -2149,8 +2396,8 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
 }
 
 .draggable-part {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     cursor: grab;
     transition: transform 0.2s ease;
 }
@@ -2161,15 +2408,22 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
 
 .dropped-part {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     user-select: none;
+}
+
+/* Estilos específicos para os acessórios */
+.dropped-part.accessory-part {
+    width: 225px;
+    height: 80px;
 }
 
 @media (min-width: 768px) {
     .carinha-game-container {
         flex-direction: row;
     }
+
     .parts-container {
         flex: 1;
         max-height: 300px;
@@ -2201,7 +2455,7 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     padding: 1rem;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .animal-option:hover {
@@ -2213,7 +2467,8 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     width: 100%;
     max-width: 120px;
     height: auto;
-    pointer-events: none; /* Clicks should be on the parent div */
+    pointer-events: none;
+    /* Clicks should be on the parent div */
 }
 
 .animal-option.correct {
@@ -2222,16 +2477,70 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
 }
 
 @keyframes correct-answer-pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .animal-feedback {
-    margin-top: 1.5rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-    min-height: 24px;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.animal-celebration {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Confetti styles */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f0f;
+    /* Cor padrão, será sobrescrita pelo JS */
+    animation: fall 2s forwards;
+    opacity: 0;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
 }
 
 /* ===== Botão Flutuante do WhatsApp ===== */
@@ -2260,7 +2569,8 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
 .whatsapp-float:hover {
     transform: translateY(-5px) scale(1.1);
     box-shadow: 0 15px 35px rgba(198, 166, 93, 0.4);
-    animation-play-state: paused; /* Pausa a animação no hover */
+    animation-play-state: paused;
+    /* Pausa a animação no hover */
     background: var(--gold);
     color: var(--brand);
 }
@@ -2274,7 +2584,8 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
         right: 20px;
     }
 
-    .image-wrapper.hero-slideshow .hero-slide, .image-wrapper.hero-slideshow img {
+    .image-wrapper.hero-slideshow .hero-slide,
+    .image-wrapper.hero-slideshow img {
         height: 451px;
     }
 }
@@ -2295,10 +2606,13 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
 /* Fale Comigo badge (appears behind the floating WhatsApp button, cycles on/off) */
 .fale-badge {
     position: fixed;
-    right: 72px; /* same location as whatsapp button */
-    bottom: 25px; /* same location as whatsapp button */
-    z-index: 989; /* behind the whatsapp button (which is 990) */
-    background: rgba(255,255,255,0.96);
+    right: 72px;
+    /* same location as whatsapp button */
+    bottom: 25px;
+    /* same location as whatsapp button */
+    z-index: 989;
+    /* behind the whatsapp button (which is 990) */
+    background: rgba(255, 255, 255, 0.96);
     color: var(--brand-dark);
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
@@ -2308,17 +2622,28 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.35s ease, transform 0.35s ease;
-    pointer-events: none; /* won't block clicks to whatsapp */
+    pointer-events: none;
+    /* won't block clicks to whatsapp */
     user-select: none;
 }
-.fale-badge.visible { opacity: 1; transform: translateY(0); }
+
+.fale-badge.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 @media (max-width: 480px) {
-    .fale-badge { display: block; } /* hide badge on very small screens */
+    .fale-badge {
+        display: block;
+    }
+
+    /* hide badge on very small screens */
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .fale-badge { transition: none; }
+    .fale-badge {
+        transition: none;
+    }
 }
 
 /* Slideshow visual improvements */
@@ -2329,6 +2654,7 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     overflow: hidden;
     min-height: 220px;
 }
+
 .hero-slideshow .hero-slide {
     position: absolute;
     inset: 0;
@@ -2339,8 +2665,92 @@ footer .social-icons .social-icon i.fas, footer .social-icons .social-icon i.fa-
     transition: opacity 0.9s ease-in-out;
     display: block;
 }
-.hero-slideshow .hero-slide.visible { opacity: 1; }
-.hero-slideshow-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; display:flex; gap:8px; z-index: 4; }
-.hero-slideshow-dots button { width:12px; height:12px; border-radius:50%; border:none; background: rgba(255,255,255,0.6); cursor:pointer; padding: 0; }
-.hero-slideshow-dots button:focus { outline: 2px solid rgba(255,255,255,0.9); box-shadow: 0 0 0 4px rgba(0,0,0,0.2); }
-.hero-slideshow-dots button.active { background: var(--gold); }
+
+.hero-slideshow .hero-slide.visible {
+    opacity: 1;
+}
+
+.hero-slideshow-dots {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 4;
+}
+
+.hero-slideshow-dots button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 0;
+}
+
+.hero-slideshow-dots button:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-slideshow-dots button.active {
+    background: var(--gold);
+}
+
+.dragging-touch-part {
+    opacity: 0.7;
+    position: absolute;
+    pointer-events: none;
+    /* Avoid blocking elements underneath */
+    z-index: 1000;
+}
+
+/* Estilos para o cursor de toque em mobile */
+.touch-cursor {
+    position: absolute;
+    width: 60px;
+    /* Tamanho do círculo */
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(var(--color-primary-rgb), 0.5);
+    /* Semi-transparente */
+    border: 2px solid var(--color-primary);
+    pointer-events: none;
+    /* Garante que não interfira com outros elementos */
+    transform: translate(-50%, -50%);
+    /* Centraliza o cursor no toque */
+    z-index: 999;
+    /* Garante que fique acima de outros elementos */
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.touch-cursor.over-canvas {
+    background-color: rgba(var(--color-secondary-rgb), 0.7);
+    /* Cor diferente quando sobre a área de soltura */
+    border-color: var(--color-secondary);
+}
+
+/* Estilos específicos para o botão CTA do Quiz */
+.quiz-cta-btn {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    /* Limita a largura em telas maiores */
+    margin: 1rem auto 0 auto;
+    /* Centraliza e adiciona margem superior */
+    padding: 0.8em 1.5em;
+    /* Ajusta o preenchimento para um melhor visual */
+    text-align: center;
+    box-sizing: border-box;
+    /* Garante que padding e border sejam incluídos na largura */
+}
+
+/* Em telas menores, ajusta para ocupar toda a largura */
+@media (max-width: 600px) {
+    .quiz-cta-btn {
+        max-width: 90%;
+        /* Ocupa mais espaço em telas pequenas */
+    }
+}
