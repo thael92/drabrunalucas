@@ -70,7 +70,7 @@
         <div class="hero-content">
             <div class="hero-text">
                 <div class="hero-title-wrapper">
-                    <canvas id="hero-title-canvas" class="title-canvas" aria-hidden="true"></canvas>
+                    
                     <h1 id="hero-title" class="hero-title">Dra. Bruna Lucas – Pediatra & Neurodesenvolvimento</h1>
                 </div>
                 <p id="hero-subtitle" class="hero-subtitle">Atendimento humanizado com foco em TEA, TDAH e desenvolvimento infantil.</p>
@@ -858,7 +858,7 @@
             const visibleWidth = Math.max(carousel.clientWidth, window.innerWidth);
             const distance = (cardBase * totalCards); // aproxima distância a percorrer
             // duração em segundos: distancia / velocidade(px/s). velocidade pequena => movimento lento.
-            const pxPerSecond = 40; // reduzir para ir mais devagar (ajuste aqui)
+            const pxPerSecond = 500; // reduzir para ir mais devagar (ajuste aqui)
             const durationSec = Math.max(20, Math.round(distance / pxPerSecond));
             track.style.animation = `scroll ${durationSec}s linear infinite`;
 
@@ -1389,7 +1389,7 @@
                     title.style.color = '';
                     return;
                 }
-
+                
                 const ctx = canvas.getContext('2d');
                 if (!ctx) { wrapper.classList.add('reduced-motion'); canvas.style.display = 'none'; title.style.color = ''; return; }
                 let particles = [];

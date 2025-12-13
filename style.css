@@ -147,7 +147,8 @@ body {
     background: linear-gradient(90deg, var(--gold), #d8b35a);
     color: var(--brand-dark);
     font-weight: 500;
-    padding: 0.75rem 1.5rem;
+    padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 .nav-link.cta-link:hover {
@@ -218,23 +219,24 @@ body {
 /* Avoid hero-image overlapping text on larger displays */
 @media (min-width: 900px) {
     .hero-content {
+        display: flex; /* Alterado para flexbox */
+        flex-direction: column; /* Empilha os itens verticalmente */
+        align-items: center; /* Centraliza os itens */
         gap: 3rem;
-        /* increase gap for larger screens */
     }
 
     .hero-image {
-        justify-self: end;
-        /* anchor the image to the column edge */
+        order: -1; /* Coloca a imagem acima do texto */
+        justify-self: center; /* Centraliza a imagem na coluna */
         max-width: 520px;
-        /* avoid going wider than the column */
     }
 
     .hero-text {
-        padding-right: 1.25rem;
-        /* safe padding so text doesn't get too close to image */
+        order: 1; /* Coloca o texto abaixo da imagem */
+        text-align: center; /* Centraliza o texto */
+        padding-right: 0; /* Remove padding lateral desnecessário */
         position: relative;
         z-index: 3;
-        /* keep text above image if small overlap remains */
     }
 }
 
@@ -276,8 +278,9 @@ body {
     font-size: clamp(2.2rem, 5vw, 3.2rem);
     font-weight: 700;
     margin-bottom: 1rem;
+    z-index: 100;
     line-height: 1.2;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    color: var(--white); /* Adicionado para garantir a cor branca */
 }
 
 /* Container for the canvas-powered particle title reveal */
@@ -301,11 +304,7 @@ body {
     /* subtle color blend over the background */
 }
 
-/* When a canvas is present we want to visually hide the native text while keeping it in the DOM */
-.hero-title-wrapper .hero-title {
-    color: transparent;
-    text-shadow: none;
-}
+
 
 /* fallback for users that prefer reduced motion */
 .hero-title-wrapper.reduced-motion .hero-title {
@@ -590,8 +589,42 @@ body {
         max-width: 350px;
     }
 
+    /* Media query para telas maiores, restaurando o layout desktop e escondendo o hambúrguer */
+    @media (min-width: 960px) {
+        .menu-toggle {
+            display: none; /* Esconde o ícone de hambúrguer */
+        }
 
+        .navbar {
+            position: static; /* Remove o posicionamento fixo */
+            height: auto; /* Altura automática */
+            background: transparent; /* Fundo transparente */
+            backdrop-filter: none; /* Remove o filtro de desfoque */
+            flex-direction: row; /* Volta a ser horizontal */
+            justify-content: flex-end; /* Alinha à direita */
+            padding: 0; /* Remove padding */
+            transform: translateX(0); /* Garante que esteja visível */
+            overflow-y: visible; /* Torna o overflow visível */
+            z-index: auto; /* Reseta o z-index */
+        }
 
+        .nav-list {
+            flex-direction: row; /* Volta a ser horizontal */
+            width: auto; /* Largura automática */
+            gap: 0.5rem; /* Espaçamento padrão */
+        }
+
+        .nav-link {
+            width: auto; /* Largura automática */
+            text-align: center; /* Centraliza o texto */
+            display: inline-block; /* Exibição em linha */
+        }
+
+        .nav-link.cta-link {
+            margin-top: 0; /* Remove margin-top */
+            text-align: center; /* Centraliza o texto */
+        }
+    }
 }
 
 @media (max-width: 480px) {
@@ -2018,6 +2051,21 @@ footer .social-icons .social-icon i.fa-solid {
     }
 }
 
+@media (max-width: 639px) {
+    .card-title {
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+    }
+
+    .card-description {
+        font-size: clamp(0.85rem, 2.5vw, 1rem);
+        width: 200px;
+    }
+
+    .card-cta {
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+    }
+}
+
 /* ===== MODAL STYLES ===== */
 .modal-backdrop {
     position: fixed;
@@ -2324,7 +2372,7 @@ footer .social-icons .social-icon i.fa-solid {
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    padding: 1rem;
+    padding: 0rem;
     border-radius: 12px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -2753,4 +2801,35 @@ footer .social-icons .social-icon i.fa-solid {
         max-width: 90%;
         /* Ocupa mais espaço em telas pequenas */
     }
+}
+
+@media (max-width: 767px) {
+    .reviews-track {
+        overflow-x: none;
+        -webkit-overflow-scrolling: touch; /* Para rolagem suave em iOS */
+        scroll-snap-type: x mandatory;
+        gap: 1rem;
+        scrollbar-width: none; /* Esconde a barra de rolagem Firefox */
+        -ms-overflow-style: none;  /* Esconde a barra de rolagem IE/Edge */
+        padding-bottom: 1rem; /* Garante que o conteúdo não seja cortado por uma barra invisível */
+        animation: none; /* Desativa a animação de rolagem automática */
+        flex-wrap: nowrap; /* Impede que os itens quebrem a linha */
+    }
+
+    .reviews-track::-webkit-scrollbar { /* Esconde a barra de rolagem Chrome/Safari */
+        display: none;
+    }
+
+    .reviews-track .review-card {
+        flex-shrink: 0; /* Impede que os cartões encolham */
+        scroll-snap-align: start;
+        width: 85vw; /* Largura responsiva para mobile */
+        max-width: 300px; /* Largura máxima para evitar que fiquem muito grandes */
+        margin-right: 1.5rem; /* Espaçamento entre os cartões */
+    }
+}
+
+.reviews-carousel:hover .reviews-track,
+.reviews-track:focus {
+    animation-play-state: paused;
 }
